@@ -45,6 +45,7 @@ else:
     # Default to local server if none is given.
     base = 'http://localhost:8070/api/'
 
+print('Using GROBID server at:', base, '\n')
 
 # Test Server Conncetion
 alive_url = urljoin(base, './isalive')
