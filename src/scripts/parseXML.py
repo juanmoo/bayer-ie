@@ -4,7 +4,7 @@
 This script is meant to be used to process XML files obtained by processing native PDFs
 using GROBID's "Process Full Text Document" feature.
 
-Given the location of the TEI XML, this script will extract a flattened list of leaf 
+Given the location of the TEI XML, this script will extract a flattened list of leaf
 elements with text while noting the div to which they belong.
 '''
 
@@ -49,9 +49,10 @@ def parse_xml_file(file_name):
                 processed_text.append(' '.join(ptext))
 
 
-    
+
     parsed_info = {}
-    parsed_info['document_name'] = file_name[:file_name.rfind('.xml')]
+    parsed_info['document_name'] = os.path.basename(file_name).split('.xml')[0]
+    #parsed_info['document_name'] = file_name[:file_name.rfind('.xml')]
     parsed_info['element_text'] = text
     parsed_info['processed_text'] = processed_text
     parsed_info['element_tag'] = tag
@@ -61,5 +62,12 @@ def parse_xml_file(file_name):
 xml_files = [os.path.join(source_path, f) for f in os.listdir(source_path) if '.xml' in f]
 with Pool(10) as p:
     parsed_docs = p.map(parse_xml_file, xml_files)
-    with open(dest_path, 'w') as output:
-        output.write(json.dumps(parsed_docs, indent=4))
+
+    output = dict()
+    for el in parsed_docs:
+        name = el['document_name']
+        el.pop('document_name')
+        output[name] = el
+
+    with open(dest_path, 'w') as out_file:
+        out_file.write(json.dumps(output, indent=4))
