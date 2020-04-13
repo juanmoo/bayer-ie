@@ -37,7 +37,6 @@ def parse_xml_file(file_name):
     root = ET.parse(file_name).getroot()
     text = []
     tag = []
-    processed_text = []
     for child in root.iter():
         if child.text:
             ptext = [w for w in child.text.strip().lower().split(' ') if w.isalnum()]
@@ -46,15 +45,11 @@ def parse_xml_file(file_name):
             if len(ptext) > 0:
                 text.append(child.text.strip())
                 tag.append(child.tag[29:]) # prune tei-url from tag
-                processed_text.append(' '.join(ptext))
-
 
 
     parsed_info = {}
     parsed_info['document_name'] = os.path.basename(file_name).split('.xml')[0]
-    #parsed_info['document_name'] = file_name[:file_name.rfind('.xml')]
     parsed_info['element_text'] = text
-    parsed_info['processed_text'] = processed_text
     parsed_info['element_tag'] = tag
 
     return parsed_info
