@@ -3,7 +3,7 @@ Utility functions to be used in Bayer Project
 '''
 
 import pandas as pd
-import os
+import os, sys, json, pickle
 
 def parse_spreadsheet(path):
     '''
@@ -47,6 +47,40 @@ def parse_spreadsheet(path):
 
 
     return output
+
+# Save / Load values from checkpoint file
+def save_value(key, val, path=None):
+    with open(path, 'rb') as f:
+        try:
+            saved_env = pickle.load(f)
+            assert(type(saved_env) == dict)
+        except:
+            saved_env = dict()
+            
+    saved_env[key] = val
+    
+    with open(path, 'wb') as f:
+        f.write(pickle.dumps(saved_env))
+    
+def load_value(key, path=None):
+    
+    with open(path, 'rb') as f:
+        try:
+            saved_env = pickle.load(f)
+            ans = saved_env[key]
+        except:
+            ans = None
+        
+        return ans
+
+def load_env_keys(path):
+    with open(path, 'rb') as f:
+        try:
+            saved_env = pickle.load(f)
+        except:
+            saved_env = dict()
+        
+        return saved_env.keys()
 
 
 
