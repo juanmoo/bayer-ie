@@ -89,23 +89,35 @@ def match_labels(raw_data, annotations, exact_match=False):
             if len(e['text']) == 1:
                 continue
 
-            parsed_p = '\n'.join(e['text'][1:]) # All paragraphs in <div> excluding header
+            div_paragraphs = e['text'][1:] # All paragraphs in <div> excluding header
+            parsed_p = '\n'.join(div_paragraphs)
 
             lb = 'other'
             for i, label_p in enumerate(label_doc['texts']):
-                if contains_test(label_p, parsed_p, exact_match=exact_match): #Match
+                if contains_test(div_paragraphs, label_p, exact_match=exact_match): #Match
                     lb = clean_label(label_doc['labels'][i])
                     matchings.append([parsed_p, lb, cur_sec])
-                    print(lb)
-                    break
+
+                    paragraphs.append(parsed_p)
+                    labels.append(lb)
+                    head1.append(e['head'])
+                    head2.append(cur_sec)
+                    # more than one label is possible, so no break
+
             if lb == 'other':
                 other.append(parsed_p)
 
+                paragraphs.append(parsed_p)
+                labels.append(lb)
+                head1.append(e['head'])
+                head2.append(cur_sec)
 
-            paragraphs.append(parsed_p)
-            labels.append(lb)
-            head1.append(e['head'])
-            head2.append(cur_sec)
+
+
+            # paragraphs.append(parsed_p)
+            # labels.append(lb)
+            # head1.append(e['head'])
+            # head2.append(cur_sec)
         
         
         labeled_raw_documents[parsed_doc_name] = {
@@ -121,15 +133,15 @@ def match_labels(raw_data, annotations, exact_match=False):
 
 ########## String Utilities ##########
 
-def contains_test(piece, whole, exact_match=False):
+def contains_test(pieces, whole, exact_match=False):
     # Fuzzy matching tests to see if the max
     # similarity substring of size len(piece)
     # has a partial ratio > threshold
     if exact_match:
-        return piece in whole
+        return any([piece in whole for piece in pieces])
 
     threshold = 95
-    return fuzz.partial_ratio(piece, whole) >= threshold
+    return any([fuzz.partial_ratio(piece, whole) >= threshold for piece in pieces])
 
 def is_section(head):
     if not head:
