@@ -6,6 +6,12 @@ import pandas as pd
 import os, sys, json, pickle
 from fuzzywuzzy import fuzz
 
+def clean_label(lb):
+    lb = lb.strip()
+    if lb == 'Significant findings - pregnancy':
+        return 'Significant Findings - Pregnancy'
+    return lb
+
 def parse_spreadsheet(path):
     '''
     Parses spreadsheet located at given path and outputs a dictionary. This parser assumes the
@@ -42,9 +48,16 @@ def parse_spreadsheet(path):
                              'texts': [],
                              'labels': []
                             }
-
-            output[n]['texts'].append(text)
-            output[n]['labels'].append(label.strip())
+            label = clean_label(label)
+            found = False
+            for i, lb in enumerate(output[n]['labels']):
+                if lb == label:
+                    output[n]['texts'][i] += '\n' + text
+                    found = True
+                    break
+            if not found:
+                output[n]['texts'].append(text)
+                output[n]['labels'].append(label)
 
 
     return output

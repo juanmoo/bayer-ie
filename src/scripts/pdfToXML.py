@@ -74,5 +74,5 @@ def parse_file(name):
             xml_file.write(r.text)
     print(name, 'Done!')
 
-with Pool(10) as p:
+with Pool(1) as p:
     p.map(parse_file, pdf_files)

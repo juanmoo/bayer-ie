@@ -35,22 +35,34 @@ else:
 # Parse XMLs #
 def parse_xml_file(file_name):
     root = ET.parse(file_name).getroot()
-    text = []
-    tag = []
+
+    # remove tei-rul
     for child in root.iter():
-        if child.text:
-            ptext = [w for w in child.text.strip().lower().split(' ') if w.isalnum()]
+        child.tag = child.tag.replace('{http://www.tei-c.org/ns/1.0}', '')
+    
+    body = root.find('text').find('body')
+    assert body is not None
 
-            # Only append items with a non-zero number of alphanumeric words.
-            if len(ptext) > 0:
-                text.append(child.text.strip())
-                tag.append(child.tag[29:]) # prune tei-url from tag
-
+    elements = []
+    for child in body.iter('div'):
+        h = child.find('head')
+        if h is None:
+            head = ''
+        else:
+            head = h.text
+            if 'n' in h.attrib:
+                head = h.get('n') + ' ' + head
+                h.text = head
+        e = {
+            'head': head,
+            'text': [p.text.strip() for p in child],
+            'tag': [p.tag for p in child]
+        }
+        elements.append(e)
 
     parsed_info = {}
     parsed_info['document_name'] = os.path.basename(file_name).split('.xml')[0]
-    parsed_info['element_text'] = text
-    parsed_info['element_tag'] = tag
+    parsed_info['elements'] = elements
 
     return parsed_info
 
