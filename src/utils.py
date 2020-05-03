@@ -3,14 +3,9 @@ Utility functions to be used in Bayer Project
 '''
 
 import pandas as pd
-import os, sys, json, pickle
+import os, sys, json, pickle, re, spacy
 from fuzzywuzzy import fuzz
-
-def clean_label(lb):
-    lb = lb.strip()
-    if lb == 'Significant findings - pregnancy':
-        return 'Significant Findings - Pregnancy'
-    return lb
+from tqdm import tqdm
 
 def parse_spreadsheet(path):
     '''
@@ -62,7 +57,69 @@ def parse_spreadsheet(path):
 
     return output
 
+
+
 # Match raw JSON-styled data to annotations
+def match_labels(raw_data, annotations, exact_match=False):
+    labeled_raw_documents = {}
+
+    for parsed_doc_name in tqdm(raw_data):
+        parsed_doc = raw_data[parsed_doc_name]
+        label_doc = annotations[parsed_doc_name] 
+        
+        matchings = [] # el: [parsed paragraph, label, section]
+        other = []
+        
+        paragraphs = []
+        labels = []
+        tags = []
+
+        head1 = []
+        # head2 only consider x.x
+        head2 = []
+
+        cur_sec = ''
+
+        for e in parsed_doc['elements']:
+
+            if is_section(e['head']):
+                cur_sec = e['head']
+
+            # ignore div that contains only a <head> and no other <p>
+            if len(e['text']) == 1:
+                continue
+
+            parsed_p = '\n'.join(e['text'][1:]) # All paragraphs in <div> excluding header
+
+            lb = 'other'
+            for i, label_p in enumerate(label_doc['texts']):
+                if contains_test(label_p, parsed_p, exact_match=exact_match): #Match
+                    lb = clean_label(label_doc['labels'][i])
+                    matchings.append([parsed_p, lb, cur_sec])
+                    print(lb)
+                    break
+            if lb == 'other':
+                other.append(parsed_p)
+
+
+            paragraphs.append(parsed_p)
+            labels.append(lb)
+            head1.append(e['head'])
+            head2.append(cur_sec)
+        
+        
+        labeled_raw_documents[parsed_doc_name] = {
+            'matches': matchings,
+            'other': other,
+            'texts': paragraphs,
+            'labels': labels,
+            'head1': head1,
+            'head2': head2
+        }   
+    
+    return labeled_raw_documents
+
+########## String Utilities ##########
 
 def contains_test(piece, whole, exact_match=False):
     # Fuzzy matching tests to see if the max
@@ -74,47 +131,37 @@ def contains_test(piece, whole, exact_match=False):
     threshold = 95
     return fuzz.partial_ratio(piece, whole) >= threshold
 
-def match_labels(raw_data, annotations, exact_match=False):
-    labeled_raw_documents = {}
+def is_section(head):
+    if not head:
+        return False
+    tok = head.split()[0]
+    if tok.isdigit():
+        return True
+    if tok.replace('.','',1).isdigit():
+        return True
+    return False
 
-    for parsed_doc_name in raw_data:
-        parsed_doc = raw_data[parsed_doc_name]
-        label_doc = annotations[parsed_doc_name] #label doc w/ same name
-        
-        matchings = [] # el: [parsed paragraph, label_paragraph_id, label]
-        other = []
-        
-        paragraphs = []
-        labels = []
-        tags = []
-        
-        for parsed_p, tag in zip(parsed_doc['element_text'], parsed_doc['element_tag']):
-            found = False
-            for i, label_p in enumerate(label_doc['texts']):
-                if contains_test(parsed_p, label_p, exact_match=exact_match):
-                    found = True
-                    matchings.append([parsed_p, i, label_doc['labels'][i]])
-                    paragraphs.append(parsed_p)
-                    labels.append(label_doc['labels'][i])
-                    tags.append(tag)
-                    break
-            if not found:
-                other.append(parsed_p)
-                
-                paragraphs.append(parsed_p)
-                labels.append('other')
-                tags.append(tag)
-                
-        
-        labeled_raw_documents[parsed_doc_name] = {
-            'matches': matchings,
-            'other': other,
-            'paragraphs': paragraphs,
-            'labels': labels,
-            'tags': tags
-        }       
-    
-    return labeled_raw_documents
+def clean_label(lb):
+    lb = lb.strip()
+    if lb == 'Significant findings - pregnancy':
+        return 'Significant Findings - Pregnancy'
+    return lb
+
+
+NLP = spacy.load('en_core_web_sm')
+MAX_CHARS = 20000
+def tokenize_string(comment):
+    comment = re.sub(
+        r"[\*\"“”\n\\…\+\-\/\=\(\)‘•:\[\]\|’\!;]", " ", str(comment))
+    comment = re.sub(r"[ ]+", " ", comment)
+    comment = re.sub(r"\!+", "!", comment)
+    comment = re.sub(r"\,+", ",", comment)
+    comment = re.sub(r"\?+", "?", comment)
+    if (len(comment) > MAX_CHARS):
+        comment = comment[:MAX_CHARS]
+    return ' '.join([x.text.lower() for x in NLP.tokenizer(comment) if x.text != " "])
+
+############## Logistical Utilities ##############
 
 # Save / Load values from checkpoint file
 def save_value(key, val, path=None):
