@@ -21,7 +21,8 @@ argv = sys.argv[1:]
 parser = argparse.ArgumentParser()
 parser.add_argument('source', help='Path to folder with PDFs')
 parser.add_argument('--dest', help='Path of folder where XMLs are to be placed')
-parser.add_argument('--server-url', help="URL of API endpoint to process pdfs")
+parser.add_argument('--server-url', help='URL of API endpoint to process pdfs')
+parser.add_argument('--pool-workers', help='Number of workers to be used to process documents simultaneously')
 args = parser.parse_args(argv)
 
 # Verify Args #
@@ -38,6 +39,14 @@ else:
     dest_path = os.path.realpath(args.dest)
     if not os.path.isdir(dest_path):
         raise Exception('Destination path is invalid.')
+
+if args.pool_workers is not None:
+    if args.pool_workers.strip().isdigit():
+        pool_workers = int(args.pool_workers)
+    else:
+        raise Exception("Invalid number of pool workers.")
+else:
+    pool_workers = 1
 
 if args.server_url is not None:
     base = args.server_url + ('' if args.server_url[-1] == '/' else '/')
@@ -74,5 +83,5 @@ def parse_file(name):
             xml_file.write(r.text)
     print(name, 'Done!')
 
-with Pool(1) as p:
+with Pool(pool_workers) as p:
     p.map(parse_file, pdf_files)

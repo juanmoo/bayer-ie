@@ -41,7 +41,7 @@ def parse_xml_file(file_name):
         child.tag = child.tag.replace('{http://www.tei-c.org/ns/1.0}', '')
     
     body = root.find('text').find('body')
-    assert body is not None
+    assert(body is not None)
 
     elements = []
     for child in body.iter('div'):
