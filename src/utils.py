@@ -60,7 +60,7 @@ def parse_spreadsheet(path):
 
 
 # Match raw JSON-styled data to annotations
-def match_labels(raw_data, annotations, exact_match=False):
+def match_labels_div(raw_data, annotations, exact_match=False, minimum_paragraph_length=10):
     labeled_raw_documents = {}
 
     for parsed_doc_name in tqdm(raw_data):
@@ -91,7 +91,7 @@ def match_labels(raw_data, annotations, exact_match=False):
 
             lb_list = []
             for i, label_p in enumerate(label_doc['texts']):
-                if contains_test(div_paragraphs, label_p, exact_match=exact_match): #Match
+                if contains_test(div_paragraphs, label_p, exact_match=exact_match, minimum_paragraph_length=minimum_paragraph_length): #Match
                     lb = clean_label(label_doc['labels'][i])
                     lb_list.append(lb)
 
@@ -107,6 +107,65 @@ def match_labels(raw_data, annotations, exact_match=False):
                 labels.append(tuple(lb_list))
                 head1.append(e['head'])
                 head2.append(cur_sec)
+
+        
+        labeled_raw_documents[parsed_doc_name] = {
+            'texts': paragraphs,
+            'labels': labels,
+            'head1': head1,
+            'head2': head2
+        }   
+    
+    return labeled_raw_documents
+
+def match_labels_p(raw_data, annotations, exact_match=False, minimum_paragraph_length=10):
+    labeled_raw_documents = {}
+
+    for parsed_doc_name in tqdm(raw_data):
+        parsed_doc = raw_data[parsed_doc_name]
+        label_doc = annotations[parsed_doc_name] 
+        
+        paragraphs = []
+        labels = []
+        tags = []
+
+        head1 = []
+        # head2 only consider x.x
+        head2 = []
+
+        cur_sec = ''
+
+        for e in parsed_doc['elements']:
+
+            if is_section(e['head']):
+                cur_sec = e['head']
+
+            # ignore div that contains only a <head> and no other <p>
+            if len(e['text']) == 1:
+                continue
+
+            div_paragraphs = e['text'][1:] # All paragraphs in <div> excluding header
+
+            for p in div_paragraphs:
+                if len(p.split()) >= minimum_paragraph_length:
+                    lb_list = []
+                    for i, label_p in enumerate(label_doc['texts']):
+                        if contains_test([p], label_p, exact_match=exact_match): #Match
+                            lb = clean_label(label_doc['labels'][i])
+                            lb_list.append(lb)
+
+                    if len(lb_list) > 0:
+                        paragraphs.append(p)
+                        labels.append(tuple(lb_list))
+                        head1.append(e['head'])
+                        head2.append(cur_sec)
+
+                    else:
+                        paragraphs.append(p)
+                        lb_list.append('other')
+                        labels.append(tuple(lb_list))
+                        head1.append(e['head'])
+                        head2.append(cur_sec)
 
         
         labeled_raw_documents[parsed_doc_name] = {
@@ -136,15 +195,15 @@ def clean_matches(matches):
 
 ########## String Utilities ##########
 
-def contains_test(pieces, whole, exact_match=False):
+def contains_test(pieces, whole, exact_match=False, minimum_paragraph_length=10):
     # Fuzzy matching tests to see if the max
     # similarity substring of size len(piece)
     # has a partial ratio > threshold
     if exact_match:
-        return any([piece in whole for piece in pieces])
+        return any([(len(piece.split())>=minimum_paragraph_length) and (piece in whole) for piece in pieces])
 
     threshold = 95
-    return any([fuzz.partial_ratio(piece, whole) >= threshold for piece in pieces])
+    return any([fuzz.partial_ratio(piece, whole) >= threshold for piece in pieces if len(piece.split())>=minimum_paragraph_length])
 
 def is_section(head):
     if not head:
