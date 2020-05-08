@@ -67,9 +67,6 @@ def match_labels(raw_data, annotations, exact_match=False):
         parsed_doc = raw_data[parsed_doc_name]
         label_doc = annotations[parsed_doc_name] 
         
-        matchings = [] # el: [parsed paragraph, label, section]
-        other = []
-        
         paragraphs = []
         labels = []
         tags = []
@@ -92,37 +89,27 @@ def match_labels(raw_data, annotations, exact_match=False):
             div_paragraphs = e['text'][1:] # All paragraphs in <div> excluding header
             parsed_p = '\n'.join(div_paragraphs)
 
-            lb = 'other'
+            lb_list = []
             for i, label_p in enumerate(label_doc['texts']):
                 if contains_test(div_paragraphs, label_p, exact_match=exact_match): #Match
                     lb = clean_label(label_doc['labels'][i])
-                    matchings.append([parsed_p, lb, cur_sec])
+                    lb_list.append(lb)
 
-                    paragraphs.append(parsed_p)
-                    labels.append(lb)
-                    head1.append(e['head'])
-                    head2.append(cur_sec)
-                    # more than one label is possible, so no break
-
-            if lb == 'other':
-                other.append(parsed_p)
-
+            if len(lb_list) > 0:
                 paragraphs.append(parsed_p)
-                labels.append(lb)
+                labels.append(tuple(lb_list))
                 head1.append(e['head'])
                 head2.append(cur_sec)
 
+            else:
+                paragraphs.append(parsed_p)
+                lb_list.append('other')
+                labels.append(tuple(lb_list))
+                head1.append(e['head'])
+                head2.append(cur_sec)
 
-
-            # paragraphs.append(parsed_p)
-            # labels.append(lb)
-            # head1.append(e['head'])
-            # head2.append(cur_sec)
-        
         
         labeled_raw_documents[parsed_doc_name] = {
-            'matches': matchings,
-            'other': other,
             'texts': paragraphs,
             'labels': labels,
             'head1': head1,
@@ -130,6 +117,22 @@ def match_labels(raw_data, annotations, exact_match=False):
         }   
     
     return labeled_raw_documents
+
+
+def clean_matches(matches):
+    processed_document_list = []
+    
+    for doc_name in matches:
+        texts = [tokenize_string(raw) for raw in matches[doc_name]['texts']]
+        labels = matches[doc_name]['labels']
+        head1 = [tokenize_string(raw) for raw in matches[doc_name]['head1']]
+        head2 = [tokenize_string(raw) for raw in matches[doc_name]['head2']]
+    
+        for i in range(len(texts)):
+            processed_document_list.append([doc_name, head1[i], head2[i], labels[i], texts[i]])
+
+
+    return pd.DataFrame(processed_document_list, columns=['document', 'head1', 'head2', 'label', 'text'])
 
 ########## String Utilities ##########
 
