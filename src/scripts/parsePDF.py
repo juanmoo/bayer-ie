@@ -156,7 +156,7 @@ def parse_document(input_file):
         # Restructure output
         paragraphs = []
         current_line = 0
-        while output[current_line] is None:
+        while current_line < len(output) and output[current_line] is None:
             current_line += 1
         while current_line < len(output):
             # New Paragraph
