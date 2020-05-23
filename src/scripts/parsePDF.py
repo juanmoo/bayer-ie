@@ -83,7 +83,7 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
         
         #Get all line's text
         spans = list(div.iter('span'))
-        text = ' '.join([e.text for e in spans])
+        text = ' '.join([e.text if e.text else '' for e in spans])
 
         # Determine line type based on styling. In case of multiple, default
         # to 'text'.
