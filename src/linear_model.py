@@ -79,10 +79,10 @@ def svm_test(test_data, params, verbose=False):
     diagonal = cm.diagonal()
     
     # Input class Counts
-    class_sum = cm.sum(axis=1)
+    class_sum = cm.sum(axis=0)
     
     # Predicted class counts
-    pred_sum = cm.sum(axis=0)
+    pred_sum = cm.sum(axis=1)
     
     # Per-class performance w/ no-examples -> 0 perf
     precision = np.where(class_sum == 0, 0, diagonal/class_sum)
