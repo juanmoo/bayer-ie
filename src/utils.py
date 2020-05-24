@@ -121,19 +121,18 @@ def contains_test(pieces, whole, exact_match=False, ignore_spacing=True, \
     # similarity substring of size len(piece)
     # has a partial ratio > threshold
 
+    pieces = [p for p in pieces if len(p.split()) >= minimum_paragraph_length]
+
     if ignore_spacing:
         # Remove spaces for consistent matchings
         pieces = [re.sub('\s|\n', '', p) for p in pieces]
         whole = re.sub('\s|\n', '', whole)
 
-        # Only one word if spaces are removed
-        minimum_paragraph_length = 1
-
     if exact_match:
-        return any([(len(piece.split())>=minimum_paragraph_length) and (piece in whole) for piece in pieces])
+        return any([(piece in whole) for piece in pieces])
 
     threshold = 95
-    return any([fuzz.partial_ratio(piece, whole) >= threshold for piece in pieces if len(piece.split())>=minimum_paragraph_length])
+    return any([fuzz.partial_ratio(piece, whole) >= threshold for piece in pieces])
 
 def is_section(head):
     if not head:
