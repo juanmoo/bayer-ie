@@ -3,7 +3,9 @@ Utility functions to be used in Bayer Project
 '''
 
 import pandas as pd
-import os, sys, json, pickle, re, spacy
+import numpy as np
+import os, sys, re, spacy
+import codecs, json, pickle
 from fuzzywuzzy import fuzz
 from tqdm import tqdm
 
@@ -58,147 +60,75 @@ def parse_spreadsheet(path):
     return output
 
 
+def load_parsed_file(path):
+    parsed_str = codecs.open(path, 'r', encoding='utf-8', errors='replace').read()
+    parsed_data = json.loads(parsed_str)
 
-# Match raw JSON-styled data to annotations
-def match_labels_div(raw_data, annotations, exact_match=False, minimum_paragraph_length=10):
-    labeled_raw_documents = {}
+    data = []
+    for name in parsed_data:
+        for p in parsed_data[name]:
+            p['doc_name'] = name
+            data.append(p)
 
-    for parsed_doc_name in tqdm(raw_data):
-        parsed_doc = raw_data[parsed_doc_name]
-        label_doc = annotations[parsed_doc_name] 
+    return pd.DataFrame.from_dict(data)
+
+def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=1):
+    all_labels = set()
+    for doc_name in tqdm(pd.unique(data['doc_name'])):
+        doc_annotations = annotations.get(doc_name, None)
+
+        if doc_annotations == None:
+            print('No annotations found for {docname}'.format(docname=doc_name))
+            continue
         
-        paragraphs = []
-        labels = []
-        tags = []
+        a_texts, a_labels = list(doc_annotations.items())
+        a_texts = a_texts[1]
+        a_labels = a_labels[1]
 
-        head1 = []
-        # head2 only consider x.x
-        head2 = []
+        doc_indices = data.index[data['doc_name'] == doc_name].tolist()
+        for i in doc_indices:
+            # Join paragraphs lines and ensure single space
 
-        cur_sec = ''
+            paragraph = re.sub('\s+', ' ', data.iloc[i]['text'].strip().replace('\n', ' '))
 
-        for e in parsed_doc['elements']:
+            for j, a_text in enumerate(a_texts[:10]):
+                if contains_test([paragraph], a_text, exact_match=exact_match):
+                    # Add Label to data point
+                    l = a_labels[j].strip().lower()
+                    if l not in data.columns:
+                        all_labels.add(l)
+                        data[l] = 0
+                    data.iloc[i, data.columns.get_loc(l)] = 1
 
-            if is_section(e['head']):
-                cur_sec = e['head']
+    return sorted(list(all_labels))
 
-            # ignore div that contains only a <head> and no other <p>
-            if len(e['text']) == 1:
-                continue
+def tokenize_matches(data):
 
-            div_paragraphs = e['text'][1:] # All paragraphs in <div> excluding header
-            parsed_p = '\n'.join(div_paragraphs)
-
-            lb_list = []
-            for i, label_p in enumerate(label_doc['texts']):
-                if contains_test(div_paragraphs, label_p, exact_match=exact_match, minimum_paragraph_length=minimum_paragraph_length): #Match
-                    lb = clean_label(label_doc['labels'][i])
-                    lb_list.append(lb)
-
-            if len(lb_list) > 0:
-                paragraphs.append(parsed_p)
-                labels.append(tuple(lb_list))
-                head1.append(e['head'])
-                head2.append(cur_sec)
-
-            else:
-                paragraphs.append(parsed_p)
-                lb_list.append('other')
-                labels.append(tuple(lb_list))
-                head1.append(e['head'])
-                head2.append(cur_sec)
-
-        
-        labeled_raw_documents[parsed_doc_name] = {
-            'texts': paragraphs,
-            'labels': labels,
-            'head1': head1,
-            'head2': head2
-        }   
-    
-    return labeled_raw_documents
-
-def match_labels_p(raw_data, annotations, exact_match=False, minimum_paragraph_length=10):
-    labeled_raw_documents = {}
-
-    for parsed_doc_name in tqdm(raw_data):
-        parsed_doc = raw_data[parsed_doc_name]
-        label_doc = annotations[parsed_doc_name] 
-        
-        paragraphs = []
-        labels = []
-        tags = []
-
-        head1 = []
-        # head2 only consider x.x
-        head2 = []
-
-        cur_sec = ''
-
-        for e in parsed_doc['elements']:
-
-            if is_section(e['head']):
-                cur_sec = e['head']
-
-            # ignore div that contains only a <head> and no other <p>
-            if len(e['text']) == 1:
-                continue
-
-            div_paragraphs = e['text'][1:] # All paragraphs in <div> excluding header
-
-            for p in div_paragraphs:
-                if len(p.split()) >= minimum_paragraph_length:
-                    lb_list = []
-                    for i, label_p in enumerate(label_doc['texts']):
-                        if contains_test([p], label_p, exact_match=exact_match): #Match
-                            lb = clean_label(label_doc['labels'][i])
-                            lb_list.append(lb)
-
-                    if len(lb_list) > 0:
-                        paragraphs.append(p)
-                        labels.append(tuple(lb_list))
-                        head1.append(e['head'])
-                        head2.append(cur_sec)
-
-                    else:
-                        paragraphs.append(p)
-                        lb_list.append('other')
-                        labels.append(tuple(lb_list))
-                        head1.append(e['head'])
-                        head2.append(cur_sec)
-
-        
-        labeled_raw_documents[parsed_doc_name] = {
-            'texts': paragraphs,
-            'labels': labels,
-            'head1': head1,
-            'head2': head2
-        }   
-    
-    return labeled_raw_documents
+    data['section'] = data['section'].apply(tokenize_string)
+    data['subsection'] = data['subsection'].apply(tokenize_string)
+    data['header'] = data['header'].apply(tokenize_string)
+    data['subheader'] = data['subheader'].apply(tokenize_string)
+    data['text'] = data['text'].apply(tokenize_string)
 
 
-def clean_matches(matches):
-    processed_document_list = []
-    
-    for doc_name in matches:
-        texts = [tokenize_string(raw) for raw in matches[doc_name]['texts']]
-        labels = matches[doc_name]['labels']
-        head1 = [tokenize_string(raw) for raw in matches[doc_name]['head1']]
-        head2 = [tokenize_string(raw) for raw in matches[doc_name]['head2']]
-    
-        for i in range(len(texts)):
-            processed_document_list.append([doc_name, head1[i], head2[i], labels[i], texts[i]])
-
-
-    return pd.DataFrame(processed_document_list, columns=['document', 'head1', 'head2', 'label', 'text'])
+    return data
 
 ########## String Utilities ##########
 
-def contains_test(pieces, whole, exact_match=False, minimum_paragraph_length=10):
+def contains_test(pieces, whole, exact_match=False, ignore_spacing=True, \
+    minimum_paragraph_length=10):
     # Fuzzy matching tests to see if the max
     # similarity substring of size len(piece)
     # has a partial ratio > threshold
+
+    if ignore_spacing:
+        # Remove spaces for consistent matchings
+        pieces = [re.sub('\s|\n', '', p) for p in pieces]
+        whole = re.sub('\s|\n', '', whole)
+
+        # Only one word if spaces are removed
+        minimum_paragraph_length = 1
+
     if exact_match:
         return any([(len(piece.split())>=minimum_paragraph_length) and (piece in whole) for piece in pieces])
 
@@ -225,6 +155,9 @@ def clean_label(lb):
 NLP = spacy.load('en_core_web_sm')
 MAX_CHARS = 20000
 def tokenize_string(comment):
+    if comment == None:
+        return ''
+
     comment = re.sub(
         r"[\*\"“”\n\\…\+\-\/\=\(\)‘•:\[\]\|’\!;]", " ", str(comment))
     comment = re.sub(r"[ ]+", " ", comment)
@@ -239,12 +172,15 @@ def tokenize_string(comment):
 
 # Save / Load values from checkpoint file
 def save_value(key, val, path=None):
-    with open(path, 'rb') as f:
-        try:
-            saved_env = pickle.load(f)
-            assert(type(saved_env) == dict)
-        except:
-            saved_env = dict()
+    d, base = os.path.split(path)
+    if not os.path.isdir(d):
+        os.makedirs(d)
+    try:
+        f = open(path, 'rb+')
+        saved_env = pickle.load(f)
+        assert(type(saved_env) == dict)
+    except:
+        saved_env = dict()
             
     saved_env[key] = val
     
