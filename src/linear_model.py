@@ -34,6 +34,10 @@ def svm_train(train_data, label, config=default_config):
                                            stop_words=config['stop_config'],
                                            min_df=config['min_df'])
 
+    header_vectorizer = CountVectorizer(ngram_range=config['ngram_config'], \
+                                           stop_words=config['stop_config'],
+                                           min_df=config['min_df'])
+
     text_vectorizer = CountVectorizer(ngram_range=config['ngram_config'], \
                                       stop_words=config['stop_config'],
                                       min_df=config['min_df'])
@@ -41,10 +45,11 @@ def svm_train(train_data, label, config=default_config):
     
     X_section = section_vectorizer.fit_transform(train_data['section']).toarray()
     X_subsection = subsection_vectorizer.fit_transform(train_data['subsection']).toarray()
+    X_header = header_vectorizer.fit_transform(train_data['header']).toarray()
     X_subheader = subheader_vectorizer.fit_transform(train_data['subheader']).toarray()
     X_text = text_vectorizer.fit_transform(train_data['text']).toarray()
 
-    X_train = np.hstack([X_section, X_subsection, X_subheader, X_text])
+    X_train = np.hstack([X_section, X_subsection, X_header, X_subheader, X_text])
     Y_train = train_data[label]
     
     model = Pipeline([('tfidf', TfidfTransformer(use_idf=config['tfidf_config'])), ('clf', LinearSVC(class_weight="balanced"))])
@@ -55,6 +60,7 @@ def svm_train(train_data, label, config=default_config):
         'model': model,
         'sec_vec': section_vectorizer,
         'subsec_vec': subsection_vectorizer,
+        'header_vec': header_vectorizer,
         'subh_vec': subheader_vectorizer,
         'text_vec': text_vectorizer,
         'label': label
@@ -65,10 +71,11 @@ def svm_test(test_data, params, verbose=False):
     
     X_section = params['sec_vec'].transform(test_data['section']).toarray()
     X_subsection = params['subsec_vec'].transform(test_data['subsection']).toarray()
+    X_header = params['header_vec'].transform(test_data['header']).toarray()
     X_subheader = params['subh_vec'].transform(test_data['subheader']).toarray()
     X_text = params['text_vec'].transform(test_data['text']).toarray()
 
-    X_test = np.hstack([X_section, X_subsection, X_subheader, X_text])
+    X_test = np.hstack([X_section, X_subsection, X_header, X_subheader, X_text])
     Y_test = np.array((test_data[params['label']])).reshape(-1, 1) * 1.0
     
     pred = np.array(params['model'].predict(X_test)).reshape(-1, 1) * 1.0
@@ -103,11 +110,11 @@ def svm_test(test_data, params, verbose=False):
             'precision': pres.sum()/c_freq.sum(),
             'recall': rec.sum()/c_freq.sum(),
             'cm': cm,
-            'all_predicted': test_data.loc[pred > 0][['doc_name', 'section', 'subsection', 'subheader', 'text']],
-            'actual_positive': test_data.loc[Y_test > 0][['doc_name', 'section', 'subsection', 'subheader', 'text']],
-            'true_positive': test_data.loc[Y_test * pred > 0][['doc_name', 'section', 'subsection', 'subheader', 'text']],
-            'false_positive': test_data.loc[pred * (1 - Y_test) > 0][['doc_name', 'section', 'subsection', 'subheader', 'text']],
-            'false_negative': test_data.loc[Y_test * (1 - pred) > 0][['doc_name', 'section', 'subsection', 'subheader', 'text']]
+            'all_predicted': test_data.loc[pred > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
+            'actual_positive': test_data.loc[Y_test > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
+            'true_positive': test_data.loc[Y_test * pred > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
+            'false_positive': test_data.loc[pred * (1 - Y_test) > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
+            'false_negative': test_data.loc[Y_test * (1 - pred) > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']]
         }
     else:
        output = {
