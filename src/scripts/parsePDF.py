@@ -9,6 +9,7 @@ from multiprocessing import Pool
 # Constants
 paragraph_skip_threshold = 13
 left_start_paragraph_treshold = 71
+right_end_paragraph_treshold = 800
 underlining_start_range = (69, 75)
 
 
@@ -109,13 +110,18 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
         # underlined. See if there's a line that underlines current text
         if type == 'text':
             bottom = top + font_size
+            right = left + font_size * len(re.sub('\s+|\n', ' ', text))
 
             # Match if line intersects text 
             for r in range(top, bottom + 1):
                 if type == 'header':
                     break
                 for start, stop in lines.get(r, []):
-                    if 0.95 * start <= left <= stop:
+                    if left <= stop:
+                        # Sometimes, headers are not separated enough from paragraphs.
+                        # End paragraph early if matched text ends before right_paragraph_treshold
+                        if right < right_end_paragraph_treshold and len(output) > 0 and output[-1] is not None:
+                            output.append(None)
                         type = 'header'
                         break
         
@@ -244,7 +250,10 @@ if __name__ == '__main__':
     else:
         pool_workers = 1
 
-    pdfs = [os.path.join(source_dir, e) for e in os.listdir(source_dir) if '.pdf' in e]
+    if os.path.isfile(source_path):
+        pdfs = [source_path]
+    else:
+        pdfs = [os.path.join(source_dir, e) for e in os.listdir(source_dir) if '.pdf' in e]
     
     with Pool(pool_workers) as p:
         docs = p.map(process_doc, pdfs)
