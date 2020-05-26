@@ -3,11 +3,13 @@
 import os, sys, subprocess, tempfile
 import json, re, argparse
 from lxml import etree as ET
+from line_extractor import get_lines_from_png
 from multiprocessing import Pool
 
 # Constants
 paragraph_skip_threshold = 13
 left_start_paragraph_treshold = 71
+underlining_start_range = (69, 75)
 
 
 ''' --------------------  UTILITY FUNCTIONS -------------------- ''' 
@@ -63,6 +65,16 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
     style_key = next(root.iter('style')).text
     style_key = parse_style_key(style_key)
 
+    # Get background img lines
+    background_img = next(root.iter('img'))
+    background_attr = background_img.attrib
+    width = int(background_attr.get('width'))
+    height = int(background_attr.get('height'))
+
+    png_path = path.replace('.html', '.png')
+    start, stop = underlining_start_range
+    lines = get_lines_from_png(png_path, (width, height), start=start, stop=stop)
+
     # Parse each textline available
     body = root.find('body')
     for div in body.iter('div'):
@@ -83,6 +95,8 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
         
         #Get all line's text
         spans = list(div.iter('span'))
+        span_styles = [parse_element_arguments(s.attrib.get('style')) for s in spans]
+        font_size = max([int(style.get('font-size', '0px').replace('px', '')) for style in span_styles])
         text = ' '.join([e.text if e.text else '' for e in spans])
 
         # Determine line type based on styling. In case of multiple, default
@@ -91,6 +105,20 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
         ids = [e.get('id') for e in spans]
         type = types[0] if all([e == types[0] for e in types]) else 'text'
 
+        # header elements have the same styling as text elements, but they are 
+        # underlined. See if there's a line that underlines current text
+        if type == 'text':
+            bottom = top + font_size
+
+            # Match if line intersects text 
+            for r in range(top, bottom + 1):
+                if type == 'header':
+                    break
+                for start, stop in lines.get(r, []):
+                    if 0.95 * start <= left <= stop:
+                        type = 'header'
+                        break
+        
         # Text styling for sections and subsections is the same. Differentiate
         # them by searching for #.# or #. pattern
         if type == 'section' and re.match('\d\.\d', text) is not None:
@@ -177,6 +205,15 @@ def parse_document(input_file):
                 paragraphs.append(paragraph)
         return paragraphs
 
+def process_doc(path):
+    dir_name, base_name = os.path.split(path)
+    name = base_name.replace('.pdf', '')
+    print('Processing %s.'%name)
+
+    out = parse_document(path)
+    print('Done processing %s!'%name)
+    return (name, out)
+
 if __name__ == '__main__':
     # Parse Command Line Args #
     argv = sys.argv[1:]
@@ -207,16 +244,8 @@ if __name__ == '__main__':
     else:
         pool_workers = 1
 
-    pdfs = [e for e in os.listdir(source_dir) if '.pdf' in e]
+    pdfs = [os.path.join(source_dir, e) for e in os.listdir(source_dir) if '.pdf' in e]
     
-    def process_doc(e):
-        name = e.replace('.pdf', '')
-        print('Processing %s.'%name)
-        full_path = os.path.join(source_dir, e)
-        out = parse_document(full_path)
-        print('Done processing %s!'%name)
-        return (name, out)
-
     with Pool(pool_workers) as p:
         docs = p.map(process_doc, pdfs)
     
