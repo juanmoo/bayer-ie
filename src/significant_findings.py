@@ -1,7 +1,7 @@
 '''
 Extract significant finding portions through heuristics.
 '''
-import json, sys, os
+import json, sys, os, re
 
 
 class heuristicExtractor:
@@ -20,26 +20,68 @@ class hepaticImpairmentExtractor(heuristicExtractor):
         def h1(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
             words1 = ['hepatic', 'liver']
-            words2 = ['impair', 'failure']
+            words2 = ['impair', 'failure', 'disorder', 'reactions']
             return any([(w1 in h) and (w2 in h) for w1 in words1 for w2 in words2 for h in heads])
         self.heuristics.append(h1)
 
         def h2(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
             return any(['population' in h for h in heads]) and \
-            ('hepatic' in p['text'])
+            ('hepatic' in (p['text'] or '').lower())
         self.heuristics.append(h2)
 
         def h3(p):
-            heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
-            return any(['liver' in h for h in heads])
+            return len((p['header'] or '').split('\n')) <= 4 and \
+            ('hepatic impair' in re.sub('\s+|\n', ' ', (p['header'] or '')))
         self.heuristics.append(h3)
+
 
 
 class renalImpairmentExtractor(heuristicExtractor):
     
     def __init__(self):
         self.heuristics = []
+
+        def h1(p):
+            heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
+            words1 = ['renal']
+            words2 = ['impair', 'failure', 'insufficiency', 'function']
+            return any([(w1 in h) and (w2 in h) for w1 in words1 for w2 in words2 for h in heads])
+        self.heuristics.append(h1)
+
+        def h2(p):
+            heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
+            return any(['population' in h for h in heads]) and \
+            not any(['elder' in h for h in heads]) and \
+            ('renal' in (p['text'] or '').lower())
+        self.heuristics.append(h2)
+
+        def h3(p):
+            return len((p['header'] or '').split('\n')) <= 4 and \
+            ('renal impair' in re.sub('\s+|\n', ' ', (p['header'] or '')))
+        self.heuristics.append(h3)
+
+
+class pregnancyExtractor(heuristicExtractor):
+    
+    def __init__(self):
+        self.heuristics = []
+
+        def h1(p):
+            heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
+            sects = [(p['section'] or '').lower(), (p['subsection'] or '').lower()]
+            words = ['pregnancy', 'pregnant']
+            return any([w in s for s in sects for w in words]) and \
+            all([len(h) == 0 for h in heads])
+        self.heuristics.append(h1)
+
+        def h2(p):
+            heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
+            words = ['pregnancy', 'pregnant']
+            return any([w in h for h in heads for w in words])
+
+
+
 
 
 if __name__ == '__main__':
@@ -49,8 +91,13 @@ if __name__ == '__main__':
     data = json.load(data_file)
 
     output_dir = '/scratch/juanmoo1/bayer/VendorEMAforMIT/Labels/hepaticImpairment/'
+    # output_dir = '/scratch/juanmoo1/bayer/VendorEMAforMIT/Labels/renalImpairment/'
+    # output_dir = '/scratch/juanmoo1/bayer/VendorEMAforMIT/Labels/pregnancy/'
 
     extractor = hepaticImpairmentExtractor()
+    # extractor = renalImpairmentExtractor()
+    # extractor = pregnancyExtractor()
+
     for doc_name in data:
         doc_data = data[doc_name]
         keep = [(i, p) for i, p in enumerate(doc_data) if extractor.classify(p)]
@@ -70,6 +117,4 @@ if __name__ == '__main__':
                     f.write('\n')
                     f.write(p['text'])
                     f.write('\n')
-
-
 

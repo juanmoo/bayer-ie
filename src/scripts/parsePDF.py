@@ -8,7 +8,8 @@ from multiprocessing import Pool
 
 # Constants
 paragraph_skip_threshold = 13
-left_start_paragraph_treshold = 71
+# left_start_paragraph_treshold = 71
+left_start_paragraph_treshold = 100
 right_end_paragraph_treshold = 800
 underlining_start_range = (69, 75)
 
