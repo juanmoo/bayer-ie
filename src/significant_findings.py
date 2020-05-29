@@ -3,7 +3,6 @@ Extract significant finding portions through heuristics.
 '''
 import json, sys, os, re
 
-
 class heuristicExtractor:
     def __init__(self):
         self.heuristics = [lambda x: False]
@@ -17,6 +16,23 @@ class hepaticImpairmentExtractor(heuristicExtractor):
     def __init__(self):
         self.heuristics = []
 
+        '''
+        Heuristic explanations:
+
+        1. There are several variations of hepatic impairment used in the documents. This
+        heuristic matches a paragraph if the header or subheader contain one of the
+        variations that can be made out of a word from the list 'words1' and another from 
+        'words2'
+
+        2. In several documents, sections that deal with hepatic impairment are placed under
+        a general 'populations' section. This heuristic matches a paragraph if they contain
+        the word hepatic and are located in the population section.
+
+        3. A few documents do not separate hepatic impairment sections with headers/sections,
+        and only dedicate a short paragraph. This heuristic matches a paragraph if it has 
+        four lines or less and explicitly mentions 'hepatic impair'.
+        '''
+
         def h1(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
             words1 = ['hepatic', 'liver']
@@ -27,11 +43,11 @@ class hepaticImpairmentExtractor(heuristicExtractor):
         def h2(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
             return any(['population' in h for h in heads]) and \
-            ('hepatic' in (p['text'] or '').lower())
+            ('hepatic' in (p['text'] or '').lower().split())
         self.heuristics.append(h2)
 
         def h3(p):
-            return len((p['header'] or '').split('\n')) <= 4 and \
+            return len([e for e in (p['header'] or '').split('\n') if len(e) > 0]) <= 4 and \
             ('hepatic impair' in re.sub('\s+|\n', ' ', (p['header'] or '')))
         self.heuristics.append(h3)
 
@@ -42,6 +58,26 @@ class renalImpairmentExtractor(heuristicExtractor):
     def __init__(self):
         self.heuristics = []
 
+        '''
+        Heuristic explanations:
+
+        1. There are several variations of renal impairment used in the documents. This
+        heuristic matches a paragraph if the header or subheader contain one of the
+        variations that can be made out of a word from the list 'words1' and another from 
+        'words2'.
+
+        2. This sections are often located under 'population(s)' headers/subheaders. This
+        heuristic matches a paragraph if they fall within a header/subheader that includes
+        the word 'population' whose text talks about 'renal'. A common false negative for
+        this heuristic is that of paragraphs dealing with 'elderly population' and as such
+        those are explicitly excluded.
+
+        3. A few documents do not separate hepatic impairment sections with headers/sections,
+        and only dedicate a short paragraph. This heuristic matches a paragraph if it has 
+        four lines or less and explicitly mentions 'renal impair'.
+
+        '''
+
         def h1(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
             words1 = ['renal']
@@ -51,13 +87,14 @@ class renalImpairmentExtractor(heuristicExtractor):
 
         def h2(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
+
             return any(['population' in h for h in heads]) and \
             not any(['elder' in h for h in heads]) and \
             ('renal' in (p['text'] or '').lower())
         self.heuristics.append(h2)
 
         def h3(p):
-            return len((p['header'] or '').split('\n')) <= 4 and \
+            return len([e for e in (p['header'] or '').split('\n') if len(e) > 0]) <= 4 and \
             ('renal impair' in re.sub('\s+|\n', ' ', (p['header'] or '')))
         self.heuristics.append(h3)
 
@@ -66,6 +103,16 @@ class pregnancyExtractor(heuristicExtractor):
     
     def __init__(self):
         self.heuristics = []
+
+        '''
+        Heuristic explanations:
+
+        1. Matches paragraphs that have a from of the word 'pregnancy' in the section/
+        subsection and don't have a header or a subheader associated with it.
+
+        2. Match paragraphs that contain a variation of the word pregnancy in their
+        header/subheader.
+        '''
 
         def h1(p):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
@@ -79,6 +126,7 @@ class pregnancyExtractor(heuristicExtractor):
             heads = [(p['header'] or '').lower(), (p['subheader'] or '').lower()]
             words = ['pregnancy', 'pregnant']
             return any([w in h for h in heads for w in words])
+        self.heuristics.append(h2)
 
 
 
@@ -87,6 +135,7 @@ class pregnancyExtractor(heuristicExtractor):
 if __name__ == '__main__':
     
     data_path = '/scratch/juanmoo1/bayer/VendorEMAforMIT/Labels/parsed.json'
+    # data_path = '/scratch/juanmoo1/bayer/VendorEMAforMIT/newLabels/parsed.json'
     data_file = open(data_path, 'r')
     data = json.load(data_file)
 
