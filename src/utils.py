@@ -8,6 +8,7 @@ import os, sys, re, spacy
 import codecs, json, pickle
 from fuzzywuzzy import fuzz
 from tqdm import tqdm
+import collections
 
 def parse_spreadsheet(path):
     '''
@@ -58,6 +59,30 @@ def parse_spreadsheet(path):
 
 
     return output
+
+def parse_rationale(path):
+    file_path = os.path.normpath(path)
+
+    if not os.path.isfile(file_path):
+        raise Exception('Unable to find file at %s.'%file_path)
+
+    data = pd.read_excel(file_path, sheet_name=1)
+
+    labels_list = data['Broad concept']
+    rationales_list = data['Rationale for broad concept']
+    
+    rationale_dict = collections.defaultdict(list)
+    
+    for label, rationale in zip(labels_list, rationales_list):
+        if type(label) == str and label.startswith('Populations') and type(rationale) == str:
+            label = label.lower()
+            for r in rationale.split('||'):
+                rationale_dict[label].append(r.strip().lower())
+                
+    for label in rationale_dict:
+        rationale_dict[label] = [tokenize_string(r) for r in list(set(rationale_dict[label]))]
+    
+    return rationale_dict
 
 def parsed_to_df(parsed_data):
     data = []

@@ -269,7 +269,7 @@ def process_documents(source_path, output_path=None, pool_workers=1):
         pdfs = [source_path]
     elif os.path.isdir(source_path):
         # Parse all PDFs in given directory
-        pdfs = [os.path.join(source_path, e) for e in os.listdir(source_dir) if e.endswith('.pdf')]
+        pdfs = [os.path.join(source_path, e) for e in os.listdir(source_path) if e.endswith('.pdf')]
     else:
         raise Exception('Source path is invalid.')
 

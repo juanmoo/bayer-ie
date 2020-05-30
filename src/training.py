@@ -27,6 +27,7 @@ def train_model(pdfs_path, annotations_path, output_dir, pool_workers=1, \
 
     # Load Annotations from spreadsheet
     annotations = parse_spreadsheet(annotations_path)
+    rationales = parse_rationale(annotations_path)
 
     # Match Labels to parsed data
     labels = match_labels(data, annotations, **args)
@@ -39,7 +40,7 @@ def train_model(pdfs_path, annotations_path, output_dir, pool_workers=1, \
 
     for l in labels:
         try:
-            model_l = svm_train(data, l)
+            model_l = svm_train(data, l, rationales=rationales.get(l, None))
             models[l] = model_l
         except:
             models[l] = None
