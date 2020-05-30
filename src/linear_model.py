@@ -107,8 +107,9 @@ def svm_train(train_data, label, rationales=None, config=default_config):
     }
 
 ## Model Testing ##
-def svm_test(test_data, label, params, verbose=False):
+def svm_test(test_data, params, verbose=False):
     
+    label = params['label']
     
     if label.startswith('populations'):
         X_header = params['head_vec'].transform(test_data['header'])
@@ -165,3 +166,28 @@ def svm_test(test_data, label, params, verbose=False):
         }
     
     return output
+
+def svm_predict(data, model):
+
+    label = model['label']
+    if label.startswith('populations'):
+        X_header = model['head_vec'].transform(data['header'])
+        X_subheader = model['subh_vec'].transform(data['subheader'])
+        X_text = model['text_vec'].transform(data['text'])
+        if label == "populations - paediatric":
+            X_test = np.hstack([X_header, X_subheader, X_text])
+        elif label == "populations - adolescent":
+            X_test = np.hstack([X_subheader, X_text])
+        else:
+            X_test = np.hstack([X_text])
+    else:
+        X_section = model['sec_vec'].transform(data['section']).toarray()
+        X_subsection = model['subsec_vec'].transform(data['subsection']).toarray()
+        X_header = model['head_vec'].transform(data['header']).toarray()
+        X_subheader = model['subh_vec'].transform(data['subheader']).toarray()
+        X_text = model['text_vec'].transform(data['text']).toarray()    
+        X_test = np.hstack([X_section, X_subsection, X_header, X_subheader, X_text])
+
+
+    pred = np.array(model['model'].predict(X_test)).reshape(-1)
+    return pred
