@@ -262,6 +262,36 @@ def process_doc(path):
     print('Done processing %s!'%name)
     return (name, out)
 
+
+def process_documents(source_path, output_path=None, pool_workers=1):
+    # Verify Source Path #
+    if os.path.isfile(source_path):
+        # Parse single PDF file
+        pdfs = [source_path]
+    elif os.path.isdir(source_path):
+        # Parse all PDFs in given directory
+        pdfs = [os.path.join(source_path, e) for e in os.listdir(source_dir) if e.endswith('.pdf')]
+    else:
+        raise Exception('Source path is invalid.')
+
+    if output_path is not None:
+        base_dir = os.path.dirname(output_path)
+        if not os.path.isdir(base_dir):
+            raise Exception('Destination path is invalid.')
+    
+    # Process Documents in parallel
+    with Pool(pool_workers) as p:
+        docs = p.map(process_doc, pdfs)
+    docs = dict(docs)
+    
+    # output JSON of parsed documents if path
+    # was given
+    if output_path is not None:
+        with open(output_path, 'w') as f:
+            f.write(json.dumps(docs, indent=4))
+
+    return docs
+
 if __name__ == '__main__':
     # Parse Command Line Args #
     argv = sys.argv[1:]
@@ -270,37 +300,15 @@ if __name__ == '__main__':
     parser.add_argument('--dest', help='Desired path to output file')
     parser.add_argument('--pool-workers', help='Number of workers to be used to process documents simultaneously')
     args = parser.parse_args(argv)
+    args = vars(args)
 
-    # Verify Args #
-    source_path = os.path.realpath(args.source)
-    source_dir, source_base = os.path.split(source_path)
-    if not os.path.isdir(source_path) and not os.path.isdir(source_dir):
-        raise Exception('Source path is invalid.')
-    if os.path.isdir(source_path):
-        source_dir = source_path
+    source_path = args.get('source', None)
+    dest_path = args.get('dest', None)
+    pool_workers = args.get('pool_workers', '1')
 
-    dest_path = os.path.realpath(args.dest)
-    dest_dir, dest_base = os.path.split(dest_path)
-    if not os.path.isdir(dest_dir):
-        raise Exception('Destination path is invalid.')
- 
-    if args.pool_workers is not None:
-        if args.pool_workers.strip().isdigit():
-            pool_workers = int(args.pool_workers)
-        else:
-            raise Exception("Invalid number of pool workers.")
+    if not pool_workers.isdigit():
+        raise Exception('%d is not a valid number of pool workers.'%pool_workers)
     else:
-        pool_workers = 1
+        pool_workers = int(pool_workers)
 
-    if os.path.isfile(source_path):
-        pdfs = [source_path]
-    else:
-        pdfs = [os.path.join(source_dir, e) for e in os.listdir(source_dir) if '.pdf' in e]
-    
-    with Pool(pool_workers) as p:
-        docs = p.map(process_doc, pdfs)
-    
-    docs = dict(docs)
-    
-    with open(dest_path, 'w') as f:
-        f.write(json.dumps(docs, indent=4))
+    process_documents(source_path, output_path=dest_path, pool_workers=pool_workers)
