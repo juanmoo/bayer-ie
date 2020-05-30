@@ -59,11 +59,7 @@ def parse_spreadsheet(path):
 
     return output
 
-
-def load_parsed_file(path):
-    parsed_str = codecs.open(path, 'r', encoding='utf-8', errors='replace').read()
-    parsed_data = json.loads(parsed_str)
-
+def parsed_to_df(parsed_data):
     data = []
     for name in parsed_data:
         for p in parsed_data[name]:
@@ -72,6 +68,11 @@ def load_parsed_file(path):
 
     return pd.DataFrame.from_dict(data)
 
+def load_parsed_file(path):
+    parsed_str = codecs.open(path, 'r', encoding='utf-8', errors='replace').read()
+    parsed_data = json.loads(parsed_str)
+    return parsed_to_df(parsed_data)
+    
 def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=1):
     all_labels = set()
     for doc_name in tqdm(pd.unique(data['doc_name'])):

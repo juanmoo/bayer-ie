@@ -5,7 +5,6 @@ import numpy as np
 import json, re, argparse
 import os, sys, subprocess, tempfile
 from lxml import etree as ET
-from line_extractor import get_lines_from_png
 from multiprocessing import Pool
 
 # Constants
