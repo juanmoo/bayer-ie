@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 
-import os, sys, subprocess, tempfile
+import imageio
+import numpy as np
 import json, re, argparse
+import os, sys, subprocess, tempfile
 from lxml import etree as ET
 from line_extractor import get_lines_from_png
 from multiprocessing import Pool
@@ -49,6 +51,49 @@ def parse_style_key(sk):
     return key
         
 '''
+Extract location of lines and tables in a background image.
+'''
+def parse_image(image_path, height, width):
+    im = imageio.imread(image_path)
+    h, w, _ = im.shape
+    
+    lines, tables = [], []
+    visited = set()
+    
+    def unvisited_black(x, y):
+        return sum(im[x][y]) == 0 and (x,y) not in visited
+    
+    def convert_coord(x, y):
+        x = x / h * height
+        y = y / w * width
+        return x, y
+    
+    for i in range(h):
+        for j in range(w):
+            if unvisited_black(i, j):
+                queue = [(i, j)]
+                visited.add((i, j))
+                k = 0
+                while k < len(queue):
+                    x, y = queue[k]
+                    k += 1
+                    for dx in [-1,0,1]:
+                        for dy in [-1,0,1]:
+                            if unvisited_black(x+dx, y+dy):
+                                queue.append((x+dx, y+dy))
+                                visited.add((x+dx, y+dy))
+                a = np.array(queue)
+                minx, miny = convert_coord(*a.min(0))
+                maxx, maxy = convert_coord(*a.max(0))
+                if maxx-minx < 3:
+                    if maxy - miny > 10:
+                        lines.append((minx, miny, maxx, maxy))
+                else:
+                    tables.append((minx, miny, maxx, maxy))
+    
+    return lines, tables
+
+'''
 Parse single page from generated HTML files using the given state. Given the path to the 
 desired HTML file, this function will generate a 2D array containing elements of the form
 [section, subsection, header, subheader, text] for each text line and 'None' to mark the
@@ -57,28 +102,32 @@ end of a paragraph.
 At the end of the run, a dictionary with the end-state will be returned along with the
 created 2D-array.
 '''
-def parse_page(path, section=None, subsection=None, header=None, subheader=None, current_top=None):
+def parse_page(path, img_path, section=None, subsection=None, header=None, subheader=None, current_top=None):
     output = [] #section, subsection, header, subheader, text || None
-
     parser = ET.HTMLParser()
     root = ET.parse(path, parser).getroot()
+    
+    body = root.find('body')
+    img = body.find('img')
+    lines, tables = parse_image(img_path, int(img.get('height')), int(img.get('width')))
+
+    def check_in_table(x):
+        for x1, y1, x2, y2 in tables:
+            if x1 <= x and x <= x2:
+                return True
+        return False
+    
+    def check_underline(x, h):
+        for x1, y1, x2, y2 in lines:
+            if x <= x1 and x1 <= x+h+1:
+                return True
+        return False
 
     # Get mapping of style-id to text type
     style_key = next(root.iter('style')).text
     style_key = parse_style_key(style_key)
 
-    # Get background img lines
-    background_img = next(root.iter('img'))
-    background_attr = background_img.attrib
-    width = int(background_attr.get('width'))
-    height = int(background_attr.get('height'))
-
-    png_path = path.replace('.html', '.png')
-    start, stop = underlining_start_range
-    lines = get_lines_from_png(png_path, (width, height), start=start, stop=stop)
-
     # Parse each textline available
-    body = root.find('body')
     for div in body.iter('div'):
         if div.get('class') != 'txt':
             continue
@@ -87,7 +136,8 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
         div_attr = parse_element_arguments(div.get('style'))
         top = int(div_attr.get('top', '0px').replace('px', ''))
         left = int(div_attr.get('left', '0px').replace('px', ''))
-        if left > left_start_paragraph_treshold:
+
+        if check_in_table(top):
             continue
 
         elif (current_top is None) or (top - current_top > paragraph_skip_threshold) and \
@@ -107,29 +157,16 @@ def parse_page(path, section=None, subsection=None, header=None, subheader=None,
         ids = [e.get('id') for e in spans]
         type = types[0] if all([e == types[0] for e in types]) else 'text'
 
-        # header elements have the same styling as text elements, but they are 
-        # underlined. See if there's a line that underlines current text
-        if type == 'text':
-            bottom = top + font_size
-            right = left + font_size * len(re.sub('\s+|\n', ' ', text))
-
-            # Match if line intersects text 
-            for r in range(top, bottom + 1):
-                if type == 'header':
-                    break
-                for start, stop in lines.get(r, []):
-                    if left <= stop:
-                        # Sometimes, headers are not separated enough from paragraphs.
-                        # End paragraph early if matched text ends before right_paragraph_treshold
-                        if right < right_end_paragraph_treshold and len(output) > 0 and output[-1] is not None:
-                            output.append(None)
-                        type = 'header'
-                        break
-        
         # Text styling for sections and subsections is the same. Differentiate
         # them by searching for #.# or #. pattern
-        if type == 'section' and re.match('\d\.\d', text) is not None:
+        if type == 'section' and re.match('\d', text) is None:
+            type = 'text'
+
+        elif type == 'section' and re.match('\d\.\d', text) is not None:
             type = 'subsection'
+
+        elif type in ['text', 'subheader'] and check_underline(top, font_size):
+            type = 'header'
 
         # Update Headers/Sections if applicable
         if type == 'section':
@@ -185,7 +222,11 @@ def parse_document(input_file):
         state = {}
         for page in files:
             page_file = os.path.join(temp_dir, page)
-            page_output, state = parse_page(page_file, **state)
+            image_file = os.path.join(temp_dir, page.replace('.html', '.png'))
+            page_output, state = parse_page(page_file, image_file, **state)
+            # ignore the parts past ANNEX II
+            if any([out is not None and out[4] == 'ANNEX II' for out in page_output]):
+                break
             output.extend(page_output)
 
         # Restructure output
@@ -263,5 +304,3 @@ if __name__ == '__main__':
     
     with open(dest_path, 'w') as f:
         f.write(json.dumps(docs, indent=4))
-
-    
