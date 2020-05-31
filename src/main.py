@@ -168,8 +168,11 @@ if __name__ == '__main__':
     parser_train_model.add_argument('annotations', type=str, help='Path to spreadsheet with annotations.')
     parser_train_model.add_argument('output_dir', type=str, help='Path to output directory.')
     parser_train_model.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
+    parser_train_model.add_argument('--exact-match', type=bool, default=False,\
+                            help='Choose whether or not to use fuzzy-mathing to match labels.')
     def train_cli(args):
-        model = train_model(args.data, args.annotations, args.output_dir, pool_workers=args.pool_workers)
+        model = train_model(args.data, args.annotations, args.output_dir, pool_workers=args.pool_workers,\
+        exact_match=args.exact_match)
     parser_train_model.set_defaults(func=train_cli)
 
     # Parse and execute

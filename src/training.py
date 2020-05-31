@@ -25,7 +25,7 @@ def train_model(data_path, annotations_path, output_dir, pool_workers=1, **args)
     elif os.path.isfile(data_path) and data_path.lower().endswith('.json'): # From JSON
         data = load_parsed_file(data_path)
     else:
-        raise Exception('Unable to load data from %d'%data_path)
+        raise Exception('Unable to load data from %s'%data_path)
 
     # Load Annotations from spreadsheet
     annotations = parse_spreadsheet(annotations_path)
