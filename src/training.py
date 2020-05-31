@@ -14,16 +14,18 @@ Trains linear model according to the PDF files stored in 'pdfs_path' and the ann
 given in the spreadsheet in 'annotations_path'. A serialized version of the model is stored
 in output_file.
 '''
-def train_model(pdfs_path, annotations_path, output_dir, pool_workers=1, \
-                parsed_docs_path=None, **args):
+def train_model(data_path, annotations_path, output_dir, pool_workers=1, **args):
+    # parsed_docs_path, pdfs_path
 
     # Process PDF Documents or load precomputed
-    if not parsed_docs_path:
+    if os.path.isdir(data_path): # From PDFs
         parsed_docs_path = os.path.join(output_dir, 'parsed_docs.json')
-        parsed = process_documents(pdfs_path, output_path=parsed_docs_path, pool_workers=pool_workers)
+        parsed = process_documents(data_path, output_path=parsed_docs_path, pool_workers=pool_workers)
         data = parsed_to_df(parsed)
+    elif os.path.isfile(data_path) and data_path.lower().endswith('.json'): # From JSON
+        data = load_parsed_file(data_path)
     else:
-        data = load_parsed_file(parsed_docs_path)
+        raise Exception('Unable to load data from %d'%data_path)
 
     # Load Annotations from spreadsheet
     annotations = parse_spreadsheet(annotations_path)
