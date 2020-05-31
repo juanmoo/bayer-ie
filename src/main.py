@@ -175,4 +175,8 @@ if __name__ == '__main__':
     # Parse and execute
     argv = sys.argv[1:]
     args = parser.parse_args(argv)
-    args.func(args)
+
+    if len(argv) > 0:
+        args.func(args)
+    else:
+        parser.print_help()
