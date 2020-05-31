@@ -166,7 +166,7 @@ if __name__ == '__main__':
     parser_train_model = subparsers.add_parser('trainModel', help='Train model')
     parser_train_model.add_argument('data', type=str, help='Path to pdfs or json data.')
     parser_train_model.add_argument('annotations', type=str, help='Path to spreadsheet with annotations.')
-    parser_train_model.add_argument('--output-dir', type=str, help='Path to output directory.')
+    parser_train_model.add_argument('output_dir', type=str, help='Path to output directory.')
     parser_train_model.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
     def train_cli(args):
         model = train_model(args.data, args.annotations, args.output_dir, pool_workers=args.pool_workers)
