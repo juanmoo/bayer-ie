@@ -2,6 +2,10 @@
 Extract significant finding portions through heuristics.
 '''
 import json, sys, os, re
+import pandas as pd
+import numpy as np
+from pdf_parser import process_documents
+from utils import load_parsed_file, tokenize_matches
 
 class heuristicExtractor:
     def __init__(self):
@@ -15,6 +19,7 @@ class hepaticImpairmentExtractor(heuristicExtractor):
 
     def __init__(self):
         self.heuristics = []
+        self.label = 'significant findings - hepatic impairment'
 
         '''
         Heuristic explanations:
@@ -48,7 +53,7 @@ class hepaticImpairmentExtractor(heuristicExtractor):
 
         def h3(p):
             return len([e for e in (p['header'] or '').split('\n') if len(e) > 0]) <= 4 and \
-            ('hepatic impair' in re.sub('\s+|\n', ' ', (p['header'] or '')))
+            ('hepatic impair' in re.sub('\s+|\n', ' ', (p['header'] or '').lower()))
         self.heuristics.append(h3)
 
 
@@ -57,6 +62,7 @@ class renalImpairmentExtractor(heuristicExtractor):
     
     def __init__(self):
         self.heuristics = []
+        self.label = 'significant findings - renal impairment'
 
         '''
         Heuristic explanations:
@@ -103,6 +109,7 @@ class pregnancyExtractor(heuristicExtractor):
     
     def __init__(self):
         self.heuristics = []
+        self.label = 'significant findings - pregnancy'
 
         '''
         Heuristic explanations:
@@ -128,8 +135,82 @@ class pregnancyExtractor(heuristicExtractor):
             return any([w in h for h in heads for w in words])
         self.heuristics.append(h2)
 
+def extractSignificantFindings(data_path, output_path, output_dir=None, pool_workers=1):
+    # Load data from PDFs or JSON
+    if os.path.isdir(data_path): # From PDFs
+        parsed_docs_path = os.path.join(output_dir, 'parsed_docs.json') if output_dir else None
+        parsed = process_documents(data_path, output_path=parsed_docs_path, pool_workers=pool_workers)
+        data = parsed_to_df(parsed)
+    elif os.path.isfile(data_path) and data_path.lower().endswith('.json'): # From JSON
+        data = load_parsed_file(data_path)
+    else:
+        raise Exception('Unable to load data from %d'%data_path)
+    
+    extractors = [hepaticImpairmentExtractor(), renalImpairmentExtractor(), pregnancyExtractor()]
+    output = pd.DataFrame(columns=['document', 'label', 'text'])
 
+    tok_data = tokenize_matches(pd.DataFrame(data))
 
+    for e in extractors:
+        match_i = np.array([e.classify(p) for p in tok_data.iloc]).reshape(-1)
+        matches = data.loc[match_i]
+        
+        old_name = None
+        section = None
+        subsection = None
+        header = None
+        subheader = None
+        cell_text = None
+
+        for row in matches.iloc:
+            i = row.name
+
+            if cell_text is None:
+                section = row['section']
+                subsection = row['subsection']
+                header = row['header']
+                subheader = row['subheader']
+                cell_text = row['text']
+            
+            elif (row.name - 1 == old_name) and (subheader == row['subheader']):
+                cell_text += '\n' + row['text']
+
+            elif i == list(matches.index)[-1]:
+                # Add finished row #
+                cell = section + '\n'
+                cell += subsection + '\n'
+                cell += header + '\n'
+                cell += subheader + '\n'
+                cell += cell_text
+
+            else:
+                # Add finished row #
+                cell = section + '\n'
+                cell += subsection + '\n'
+                cell += header + '\n'
+                cell += subheader + '\n'
+                cell += cell_text
+
+                cell = re.sub('\n{2,}', '\r\n', cell)
+
+                row_dict = {
+                    'document': row['doc_name'],
+                    'label': e.label,
+                    'text': cell
+                }
+                output = output.append(row_dict, ignore_index=True)
+
+                # Start new row #
+                section = row['section']
+                subsection = row['subsection']
+                header = row['header']
+                subheader = row['subheader']
+                cell_text = row['text']
+
+            old_i = row.name
+
+    output.to_excel(output_path)
+    return output
 
 
 if __name__ == '__main__':

@@ -9,6 +9,7 @@ import os, pickle, csv, re
 from utils import *
 import pandas as pd
 from training import train_model
+from extractor import extractSignificantFindings
 from linear_model import svm_predict
 from pdf_parser import process_documents
 
@@ -137,15 +138,29 @@ if __name__ == '__main__':
     parser_extract_sec = subparsers.add_parser('extractSections', help='extract sections help')
     parser_extract_sec.add_argument('models', type=str, help='Path to serialized trained models.')
     parser_extract_sec.add_argument('data', type=str, help='Path to pdfs or json data.')
-    parser_extract_sec.add_argument('output_path', type=str, help='Output directory.')
+    parser_extract_sec.add_argument('output_path', type=str, help='Path to desired output file.')
     parser_extract_sec.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
     parser_extract_sec.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
+    parser_extract_sec.add_argument('--exact-match', type=bool, default=False,\
+                            help='Choose whether or not to use fuzzy-mathing to match labels.')
+
     def extract_cli(args):
-        extractSections(args.models, args.data, args.output_path, args.checkpoint_dir, pool_workers=args.pool_workers)
+        extractSections(args.models, args.data, args.output_path, args.checkpoint_dir,\
+        pool_workers=args.pool_workers, exact_match=args.exact_match)
     parser_extract_sec.set_defaults(func=extract_cli)
 
     # Extract Significant Findings Parser
-    # TODO
+    parser_significant = subparsers.add_parser('extractSignificant', help='Extract sections of significant findings.')
+    parser_significant.add_argument('data', type=str, help='Path to pdfs or json data.')
+    parser_significant.add_argument('output_path', type=str, help='Path to desired output file.')
+    parser_significant.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
+    parser_significant.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
+
+    def extract_significant_cli(args):
+        extractSignificantFindings(args.data, args.output_path, output_dir=args.checkpoint_dir,\
+        pool_workers=args.pool_workers)
+    
+    parser_significant.set_defaults(func=extract_significant_cli)
 
     # Train Model Parser #
     parser_train_model = subparsers.add_parser('trainModel', help='Train model')
