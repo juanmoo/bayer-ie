@@ -6,7 +6,7 @@ This is a python-based project to be used to parse and extract relevant portions
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the packages specified in ```requirements.py```.
 
 ```bash
-pip install -r requirements.py
+pip install -r requirements.txt
 ```
 
 The mechanism to process native PDF files is dependent on [xpdf](https://www.xpdfreader.com/)'s implementation of ```pdftohtml```. In order for the modules in this project to work properly, make sure to download ```pdftohtml``` from [here](https://www.xpdfreader.com/download.html) and add it to your PATH.
