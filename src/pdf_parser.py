@@ -1,11 +1,12 @@
 #! /usr/bin/env python
 
-import imageio
+from PIL import Image
 import numpy as np
 import json, re, argparse
 import os, sys, subprocess, tempfile
 from lxml import etree as ET
 from multiprocessing import Pool
+from time import time as time
 
 # Constants
 paragraph_skip_threshold = 20
@@ -49,22 +50,20 @@ def parse_style_key(sk):
 Extract location of lines and tables in a background image.
 '''
 def parse_image(image_path, height, width):
-    im = imageio.imread(image_path)
-    h, w, _ = im.shape
-    
-    lines, tables = [], []
-    visited = set()
-    
+    th = 200
+    img = Image.open(image_path)
+    img = img.resize((width, height)).convert('L')
+    img = np.array(img, dtype=np.uint8)
+    img = np.where(img > th, 255, 0)
+
     def unvisited_black(x, y):
-        return sum(im[x][y]) == 0 and (x,y) not in visited
+        return img[x, y] == 0 and (x,y) not in visited
     
-    def convert_coord(x, y):
-        x = x / h * height
-        y = y / w * width
-        return x, y
-    
-    for i in range(h):
-        for j in range(w):
+    visited = set()
+    lines, tables = [], []
+
+    for i in range(height):
+        for j in range(width):
             if unvisited_black(i, j):
                 queue = [(i, j)]
                 visited.add((i, j))
@@ -78,8 +77,9 @@ def parse_image(image_path, height, width):
                                 queue.append((x+dx, y+dy))
                                 visited.add((x+dx, y+dy))
                 a = np.array(queue)
-                minx, miny = convert_coord(*a.min(0))
-                maxx, maxy = convert_coord(*a.max(0))
+                minx, miny = a.min(0)
+                maxx, maxy = a.max(0)
+
                 if maxx-minx < 3:
                     if maxy - miny > 10:
                         lines.append((minx, miny, maxx, maxy))
@@ -249,16 +249,21 @@ def parse_document(input_file):
         return paragraphs
 
 def process_doc(path):
+    start_time = time()
     dir_name, base_name = os.path.split(path)
     name = base_name.replace('.pdf', '')
     print('Processing %s.'%name)
 
     out = parse_document(path)
-    print('Done processing %s!'%name)
+    tot_time = time() - start_time
+    tot_time = int(tot_time * 100.0 + 0.5)/100.0
+    print('Done processing %s in %f seconds!'%(name, tot_time))
     return (name, out)
 
 
 def process_documents(source_path, output_path=None, pool_workers=1):
+    source_path = os.path.realpath(source_path)
+    output_path = os.path.realpath(output_path)
     # Verify Source Path #
     if os.path.isfile(source_path):
         # Parse single PDF file
@@ -272,7 +277,7 @@ def process_documents(source_path, output_path=None, pool_workers=1):
     if output_path is not None:
         base_dir = os.path.dirname(output_path)
         if not os.path.isdir(base_dir):
-            raise Exception('Destination path is invalid.')
+            raise Exception('Destination path \'%s\' is invalid.'%output_path)
     
     # Process Documents in parallel
     with Pool(pool_workers) as p:
@@ -293,7 +298,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('source', help='Path to PDF file/folder with PDF file(s)')
     parser.add_argument('--dest', help='Desired path to output file')
-    parser.add_argument('--pool-workers', help='Number of workers to be used to process documents simultaneously')
+    parser.add_argument('--pool-workers', type=int, default=1, help='Number of workers to be used to process documents simultaneously')
     args = parser.parse_args(argv)
     args = vars(args)
 
@@ -301,9 +306,7 @@ if __name__ == '__main__':
     dest_path = args.get('dest', None)
     pool_workers = args.get('pool_workers', '1')
 
-    if not pool_workers.isdigit():
+    if pool_workers <= 0: 
         raise Exception('%d is not a valid number of pool workers.'%pool_workers)
-    else:
-        pool_workers = int(pool_workers)
 
     process_documents(source_path, output_path=dest_path, pool_workers=pool_workers)
