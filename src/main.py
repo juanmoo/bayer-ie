@@ -10,7 +10,7 @@ from utils import *
 import pandas as pd
 from training import train_model
 from extractor import extractSignificantFindings
-from linear_model import svm_predict
+from linear_model import svm_predict, svm_cross_validate
 from pdf_parser import process_documents
 
 '''
@@ -65,7 +65,6 @@ def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
         model = models.get(label, None)
         if not model:
             continue
-            # return np.array([False] * len(data)).reshape(-1)
 
         bool_locs = svm_predict(tok_data, model)
         res = data.loc[bool_locs == 1][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']]
@@ -128,6 +127,63 @@ def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
     output.to_excel(output_path)
     return output
 
+def cross_validate(data_path, annotations_path, output_dir, num_folds, pool_workers=1, **args):
+
+    # Process PDF Documents or load precomputed
+    print('Loading input data ... \n')
+    if os.path.isdir(data_path): # From PDFs
+        parsed_docs_path = os.path.join(output_dir, 'parsed_docs.json')
+        parsed = process_documents(data_path, output_path=parsed_docs_path, pool_workers=pool_workers)
+        data = parsed_to_df(parsed)
+    elif os.path.isfile(data_path) and data_path.lower().endswith('.json'): # From JSON
+        data = load_parsed_file(data_path)
+    else:
+        raise Exception('Unable to load data from %s'%data_path)
+
+    # Load Annotations from spreadsheet
+    print('Loading annotations ... \n')
+    annotations = parse_spreadsheet(annotations_path)
+    rationales = parse_rationale(annotations_path)
+
+    # Match Labels to parsed data
+    print('Matching annotations to data ... \n')
+    labels = match_labels(data, annotations, **args)
+
+    # Pre-process matches
+    data = tokenize_matches(data)
+
+    # Cross Validate and Report results
+    print('Running cross-validation ... \n')
+    results = svm_cross_validate(data, labels, num_folds, rationales=rationales)
+
+    summary_path = os.path.join(output_dir, 'results.txt')
+    with open(summary_path, 'w') as f:
+        for l in labels:
+            precisions = results[l]['precisions']
+            recalls = results[l]['recalls']
+            f1s = results[l]['f1s']
+
+            if l == 'warning' or l == 'warning':
+                print('precisions:', precisions)
+                print('recalls:', recalls)
+                print('f1s:', f1s)
+            
+            # avg_p = sum(precisions)/len(precisions)
+            # avg_r = sum(recalls)/len(recalls)
+            # avg_f1 = sum(f1s)/len(f1s)
+
+            summary = ''
+            summary += '-' * 2 + ' Label: ' + l  + ' ' + '-' * 20 + '\n'
+            # summary += '\t precision: ' + str(avg_p) + '\n'
+            # summary += '\t recall: ' + str(avg_r) + '\n'
+            # summary += '\t f1: ' + str(avg_f1) + '\n'
+
+            summary += '\t precision: ' + str(precisions) + '\n'
+            summary += '\t recall: ' + str(recalls) + '\n'
+            summary += '\t f1: ' + str(f1s) + '\n'
+
+            print(summary)
+            f.write(summary)
 
 if __name__ == '__main__':
     # Parse Command Line Args #
@@ -174,6 +230,21 @@ if __name__ == '__main__':
         model = train_model(args.data, args.annotations, args.output_dir, pool_workers=args.pool_workers,\
         exact_match=args.exact_match)
     parser_train_model.set_defaults(func=train_cli)
+
+    # Cross-validator Parser #
+    parser_cross_validate = subparsers.add_parser('crossValidate', help='Cross-validation on given dataset.')
+    parser_cross_validate.add_argument('data', type=str, help='Path to pdfs or json data.')
+    parser_cross_validate.add_argument('annotations', type=str, help='Path to spreadsheet with annotations.')
+    parser_cross_validate.add_argument('output_dir', type=str, help='Path to output directory.')
+    parser_cross_validate.add_argument('num_folds', type=int, help='Number of folds to use in cross validations.')
+    parser_cross_validate.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
+    parser_cross_validate.add_argument('--exact-match', type=bool, default=False,\
+                            help='Choose whether or not to use fuzzy-mathing to match labels.')
+    
+    def cross_validate_cli(args):
+        cross_validate(args.data, args.annotations, args.output_dir, args.num_folds,\
+                pool_workers=args.pool_workers, exact_match=args.exact_match)
+    parser_cross_validate.set_defaults(func=cross_validate_cli)
 
     # Parse and execute
     argv = sys.argv[1:]

@@ -100,6 +100,7 @@ def load_parsed_file(path):
     
 def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=1):
     all_labels = set()
+    print('Documents progress:')
     for doc_name in tqdm(pd.unique(data['doc_name'])):
         doc_annotations = annotations.get(doc_name, None)
 
