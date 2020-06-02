@@ -57,3 +57,18 @@ Example Usage:
 ```
 <path to project>/src/main.py extractSignificant --pool-workers=1 --exact-match=False <data-path> <output-path>
 ```
+
+* crossValidate
+    * Required Parameters
+        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
+        * ```annotations```: Path to spreadsheet containing the annotations to be used to train the model. In addition to the labels, this document should also contain a rationale column with pertinent phrases for the concept.
+        * ```output_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
+        * ```num_folds```: Number of folds to use during cross validation.
+    * Optional Parameters
+        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
+        * ```exact-match```: This option specifies whether or not an exact-match method should be used to match the given annotations to the parsed documents. By default, this option is set to false and a  Levenshtein Distance based fuzzy-matching method is used.
+
+Example Usage:
+```
+<path to project>/src/main.py crossValidate --pool-workers=1 --exact-match=False <data-path> <annotations-path> <output-dir-path> num_folds
+```
