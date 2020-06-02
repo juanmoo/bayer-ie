@@ -57,7 +57,9 @@ def parse_image(image_path, height, width):
     img = np.where(img > th, 255, 0)
 
     def unvisited_black(x, y):
-        return img[x, y] == 0 and (x,y) not in visited
+        if 0 <= x < height and 0 <= y < width:
+            return (x,y) not in visited and img[x, y] == 0
+        return False
     
     visited = set()
     lines, tables = [], []
