@@ -6,8 +6,15 @@ import pickle, json, os
 import pandas as pd
 import numpy as np
 from utils import *
-from linear_model import svm_train, svm_test
-from pdf_parser import process_documents 
+from linear_model import svm_train, svm_test, svm_cross_validate 
+from pdf_parser import process_documents
+import warnings
+from sklearn.exceptions import ConvergenceWarning
+
+# Ignore division by zero when calculating F1 score
+warnings.filterwarnings(action='ignore', category=RuntimeWarning)
+# Ignore converge warnings
+warnings.filterwarnings(action='ignore', category=ConvergenceWarning)
 
 '''
 Trains linear model according to the PDF files stored in 'pdfs_path' and the annotations
@@ -15,7 +22,6 @@ given in the spreadsheet in 'annotations_path'. A serialized version of the mode
 in output_file.
 '''
 def train_model(data_path, annotations_path, output_dir, pool_workers=1, **args):
-    # parsed_docs_path, pdfs_path
 
     # Process PDF Documents or load precomputed
     if os.path.isdir(data_path): # From PDFs
@@ -54,12 +60,3 @@ def train_model(data_path, annotations_path, output_dir, pool_workers=1, **args)
 
     return models
 
-
-if __name__ == '__main__':
-    pdfs_path = None
-    parsed_docs_path = '/scratch/juanmoo1/bayer/VendorEMAforMIT/Labels/parsed.json'
-    annotations_path = '/scratch/juanmoo1/bayer/VendorEMAforMIT/annotations.xlsx'
-    output_dir = '/scratch/juanmoo1/shared/'
-
-    models = train_model(pdfs_path, annotations_path, output_dir, pool_workers=16, \
-                parsed_docs_path=parsed_docs_path, exact_match=True)

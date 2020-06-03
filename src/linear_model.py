@@ -7,8 +7,11 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import *
 from sklearn.svm import LinearSVC
+from tqdm import tqdm
 import numpy as np
+import pandas as pd
 import re
+import sys
 
 ## Constants ##
 default_config = {
@@ -160,8 +163,8 @@ def svm_test(test_data, params, verbose=False):
         }
     else:
         output = {
-            'precision': pres.sum()/c_freq.sum(),
-            'recall': rec.sum()/c_freq.sum(),
+            'precision': precision[1:].sum(),
+            'recall': recall[1:].sum(),
             'cm': cm 
         }
     
@@ -191,3 +194,57 @@ def svm_predict(data, model):
 
     pred = np.array(model['model'].predict(X_test)).reshape(-1)
     return pred
+
+def svm_cross_validate(data, labels, k, rationales=None, config=default_config):
+    docs = pd.unique(data['doc_name'])
+    n = len(docs)//k
+
+    results = { l: {
+                    'precisions': [],
+                    'recalls': [],
+                    'f1s': []
+                } for l in labels
+            }
+
+    for fold in range(k):
+        print('Starting fold %d!\n'%(fold + 1))
+        test_docs = []
+        train_docs = []
+
+        for i in range(len(docs)):
+            doc_name = docs[i]
+            if i == 1:
+                test_docs.append(doc_name)
+                train_docs.append(doc_name)
+            elif (fold * n <= i < (fold + 1) * n) or (i >= n * k and i < len(docs)%k):
+                test_docs.append(doc_name)
+            else:
+                train_docs.append(doc_name)
+            
+        
+        train_data = data.loc[data['doc_name'].isin(train_docs)]
+        test_data = data.loc[data['doc_name'].isin(test_docs)]
+
+        for l in tqdm(labels):
+            train_count = train_data[l].sum()
+
+            precisions = results[l]['precisions']
+            recalls = results[l]['recalls']
+            f1s = results[l]['f1s']
+
+            if train_count < 2:
+                precisions.append(None)
+                recalls.append(None)
+                f1s.append(None)
+
+            else:
+                model = svm_train(train_data, l, rationales=rationales.get(l, None) if rationales else None, \
+                config=config) 
+                output = svm_test(test_data, model, verbose=True)
+                precisions.append(output['precision'])
+                recalls.append(output['recall'])
+                f1 = 2 * (precisions[-1] * recalls[-1]) / max(precisions[-1] + recalls[-1], 1e-9)
+                f1s.append(f1)
+
+
+    return results
