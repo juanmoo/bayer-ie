@@ -27,7 +27,7 @@ Currently, there are three available commands. These can be accessed through the
 
 Example usage:
 ```
-<path to project>/src/main.py trainModel --pool-workers=1 --exact-match=False <data-path> <annotations-path> <output-dir-path>
+<path to project>/src/main.py trainModel --pool-workers=1 --exact-match <data-path> <annotations-path> <output-dir-path>
 ```
 
 * extractSections
@@ -42,7 +42,7 @@ Example usage:
 
 Example Usage:
 ```
-<path to project>/src/main.py extractSections --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match=False <models-path> <data-path> <output-path>
+<path to project>/src/main.py extractSections --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <output-path>
 ```
 
 * extractSignificant
@@ -55,7 +55,7 @@ Example Usage:
 
 Example Usage:
 ```
-<path to project>/src/main.py extractSignificant --pool-workers=1 --exact-match=False <data-path> <output-path>
+<path to project>/src/main.py extractSignificant --pool-workers=1 --exact-match <data-path> <output-path>
 ```
 
 * crossValidate
@@ -70,5 +70,5 @@ Example Usage:
 
 Example Usage:
 ```
-<path to project>/src/main.py crossValidate --pool-workers=1 --exact-match=False <data-path> <annotations-path> <output-dir-path> num_folds
+<path to project>/src/main.py crossValidate --pool-workers=1 --exact-match <data-path> <annotations-path> <output-dir-path> num_folds
 ```
