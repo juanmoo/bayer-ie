@@ -159,28 +159,22 @@ def cross_validate(data_path, annotations_path, output_dir, num_folds, pool_work
     summary_path = os.path.join(output_dir, 'results.txt')
     with open(summary_path, 'w') as f:
         for l in labels:
-            precisions = results[l]['precisions']
-            recalls = results[l]['recalls']
-            f1s = results[l]['f1s']
+            precisions = [e for e in results[l]['precisions'] if e is not None]
+            recalls = [e for e in results[l]['recalls'] if e is not None]
+            f1s = [e for e in results[l]['f1s'] if e is not None]
 
-            if l == 'warning' or l == 'warning':
-                print('precisions:', precisions)
-                print('recalls:', recalls)
-                print('f1s:', f1s)
-            
-            # avg_p = sum(precisions)/len(precisions)
-            # avg_r = sum(recalls)/len(recalls)
-            # avg_f1 = sum(f1s)/len(f1s)
+            avg_p = sum(precisions)/len(precisions) if len(precisions) > 0 else 0
+            avg_r = sum(recalls)/len(recalls) if len(recalls) > 0 else 0
+            avg_f1 = sum(f1s)/len(f1s) if len(f1s) > 0 else 0
+
+            num_labels = data[l].sum()
 
             summary = ''
-            summary += '-' * 2 + ' Label: ' + l  + ' ' + '-' * 20 + '\n'
-            # summary += '\t precision: ' + str(avg_p) + '\n'
-            # summary += '\t recall: ' + str(avg_r) + '\n'
-            # summary += '\t f1: ' + str(avg_f1) + '\n'
-
-            summary += '\t precision: ' + str(precisions) + '\n'
-            summary += '\t recall: ' + str(recalls) + '\n'
-            summary += '\t f1: ' + str(f1s) + '\n'
+            summary += '-' * 20 + ' Label: ' + l  + ' ' + '-' * 20 + '\n\n'
+            summary += '\t # Labels: ' + str(num_labels) + '\n'
+            summary += '\t precision: ' + str(avg_p) + '\t [[ calculated folds: ' + str(len(precisions)) +']] \n'
+            summary += '\t recall: ' + str(avg_r) + '\t [[ calculated folds: ' + str(len(recalls)) + ']] \n'
+            summary += '\t f1: ' + str(avg_f1) + '\t [[ calculated folds: ' + str(len(f1s)) + ']] \n\n'
 
             print(summary)
             f.write(summary)

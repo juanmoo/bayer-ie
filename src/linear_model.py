@@ -213,7 +213,10 @@ def svm_cross_validate(data, labels, k, rationales=None, config=default_config):
 
         for i in range(len(docs)):
             doc_name = docs[i]
-            if (fold * n <= i < (fold + 1) * n) or (i >= n * k and i < len(docs)%k):
+            if i == 1:
+                test_docs.append(doc_name)
+                train_docs.append(doc_name)
+            elif (fold * n <= i < (fold + 1) * n) or (i >= n * k and i < len(docs)%k):
                 test_docs.append(doc_name)
             else:
                 train_docs.append(doc_name)
@@ -245,4 +248,3 @@ def svm_cross_validate(data, labels, k, rationales=None, config=default_config):
 
 
     return results
-    

@@ -1,0 +1,63 @@
+-------------------- Label: contraindication --------------------
+
+	 # Labels: 9
+	 precision: 0.9	 [[ calculated folds: 5]] 
+	 recall: 0.9333333333333332	 [[ calculated folds: 5]] 
+	 f1: 0.8933333333333333	 [[ calculated folds: 5]] 
+
+-------------------- Label: populations - adolescent --------------------
+
+	 # Labels: 85
+	 precision: 0.753015873015873	 [[ calculated folds: 5]] 
+	 recall: 0.7840597758405978	 [[ calculated folds: 5]] 
+	 f1: 0.7325465838509317	 [[ calculated folds: 5]] 
+
+-------------------- Label: populations - adult --------------------
+
+	 # Labels: 97
+	 precision: 0.6834343434343435	 [[ calculated folds: 5]] 
+	 recall: 0.8244444444444445	 [[ calculated folds: 5]] 
+	 f1: 0.7297327959396925	 [[ calculated folds: 5]] 
+
+-------------------- Label: populations - geriatric --------------------
+
+	 # Labels: 35
+	 precision: 0.8800000000000001	 [[ calculated folds: 5]] 
+	 recall: 0.9333333333333333	 [[ calculated folds: 5]] 
+	 f1: 0.9012581959950381	 [[ calculated folds: 5]] 
+
+-------------------- Label: populations - paediatric --------------------
+
+	 # Labels: 93
+	 precision: 0.9207547169811321	 [[ calculated folds: 5]] 
+	 recall: 0.9382352941176471	 [[ calculated folds: 5]] 
+	 f1: 0.9185550082101805	 [[ calculated folds: 5]] 
+
+-------------------- Label: significant findings - hepatic impairment --------------------
+
+	 # Labels: 4
+	 precision: 0.8800000000000001	 [[ calculated folds: 5]] 
+	 recall: 0.9	 [[ calculated folds: 5]] 
+	 f1: 0.8476190476190476	 [[ calculated folds: 5]] 
+
+-------------------- Label: significant findings - pregnancy --------------------
+
+	 # Labels: 22
+	 precision: 0.8380952380952381	 [[ calculated folds: 5]] 
+	 recall: 0.8941176470588236	 [[ calculated folds: 5]] 
+	 f1: 0.8126153846153846	 [[ calculated folds: 5]] 
+
+-------------------- Label: significant findings - renal impairment --------------------
+
+	 # Labels: 6
+	 precision: 0.0	 [[ calculated folds: 5]] 
+	 recall: 0.0	 [[ calculated folds: 5]] 
+	 f1: 0.0	 [[ calculated folds: 5]] 
+
+-------------------- Label: warning --------------------
+
+	 # Labels: 154
+	 precision: 0.8622371256194785	 [[ calculated folds: 5]] 
+	 recall: 0.9554080106501874	 [[ calculated folds: 5]] 
+	 f1: 0.9014116659749879	 [[ calculated folds: 5]] 
+
