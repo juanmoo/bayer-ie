@@ -47,6 +47,22 @@ Example Usage:
 <path to project>/src/main.py extractSections --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <output-path>
 ```
 
+* extractLabeledParagraphs
+    * Required Parameters
+        * ```models```: Path to serialized model file created using ```trainModel```.
+        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
+        * ```output_path```: Desired path to output spreadsheed containing the extracted sections.
+    * Optional Parameters
+        * ```checkpoint_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
+        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
+        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
+        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
+
+Example Usage:
+```
+<path to project>/src/main.py extractLabeledParagraphs --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <output-path>
+```
+
 * extractSignificant
     * Required Parameters
         * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 

@@ -98,7 +98,7 @@ def load_parsed_file(path):
     parsed_data = json.loads(parsed_str)
     return parsed_to_df(parsed_data)
     
-def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=1):
+def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=10):
     all_labels = set()
     print('Documents progress:')
     for doc_name in tqdm(pd.unique(data['doc_name'])):
@@ -119,7 +119,7 @@ def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=
             paragraph = re.sub('\s+', ' ', data.iloc[i]['text'].strip().replace('\n', ' '))
 
             for j, a_text in enumerate(a_texts[:10]):
-                if contains_test([paragraph], a_text, exact_match=exact_match):
+                if contains_test([paragraph], a_text, exact_match=exact_match, minimum_paragraph_length=minimum_paragraph_length):
                     # Add Label to data point
                     l = a_labels[j].strip().lower()
                     if l not in data.columns:

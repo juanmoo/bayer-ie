@@ -19,7 +19,7 @@ Use pre-built model to extract sections from set of PDFs.
 model: Dictionary mapping labels to trained linear classifiers or path
 to file containing serialized version.
 '''
-def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
+def extractSections(models, data, output_path, checkpoints_dir=None, min_paragraph_len=10, **kwargs):
 
     if checkpoints_dir is not None and not os.path.isdir(checkpoints_dir):
         raise Exception('Check-point directory at %s not found.'%checkpoints_dir)
@@ -80,6 +80,9 @@ def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
         for i in range(len(list(res.index))):
             row = res.iloc[i]
 
+            if len(row['text'].split(' ')) < min_paragraph_len:
+                continue
+
             if cell_text is None:
                 section = row['section']
                 subsection = row['subsection']
@@ -132,6 +135,82 @@ def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
             old_name = row.name
 
     output.to_excel(output_path)
+    return output
+
+'''
+Use pre-built model to extract labeled paragraphs from set of PDFs/JSON input.
+
+model: Dictionary mapping labels to trained linear classifiers or path
+to file containing serialized version.
+'''
+def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, min_paragraph_len=10, **kwargs):
+
+    if checkpoints_dir is not None and not os.path.isdir(checkpoints_dir):
+        raise Exception('Check-point directory at %s not found.'%checkpoints_dir)
+
+    # Using pre-saved model
+    if type(models) == str:
+        path = os.path.realpath(models)
+        if not os.path.isfile(path):
+            raise Exception('Unable to find models at %s'%path)
+        
+        with open(path, 'rb') as f:
+            try:
+                models = pickle.load(f)
+                assert(type(models) == dict)
+            except:
+                raise Exception('Unable to load models from file at %s'%path)
+        
+    # Using PDF(s) as input
+    if type(data) == str and not data.lower().endswith('.json'):
+        path = os.path.realpath(data)
+        if not os.path.exists(path):
+            raise Exception('Unable to find data in %s'%s)
+
+        if checkpoints_dir is not None:
+            parsed_docs_path = os.path.join(checkpoints_dir, 'parsed_documents.json')
+        data = process_documents(source_path, output_path=parsed_docs_path, **kwargs)
+        data = parsed_to_df(data)
+
+    # Use pre-parsed JSON input
+    elif type(data) == str and data.lower().endswith('.json'):
+        path = os.path.realpath(data)
+        data = load_parsed_file(path)
+
+    else:
+        raise Exception('Unable to load data from %s'%data)
+
+    tok_data = pd.DataFrame(data)
+    tok_data = tokenize_matches(tok_data)
+
+    output = pd.DataFrame(columns=['document', 'label', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end'])
+
+    for label in models.keys():
+        model = models.get(label, None)
+        if not model:
+            continue
+
+        bool_locs = svm_predict(tok_data, model)
+        res = data.loc[bool_locs == 1][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end']]
+
+        for row in res.iloc:
+            if len(row['text'].split(' ')) < min_paragraph_len:
+                continue
+            row_dict = {
+                'document': row['doc_name'],
+                'label': label,
+                'section': row['section'],
+                'subsection': row['subsection'],
+                'header': row['header'],
+                'subheader': row['subheader'],
+                'text': row['text'],
+                'page_start': row['page_start'],
+                'page_end': row['page_end']
+            }
+            output = output.append(row_dict, ignore_index=True)
+
+
+    output.to_excel(output_path, index=True)
     return output
 
 def cross_validate(data_path, annotations_path, output_dir, num_folds, pool_workers=1, **args):
@@ -212,6 +291,28 @@ if __name__ == '__main__':
         extractSections(args.models, args.data, args.output_path, args.checkpoint_dir,\
         pool_workers=args.pool_workers, exact_match=args.exact_match)
     parser_extract_sec.set_defaults(func=extract_cli)
+
+    # Extract Sections Parser
+    parser_extract_par = subparsers.add_parser('extractLabeledParagraphs', help='extract sections help')
+    parser_extract_par.add_argument('models', type=str, help='Path to serialized trained models.')
+    parser_extract_par.add_argument('data', type=str, help='Path to pdfs or json data.')
+    parser_extract_par.add_argument('output_path', type=str, help='Path to desired output file.')
+    parser_extract_par.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
+    parser_extract_par.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
+    parser_extract_par.add_argument('--exact-match', action='store_true', default=False,\
+                            help='Use fuzzy-mathing to match labels.')
+    parser_extract_par.add_argument('--no-exact-match', dest='exact_match', action='store_false',\
+                            help='Do not use fuzzy-mathing to match labels.')
+
+    def extract_par_cli(args):
+        v = vars(args)
+        output_path = v.get('output_path', '')
+        if not output_path.lower().endswith('.xlsx'):
+            raise Exception('Output file should be an Excel spreadsheet. Please make sure the entered output_path ends with \'.xlsx\'.')
+
+        extractLabeledParagraphs(args.models, args.data, args.output_path, args.checkpoint_dir,\
+        pool_workers=args.pool_workers, exact_match=args.exact_match)
+    parser_extract_par.set_defaults(func=extract_par_cli)
 
     # Extract Significant Findings Parser
     parser_significant = subparsers.add_parser('extractSignificant', help='Extract sections of significant findings.')

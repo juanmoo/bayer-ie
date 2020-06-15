@@ -99,14 +99,15 @@ end of a paragraph.
 At the end of the run, a dictionary with the end-state will be returned along with the
 created 2D-array.
 '''
-def parse_page(path, img_path, section=None, subsection=None, header=None, subheader=None, current_top=None):
-    output = [] #section, subsection, header, subheader, text || None
+def parse_page(path, img_path, section=None, subsection=None, header=None, subheader=None, current_top=None, **kwargs):
+    output = [] #section, subsection, header, subheader, text, pageNumber || None
     parser = ET.HTMLParser()
     root = ET.parse(path, parser).getroot()
     
     body = root.find('body')
     img = body.find('img')
     lines, tables = parse_image(img_path, int(img.get('height')), int(img.get('width')))
+    page_num = int(re.sub('page|.png', '', img.get('src', None) or '-1'))
 
     def check_in_table(x):
         for x1, y1, x2, y2 in tables:
@@ -185,7 +186,7 @@ def parse_page(path, img_path, section=None, subsection=None, header=None, subhe
             subheader = text
         
         else:
-            output.append([section, subsection, header, subheader, text])
+            output.append([section, subsection, header, subheader, text, page_num])
 
     state = {
                 'section': section, 
@@ -234,8 +235,12 @@ def parse_document(input_file):
         while current_line < len(output):
             # New Paragraph
             par_lines = []
+            page_start = None
+            page_end = None
             while current_line < len(output) and output[current_line] is not None:
                 par_lines.append(output[current_line])
+                page_start = min(output[current_line][5], page_end) if page_end else output[current_line][5]
+                page_end = max(output[current_line][5], page_end) if page_end else output[current_line][5]
                 current_line += 1
             current_line += 1
 
@@ -245,7 +250,9 @@ def parse_document(input_file):
                     'subsection': par_lines[0][1],
                     'header': par_lines[0][2],
                     'subheader': par_lines[0][3],
-                    'text': '\n'.join(l[4] for l in par_lines)
+                    'text': '\n'.join(l[4] for l in par_lines),
+                    'page_start': page_start,
+                    'page_end': page_end
                 }
                 paragraphs.append(paragraph)
         return paragraphs
