@@ -23,7 +23,8 @@ Currently, there are three available commands. These can be accessed through the
         * ```output_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
     * Optional Arguments
         * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: This option specifies whether or not an exact-match method should be used to match the given annotations to the parsed documents. By default, this option is set to false and a  Levenshtein Distance based fuzzy-matching method is used.
+        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
+        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
 
 Example usage:
 ```
@@ -38,7 +39,8 @@ Example usage:
     * Optional Parameters
         * ```checkpoint_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
         * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: This option specifies whether or not an exact-match method should be used to match the given annotations to the parsed documents. By default, this option is set to false and a  Levenshtein Distance based fuzzy-matching method is used.
+        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
+        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
 
 Example Usage:
 ```
@@ -51,7 +53,8 @@ Example Usage:
         * ```output_path```: Desired path to output spreadsheed containing the extracted sections.
     * Optional Arguments
         * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: This option specifies whether or not an exact-match method should be used to match the given annotations to the parsed documents. By default, this option is set to false and a  Levenshtein Distance based fuzzy-matching method is used.
+        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
+        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
 
 Example Usage:
 ```
@@ -66,9 +69,10 @@ Example Usage:
         * ```num_folds```: Number of folds to use during cross validation.
     * Optional Parameters
         * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: This option specifies whether or not an exact-match method should be used to match the given annotations to the parsed documents. By default, this option is set to false and a  Levenshtein Distance based fuzzy-matching method is used.
+        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
+        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
 
 Example Usage:
 ```
-<path to project>/src/main.py crossValidate --pool-workers=1 --exact-match <data-path> <annotations-path> <output-dir-path> num_folds
+<path to project>/src/main.py crossValidate --pool-workers=1 --no-exact-match <data-path> <annotations-path> <output-dir-path> num_folds
 ```

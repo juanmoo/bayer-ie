@@ -92,11 +92,19 @@ def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
 
             elif i == list(res.index)[-1]:
                 # Add finished row #
-                cell = section + '\n'
-                cell += subsection + '\n'
-                cell += header + '\n'
-                cell += subheader + '\n'
+                cell = 'Section: ' + section + '\n'
+                cell += 'Subsection: ' + subsection + '\n'
+                cell += 'Header: ' + header + '\n'
+                cell += 'Subheader: ' + subheader + '\n'
                 cell += cell_text
+
+                cell = re.sub('\n{2,}', '\r\n', cell)
+                row_dict = {
+                    'document': row['doc_name'],
+                    'label': label,
+                    'text': cell
+                }
+                output = output.append(row_dict, ignore_index=True)
 
             else:
                 # Add finished row #
@@ -107,7 +115,6 @@ def extractSections(models, data, output_path, checkpoints_dir=None, **kwargs):
                 cell += cell_text
 
                 cell = re.sub('\n{2,}', '\r\n', cell)
-
                 row_dict = {
                     'document': row['doc_name'],
                     'label': label,
@@ -191,10 +198,17 @@ if __name__ == '__main__':
     parser_extract_sec.add_argument('output_path', type=str, help='Path to desired output file.')
     parser_extract_sec.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
     parser_extract_sec.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
-    parser_extract_sec.add_argument('--exact-match', type=bool, default=False,\
-                            help='Choose whether or not to use fuzzy-mathing to match labels.')
+    parser_extract_sec.add_argument('--exact-match', action='store_true', default=False,\
+                            help='Use fuzzy-mathing to match labels.')
+    parser_extract_sec.add_argument('--no-exact-match', dest='exact_match', action='store_false',\
+                            help='Do not use fuzzy-mathing to match labels.')
 
     def extract_cli(args):
+        v = vars(args)
+        output_path = v.get('output_path', '')
+        if not output_path.lower().endswith('.xlsx'):
+            raise Exception('Output file should be an Excel spreadsheet. Please make sure the entered output_path ends with \'.xlsx\'.')
+
         extractSections(args.models, args.data, args.output_path, args.checkpoint_dir,\
         pool_workers=args.pool_workers, exact_match=args.exact_match)
     parser_extract_sec.set_defaults(func=extract_cli)
@@ -218,8 +232,10 @@ if __name__ == '__main__':
     parser_train_model.add_argument('annotations', type=str, help='Path to spreadsheet with annotations.')
     parser_train_model.add_argument('output_dir', type=str, help='Path to output directory.')
     parser_train_model.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
-    parser_train_model.add_argument('--exact-match', type=bool, default=False,\
-                            help='Choose whether or not to use fuzzy-mathing to match labels.')
+    parser_train_model.add_argument('--exact-match', action='store_true', default=False,\
+                            help='Use fuzzy-mathing to match labels.')
+    parser_train_model.add_argument('--no-exact-match', dest='exact_match', action='store_false',\
+                            help='Do not use fuzzy-mathing to match labels.')
     def train_cli(args):
         model = train_model(args.data, args.annotations, args.output_dir, pool_workers=args.pool_workers,\
         exact_match=args.exact_match)
@@ -232,8 +248,10 @@ if __name__ == '__main__':
     parser_cross_validate.add_argument('output_dir', type=str, help='Path to output directory.')
     parser_cross_validate.add_argument('num_folds', type=int, help='Number of folds to use in cross validations.')
     parser_cross_validate.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
-    parser_cross_validate.add_argument('--exact-match', type=bool, default=False,\
-                            help='Choose whether or not to use fuzzy-mathing to match labels.')
+    parser_cross_validate.add_argument('--exact-match', action='store_true', default=False,\
+                            help='Use fuzzy-mathing to match labels.')
+    parser_cross_validate.add_argument('--no-exact-match', dest='exact_match', action='store_false',\
+                            help='Do not use fuzzy-mathing to match labels.')
     
     def cross_validate_cli(args):
         cross_validate(args.data, args.annotations, args.output_dir, args.num_folds,\
