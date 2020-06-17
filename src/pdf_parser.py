@@ -270,7 +270,7 @@ def process_doc(path):
     return (name, out)
 
 
-def process_documents(source_path, output_path=None, pool_workers=1):
+def process_documents(source_path, output_path=None, pool_workers=1, **kwargs):
     source_path = os.path.realpath(source_path)
     output_path = os.path.realpath(output_path)
     # Verify Source Path #

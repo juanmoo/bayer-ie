@@ -45,7 +45,7 @@ def extractSections(models, data, output_path, checkpoints_dir=None, min_paragra
 
         if checkpoints_dir is not None:
             parsed_docs_path = os.path.join(checkpoints_dir, 'parsed_documents.json')
-        data = process_documents(source_path, output_path=parsed_docs_path, **kwargs)
+        data = process_documents(path, output_path=parsed_docs_path, **kwargs)
         data = parsed_to_df(data)
 
     # Use pre-parsed JSON input
@@ -143,13 +143,14 @@ Use pre-built model to extract labeled paragraphs from set of PDFs/JSON input.
 model: Dictionary mapping labels to trained linear classifiers or path
 to file containing serialized version.
 '''
-def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, min_paragraph_len=10, **kwargs):
+def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, min_paragraph_len=1, **kwargs):
 
     if checkpoints_dir is not None and not os.path.isdir(checkpoints_dir):
         raise Exception('Check-point directory at %s not found.'%checkpoints_dir)
 
     # Using pre-saved model
     if type(models) == str:
+        print('Loading pre-trained models ... \n')
         path = os.path.realpath(models)
         if not os.path.isfile(path):
             raise Exception('Unable to find models at %s'%path)
@@ -163,53 +164,42 @@ def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, mi
         
     # Using PDF(s) as input
     if type(data) == str and not data.lower().endswith('.json'):
+        print('Parsing PDFs ... \n')
         path = os.path.realpath(data)
         if not os.path.exists(path):
             raise Exception('Unable to find data in %s'%s)
 
         if checkpoints_dir is not None:
             parsed_docs_path = os.path.join(checkpoints_dir, 'parsed_documents.json')
-        data = process_documents(source_path, output_path=parsed_docs_path, **kwargs)
+        data = process_documents(path, output_path=parsed_docs_path, **kwargs)
         data = parsed_to_df(data)
 
     # Use pre-parsed JSON input
     elif type(data) == str and data.lower().endswith('.json'):
+        print('Loading JSON pre-parsed documents ... \n')
         path = os.path.realpath(data)
         data = load_parsed_file(path)
 
     else:
         raise Exception('Unable to load data from %s'%data)
 
+    print('Tokenizing Parsed Data ... \n')
     tok_data = pd.DataFrame(data)
     tok_data = tokenize_matches(tok_data)
 
-    output = pd.DataFrame(columns=['document', 'label', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end'])
-
-    for label in models.keys():
+    print('Extracting and labeling paragraphs ... \n')
+    output = pd.DataFrame(data[['doc_name', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end']])
+    for lab_count, label in enumerate(models.keys()):
+        print('Extracting label %d/%d name: \'%s\''%(lab_count, len(models.keys()), label))
         model = models.get(label, None)
         if not model:
-            continue
-
-        bool_locs = svm_predict(tok_data, model)
-        res = data.loc[bool_locs == 1][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end']]
-
-        for row in res.iloc:
-            if len(row['text'].split(' ')) < min_paragraph_len:
-                continue
-            row_dict = {
-                'document': row['doc_name'],
-                'label': label,
-                'section': row['section'],
-                'subsection': row['subsection'],
-                'header': row['header'],
-                'subheader': row['subheader'],
-                'text': row['text'],
-                'page_start': row['page_start'],
-                'page_end': row['page_end']
-            }
-            output = output.append(row_dict, ignore_index=True)
-
-
+            bool_locs = np.array([False] * output.shape[0])
+        else:
+            bool_locs = svm_predict(tok_data, model)
+            bool_locs = (bool_locs == 1.0)
+        output[label] = bool_locs
+    print()
+        
     output.to_excel(output_path, index=True)
     return output
 
@@ -275,7 +265,7 @@ if __name__ == '__main__':
     parser_extract_sec.add_argument('models', type=str, help='Path to serialized trained models.')
     parser_extract_sec.add_argument('data', type=str, help='Path to pdfs or json data.')
     parser_extract_sec.add_argument('output_path', type=str, help='Path to desired output file.')
-    parser_extract_sec.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
+    parser_extract_sec.add_argument('--checkpoint-dir', type=str, help='Checkpoint directory.')
     parser_extract_sec.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
     parser_extract_sec.add_argument('--exact-match', action='store_true', default=False,\
                             help='Use fuzzy-mathing to match labels.')
@@ -297,7 +287,7 @@ if __name__ == '__main__':
     parser_extract_par.add_argument('models', type=str, help='Path to serialized trained models.')
     parser_extract_par.add_argument('data', type=str, help='Path to pdfs or json data.')
     parser_extract_par.add_argument('output_path', type=str, help='Path to desired output file.')
-    parser_extract_par.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
+    parser_extract_par.add_argument('--checkpoint-dir', type=str, help='Checkpoint directory.')
     parser_extract_par.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
     parser_extract_par.add_argument('--exact-match', action='store_true', default=False,\
                             help='Use fuzzy-mathing to match labels.')
@@ -318,7 +308,7 @@ if __name__ == '__main__':
     parser_significant = subparsers.add_parser('extractSignificant', help='Extract sections of significant findings.')
     parser_significant.add_argument('data', type=str, help='Path to pdfs or json data.')
     parser_significant.add_argument('output_path', type=str, help='Path to desired output file.')
-    parser_significant.add_argument('--checkpoint_dir', type=str, help='Checkpoint directory.')
+    parser_significant.add_argument('--checkpoint-dir', type=str, help='Checkpoint directory.')
     parser_significant.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
 
     def extract_significant_cli(args):
