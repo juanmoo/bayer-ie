@@ -42,7 +42,7 @@ def extractSections(models, data, output_path, checkpoints_dir=None, min_paragra
     if type(data) == str and not data.lower().endswith('.json'):
         path = os.path.realpath(data)
         if not os.path.exists(path):
-            raise Exception('Unable to find data in %s'%s)
+            raise Exception('Unable to find data in %s'%path)
 
         if checkpoints_dir is not None:
             parsed_docs_path = os.path.join(checkpoints_dir, 'parsed_documents.json')
@@ -168,7 +168,7 @@ def extractLabeledParagraphs(models, data, annotations, output_dir, checkpoints_
         print('Parsing PDFs ... \n')
         path = os.path.realpath(data)
         if not os.path.exists(path):
-            raise Exception('Unable to find data in %s'%s)
+            raise Exception('Unable to find data in %s'%path)
 
         if checkpoints_dir is not None:
             parsed_docs_path = os.path.join(checkpoints_dir, 'parsed_documents.json')
@@ -189,7 +189,7 @@ def extractLabeledParagraphs(models, data, annotations, output_dir, checkpoints_
     annotations = parse_spreadsheet(annotations)
 
     print('Tokenizing Parsed Data ... \n')
-    tok_data = pd.DataFrame(data)
+    tok_data = data.copy()
     tok_data = tokenize_matches(tok_data)
 
     print('Extracting and labeling paragraphs ... \n')
@@ -205,7 +205,7 @@ def extractLabeledParagraphs(models, data, annotations, output_dir, checkpoints_
     print()
 
     print('Matching annotations ... \n')
-    labels = match_labels(output, annotations, **kwargs)
+    match_labels(output, annotations, **kwargs)
 
     # Concatenate Predicted
     print('Concatenate results ... \n')
@@ -228,7 +228,6 @@ def extractLabeledParagraphs(models, data, annotations, output_dir, checkpoints_
         file_path = os.path.join(output_dir, doc_name + '.xlsx')
         df = output.loc[output['doc_name'] == doc_name]
         df.to_excel(file_path, index=True)
-    # output.to_excel(output_path, index=True)
     return output
 
 def cross_validate(data_path, annotations_path, output_dir, num_folds, pool_workers=1, **args):
