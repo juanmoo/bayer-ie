@@ -51,7 +51,8 @@ Example Usage:
     * Required Parameters
         * ```models```: Path to serialized model file created using ```trainModel```.
         * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
-        * ```output_path```: Desired path to output spreadsheed containing the extracted sections.
+        * ```annotations```: Path to spreadsheet containing the annotations to be used to train the model. In addition to the labels, this document should also contain a rationale column with pertinent phrases for the concept.
+        * ```output_dir```: Desired path to directory to place spreadsheets containing labeled extracted paragraphs.
     * Optional Parameters
         * ```checkpoint_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
         * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
@@ -60,7 +61,7 @@ Example Usage:
 
 Example Usage:
 ```
-<path to project>/src/main.py extractLabeledParagraphs --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <output-path>
+<path to project>/src/main.py extractLabeledParagraphs --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <annotations-path> <output-dir>
 ```
 
 * extractSignificant

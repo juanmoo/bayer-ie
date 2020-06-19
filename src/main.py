@@ -12,6 +12,7 @@ from training import train_model
 from extractor import extractSignificantFindings
 from linear_model import svm_predict, svm_cross_validate
 from pdf_parser import process_documents
+from tqdm import tqdm
 
 '''
 Use pre-built model to extract sections from set of PDFs.
@@ -143,7 +144,7 @@ Use pre-built model to extract labeled paragraphs from set of PDFs/JSON input.
 model: Dictionary mapping labels to trained linear classifiers or path
 to file containing serialized version.
 '''
-def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, min_paragraph_len=1, **kwargs):
+def extractLabeledParagraphs(models, data, annotations, output_dir, checkpoints_dir=None, min_paragraph_len=1, **kwargs):
 
     if checkpoints_dir is not None and not os.path.isdir(checkpoints_dir):
         raise Exception('Check-point directory at %s not found.'%checkpoints_dir)
@@ -183,6 +184,10 @@ def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, mi
     else:
         raise Exception('Unable to load data from %s'%data)
 
+    # Load Annotations from spreadsheet
+    print('Loading annotations ... \n')
+    annotations = parse_spreadsheet(annotations)
+
     print('Tokenizing Parsed Data ... \n')
     tok_data = pd.DataFrame(data)
     tok_data = tokenize_matches(tok_data)
@@ -190,17 +195,40 @@ def extractLabeledParagraphs(models, data, output_path, checkpoints_dir=None, mi
     print('Extracting and labeling paragraphs ... \n')
     output = pd.DataFrame(data[['doc_name', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end']])
     for lab_count, label in enumerate(models.keys()):
-        print('Extracting label %d/%d name: \'%s\''%(lab_count, len(models.keys()), label))
+        print('Extracting label %d/%d name: \'%s\''%(lab_count + 1, len(models.keys()), label))
         model = models.get(label, None)
         if not model:
-            bool_locs = np.array([False] * output.shape[0])
+            bool_locs = np.array([0.0] * output.shape[0])
         else:
             bool_locs = svm_predict(tok_data, model)
-            bool_locs = (bool_locs == 1.0)
-        output[label] = bool_locs
+        output['pred-' + label] = bool_locs
     print()
-        
-    output.to_excel(output_path, index=True)
+
+    print('Matching annotations ... \n')
+    labels = match_labels(output, annotations, **kwargs)
+
+    # Concatenate Predicted
+    print('Concatenate results ... \n')
+    output['predicted'] = np.array([''] * output.shape[0])
+    output['matched'] = np.array([''] * output.shape[0])
+    for i in tqdm(range(len(output))):
+        pred = []
+        matched = []
+        for l in models.keys():
+            if output.iloc[i, output.columns.get_loc('pred-' + l)] == 1.0:
+                pred.append(l)
+            if output.iloc[i, output.columns.get_loc(l)] == 1.0:
+                matched.append(l)
+            output.iloc[i, output.columns.get_loc('predicted')] = ' || '.join(pred)
+            output.iloc[i, output.columns.get_loc('matched')] = ' || '.join(matched)
+    cols = ['doc_name', 'section', 'subsection', 'header', 'subheader', 'text', 'page_start', 'page_end', 'predicted', 'matched']
+    output = pd.DataFrame(output[cols], columns=cols)
+
+    for doc_name in pd.unique(output['doc_name']):
+        file_path = os.path.join(output_dir, doc_name + '.xlsx')
+        df = output.loc[output['doc_name'] == doc_name]
+        df.to_excel(file_path, index=True)
+    # output.to_excel(output_path, index=True)
     return output
 
 def cross_validate(data_path, annotations_path, output_dir, num_folds, pool_workers=1, **args):
@@ -282,11 +310,12 @@ if __name__ == '__main__':
         pool_workers=args.pool_workers, exact_match=args.exact_match)
     parser_extract_sec.set_defaults(func=extract_cli)
 
-    # Extract Sections Parser
+    # Extract Label Paragraphs Parser
     parser_extract_par = subparsers.add_parser('extractLabeledParagraphs', help='extract sections help')
     parser_extract_par.add_argument('models', type=str, help='Path to serialized trained models.')
     parser_extract_par.add_argument('data', type=str, help='Path to pdfs or json data.')
-    parser_extract_par.add_argument('output_path', type=str, help='Path to desired output file.')
+    parser_extract_par.add_argument('annotations_path', type=str, help='Path to annotations spreadsheet.')
+    parser_extract_par.add_argument('output_dir', type=str, help='Path to desired output directory.')
     parser_extract_par.add_argument('--checkpoint-dir', type=str, help='Checkpoint directory.')
     parser_extract_par.add_argument('--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
     parser_extract_par.add_argument('--exact-match', action='store_true', default=False,\
@@ -295,12 +324,7 @@ if __name__ == '__main__':
                             help='Do not use fuzzy-mathing to match labels.')
 
     def extract_par_cli(args):
-        v = vars(args)
-        output_path = v.get('output_path', '')
-        if not output_path.lower().endswith('.xlsx'):
-            raise Exception('Output file should be an Excel spreadsheet. Please make sure the entered output_path ends with \'.xlsx\'.')
-
-        extractLabeledParagraphs(args.models, args.data, args.output_path, args.checkpoint_dir,\
+        extractLabeledParagraphs(args.models, args.data, args.annotations_path, args.output_dir, args.checkpoint_dir,\
         pool_workers=args.pool_workers, exact_match=args.exact_match)
     parser_extract_par.set_defaults(func=extract_par_cli)
 

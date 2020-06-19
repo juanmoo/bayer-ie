@@ -98,7 +98,7 @@ def load_parsed_file(path):
     parsed_data = json.loads(parsed_str)
     return parsed_to_df(parsed_data)
     
-def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=10):
+def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=10, **kwargs):
     all_labels = set()
     print('Documents progress:')
     for doc_name in tqdm(pd.unique(data['doc_name'])):
