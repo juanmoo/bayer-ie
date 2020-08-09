@@ -14,7 +14,7 @@ The mechanism to process native PDF files is dependent on [xpdf](https://www.xpd
 ## Usage
 The modules in this project are setup up so that they can be used through a Command-line interface (CLI).
 
-Currently, there are three available commands. These can be accessed through the ``main.py`` module located in [src](src/) and are as follows:
+Currently, there are five available commands. These can be accessed through the ``main.py`` module located in [src](src/) and are as follows:
 
 * trainModel
     * Required Arguments
