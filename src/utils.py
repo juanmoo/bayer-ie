@@ -97,11 +97,11 @@ def parsed_to_df(parsed_data):
     data = []
     for name in parsed_data:
         for p in parsed_data[name]:
-            p['doc_name'] = name
+            p['file'] = name
             data.append(p)
 
     df = pd.DataFrame.from_dict(data)
-    cols = ['doc_name'] + [c for c in df.columns if c != 'doc_name']
+    cols = ['file'] + [c for c in df.columns if c != 'file']
     df = df[cols].copy().reindex()
 
     return df
