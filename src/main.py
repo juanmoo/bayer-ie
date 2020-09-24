@@ -6,11 +6,18 @@ This file implements a command line interface to do the following tasks:
 '''
 from pdf_parser import process_documents
 from utils import parsed_to_df
+from xml_parser import process_xmls
 import os
 import sys
 import json
 import argparse
 import pandas as pd
+
+
+def save_separate_documents(df, output_dir):
+    for fname in pd.unique(df['file']):
+        doc_df = df.loc[df['file'] == fname].to_excel(
+            os.path.join(output_dir, fname + '.xlsx'))
 
 
 def segment_ema(pdfs_dir, output_dir, pool_workers=1, separate_documents=False):
@@ -19,20 +26,25 @@ def segment_ema(pdfs_dir, output_dir, pool_workers=1, separate_documents=False):
     df['label'] = ''
     df['significant'] = ''
     if separate_documents:
-        for fname in pd.unique(df['file']):
-            doc_df = df.loc[df['file'] == fname].to_excel(
-                os.path.join(output_dir, fname + '.xlsx'))
+        save_separate_documents(df, output_dir)
     else:
         df.to_excel(os.path.join(output_dir, 'data.xlsx'))
 
 
-def segment_fda(something):
-    pass
+def segment_fda(xmls_dir, output_dir, separate_documents=False):
+    df = process_xmls(xmls_dir)
+    if separate_documents:
+        save_separate_documents(df, output_dir)
+    else:
+        df.to_excel(os.path.join(output_dir, 'data.xlsx'))
 
 
 def segment(data_dir, output_dir, source, pool_workers=1, separate_documents=False):
     if source.lower() == 'ema':
         segment_ema(data_dir, output_dir, pool_workers=pool_workers,
+                    separate_documents=separate_documents)
+    elif source.lower() == 'fda':
+        segment_fda(data_dir, output_dir,
                     separate_documents=separate_documents)
     else:
         raise Exception('Unknown data source {}'.format(source))
