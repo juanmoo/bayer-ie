@@ -25,7 +25,7 @@ default_config = {
 class RationaleFeaturizer:
     
     def __init__(self, rationales):
-        self.rationales = [re.sub('\s', '', r) for r in rationales]
+        self.rationales = [re.sub('\s', '', r.lower()) for r in rationales]
         
     def fit_transform(self, text):
         x = self.transform(text)
@@ -47,9 +47,17 @@ class RationaleFeaturizer:
                     x[i,j] = 1
         return x
 
+class DummyFeaturizer:
+
+    def fit_transform(self, text):
+        return self.transform(text)
+
+    def transform(self, text):
+        n = len(text)
+        return np.zeros((n, 1))
 
 ## Model Training ##
-def svm_train(train_data, label, rationales=None, config=default_config):
+def svm_train(train_data, label, rationales=None, config=default_config, ignore_rationales=False):
     
     # Instantiate Vectorizers #
     section_vectorizer = CountVectorizer(ngram_range=config['ngram_config'], \
@@ -72,7 +80,7 @@ def svm_train(train_data, label, rationales=None, config=default_config):
                                       stop_words=config['stop_config'],
                                       min_df=config['min_df'])
     
-    if label.startswith('populations'):
+    if not ignore_rationales and label.startswith('populations'):
         header_vectorizer = RationaleFeaturizer(rationales)
         subheader_vectorizer = RationaleFeaturizer(rationales)
         text_vectorizer = RationaleFeaturizer(rationales)
@@ -86,8 +94,23 @@ def svm_train(train_data, label, rationales=None, config=default_config):
         else:
             X_train = np.hstack([X_text])
     else:
-        X_section = section_vectorizer.fit_transform(train_data['section']).toarray()
-        X_subsection = subsection_vectorizer.fit_transform(train_data['subsection']).toarray()
+        try:
+            X_section = section_vectorizer.fit_transform(train_data['section']).toarray()
+        except:
+            print('No data for sections. Skipping sections')
+            print('Training docs: ', list(pd.unique(train_data['doc_name'])))
+            section_vectorizer = DummyFeaturizer()
+            X_section = section_vectorizer.fit_transform(train_data['section'])
+            
+
+        try:
+            X_subsection = subsection_vectorizer.fit_transform(train_data['subsection']).toarray()
+        except:
+            print('No data for subsections. Skipping subsections')
+            print('Training docs: ', list(pd.unique(train_data['train_docs'])))
+            subsection_vectorizer = DummyFeaturizer()
+            X_subsection = subsection_vectorizer.fit_transform(train_data['subsection'])
+
         X_header = header_vectorizer.fit_transform(train_data['header']).toarray()
         X_subheader = subheader_vectorizer.fit_transform(train_data['subheader']).toarray()
         X_text = text_vectorizer.fit_transform(train_data['text']).toarray()
@@ -110,11 +133,11 @@ def svm_train(train_data, label, rationales=None, config=default_config):
     }
 
 ## Model Testing ##
-def svm_test(test_data, params, verbose=False):
+def svm_test(test_data, params, verbose=False, ignore_rationales=False):
     
     label = params['label']
     
-    if label.startswith('populations'):
+    if not ignore_rationales and label.startswith('populations'):
         X_header = params['head_vec'].transform(test_data['header'])
         X_subheader = params['subh_vec'].transform(test_data['subheader'])
         X_text = params['text_vec'].transform(test_data['text'])
@@ -132,9 +155,9 @@ def svm_test(test_data, params, verbose=False):
         X_text = params['text_vec'].transform(test_data['text']).toarray()    
         X_test = np.hstack([X_section, X_subsection, X_header, X_subheader, X_text])
     
-    Y_test = np.array((test_data[params['label']])).reshape(-1) * 1.0
+    Y_test = np.array((test_data[params['label']])).reshape(-1) * 1
     
-    pred = np.array(params['model'].predict(X_test)).reshape(-1) * 1.0
+    pred = np.array(params['model'].predict(X_test)).reshape(-1) * 1
     cm = np.array(confusion_matrix(Y_test, pred))
     
     
@@ -170,10 +193,10 @@ def svm_test(test_data, params, verbose=False):
     
     return output
 
-def svm_predict(data, model):
+def svm_predict(data, model, ignore_rationales=False):
 
     label = model['label']
-    if label.startswith('populations'):
+    if not ignore_rationales and label.startswith('populations'):
         X_header = model['head_vec'].transform(data['header'])
         X_subheader = model['subh_vec'].transform(data['subheader'])
         X_text = model['text_vec'].transform(data['text'])
@@ -195,7 +218,7 @@ def svm_predict(data, model):
     pred = np.array(model['model'].predict(X_test)).reshape(-1)
     return pred
 
-def svm_cross_validate(data, labels, k, rationales=None, config=default_config):
+def svm_cross_validate(data, labels, k, rationales=None, config=default_config, ignore_rationales=False):
     docs = pd.unique(data['doc_name'])
     n = len(docs)//k
 
@@ -239,8 +262,8 @@ def svm_cross_validate(data, labels, k, rationales=None, config=default_config):
 
             else:
                 model = svm_train(train_data, l, rationales=rationales.get(l, None) if rationales else None, \
-                config=config) 
-                output = svm_test(test_data, model, verbose=True)
+                config=config, ignore_rationales=ignore_rationales) 
+                output = svm_test(test_data, model, verbose=True, ignore_rationales=ignore_rationales)
                 precisions.append(output['precision'])
                 recalls.append(output['recall'])
                 f1 = 2 * (precisions[-1] * recalls[-1]) / max(precisions[-1] + recalls[-1], 1e-9)

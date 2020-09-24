@@ -4,11 +4,18 @@ Utility functions to be used in Bayer Project
 
 import pandas as pd
 import numpy as np
-import os, sys, re, spacy
-import codecs, json, pickle
+import os
+import sys
+import re
+import spacy
+import codecs
+import json
+import pickle
 from fuzzywuzzy import fuzz
 from tqdm import tqdm
 import collections
+from multiprocessing import Pool
+
 
 def parse_spreadsheet(path):
     '''
@@ -28,7 +35,7 @@ def parse_spreadsheet(path):
     file_path = os.path.normpath(path)
 
     if not os.path.isfile(file_path):
-        raise Exception('Unable to find file at %s.'%file_path)
+        raise Exception('Unable to find file at %s.' % file_path)
 
     data = pd.read_excel(file_path, sheet_name=1)
 
@@ -43,9 +50,9 @@ def parse_spreadsheet(path):
             n = os.path.basename(name).split('.pdf')[0]
             if n not in output:
                 output[n] = {
-                             'texts': [],
-                             'labels': []
-                            }
+                    'texts': [],
+                    'labels': []
+                }
             label = clean_label(label)
             found = False
             for i, lb in enumerate(output[n]['labels']):
@@ -57,32 +64,34 @@ def parse_spreadsheet(path):
                 output[n]['texts'].append(text)
                 output[n]['labels'].append(label)
 
-
     return output
+
 
 def parse_rationale(path):
     file_path = os.path.normpath(path)
 
     if not os.path.isfile(file_path):
-        raise Exception('Unable to find file at %s.'%file_path)
+        raise Exception('Unable to find file at %s.' % file_path)
 
     data = pd.read_excel(file_path, sheet_name=1)
 
     labels_list = data['Broad concept']
     rationales_list = data['Rationale for broad concept']
-    
+
     rationale_dict = collections.defaultdict(list)
-    
+
     for label, rationale in zip(labels_list, rationales_list):
         if type(label) == str and label.startswith('Populations') and type(rationale) == str:
             label = label.lower()
             for r in rationale.split('||'):
                 rationale_dict[label].append(r.strip().lower())
-                
+
     for label in rationale_dict:
-        rationale_dict[label] = [tokenize_string(r) for r in list(set(rationale_dict[label]))]
-    
+        rationale_dict[label] = [tokenize_string(
+            r) for r in list(set(rationale_dict[label]))]
+
     return rationale_dict
+
 
 def parsed_to_df(parsed_data):
     data = []
@@ -91,13 +100,20 @@ def parsed_to_df(parsed_data):
             p['doc_name'] = name
             data.append(p)
 
-    return pd.DataFrame.from_dict(data)
+    df = pd.DataFrame.from_dict(data)
+    cols = ['doc_name'] + [c for c in df.columns if c != 'doc_name']
+    df = df[cols].copy().reindex()
+
+    return df
+
 
 def load_parsed_file(path):
-    parsed_str = codecs.open(path, 'r', encoding='utf-8', errors='replace').read()
+    parsed_str = codecs.open(
+        path, 'r', encoding='utf-8', errors='replace').read()
     parsed_data = json.loads(parsed_str)
     return parsed_to_df(parsed_data)
-    
+
+
 def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=10, **kwargs):
     all_labels = set()
     print('Documents progress:')
@@ -105,9 +121,10 @@ def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=
         doc_annotations = annotations.get(doc_name, None)
 
         if doc_annotations == None:
-            print('No annotations found for {docname}'.format(docname=doc_name))
+            print('No annotations found for {docname}'.format(
+                docname=doc_name))
             continue
-        
+
         a_texts, a_labels = list(doc_annotations.items())
         a_texts = a_texts[1]
         a_labels = a_labels[1]
@@ -116,7 +133,8 @@ def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=
         for i in doc_indices:
             # Join paragraphs lines and ensure single space
 
-            paragraph = re.sub('\s+', ' ', data.iloc[i]['text'].strip().replace('\n', ' '))
+            paragraph = re.sub(
+                '\s+', ' ', data.iloc[i]['text'].strip().replace('\n', ' '))
 
             for j, a_text in enumerate(a_texts[:10]):
                 if contains_test([paragraph], a_text, exact_match=exact_match, minimum_paragraph_length=minimum_paragraph_length):
@@ -129,6 +147,75 @@ def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=
 
     return sorted(list(all_labels))
 
+
+def matching_worker(args):
+    (data, name, afile) = args
+    fdata = data.loc[data['doc_name'] == name].copy()
+    afile = afile.loc[afile['corrected'] != '']
+
+    try:
+        print('Matching: {} that has {} entries.'.format(name, len(afile)))
+        for entry in afile.iloc:
+            labels = [l.strip()
+                      for l in entry['corrected'].lower().split('||')]
+            label_corrections = {
+                'hepatic impairment': 'hepatic',
+                'renal impairment': 'renal',
+                'warning': 'warnings'
+            }
+            labels = [label_corrections[l]
+                      if l in label_corrections else l for l in labels]
+            paragraphs = re.sub(r'\s+', '', entry['text'])
+
+            for j, data_entry in enumerate(fdata.iloc):
+                for par in [p.strip() for p in data_entry['text'].split('\n')]:
+                    if len(par.split(' ')) <= 5:  # Skip paragraphs 5 or less words
+                        continue
+                    par = re.sub(r'\s+', '', par)
+                    if fuzz.partial_ratio(paragraphs, par) >= 95:
+                        # TODO multi-label
+                        fdata.iloc[j, fdata.columns.get_loc(
+                            'matched')] = '||'.join(labels)
+                        # Add Labels to data point
+                        for l in labels:
+                            l = l.strip()
+                            if l not in data.columns:
+                                data[l] = 0
+                                fdata[l] = 0
+                            fdata.iloc[j, fdata.columns.get_loc(l)] = 1
+
+    except:
+        print('Falied matching {}'.format(name))
+
+    return fdata
+
+
+def match_labels2(data, annotations_dir, pool_workers=1, **kwargs):
+    annotations_dir = os.path.normpath(os.path.realpath(annotations_dir))
+    if not os.path.isdir(annotations_dir):
+        raise Exception(
+            'Unable to find directory at {}.\n'.format(annotations_dir))
+    # Iterate through annotation files
+    files = [f for f in os.listdir(
+        annotations_dir) if f.lower().endswith('.xlsx') and not f.startswith('._')]
+
+    arg_list = []
+    for fname in files:
+        name = fname.replace('.xlsx', '')
+        afile = pd.read_excel(os.path.join(annotations_dir, fname)).fillna('')
+        arg_list.append((data, name, afile))
+
+    with Pool(pool_workers) as pool:
+        dfs = pool.map(matching_worker, arg_list)
+
+    for df in dfs:
+        new_cols = [c for c in df.columns if c not in data.columns]
+        for nc in new_cols:
+            data[nc] = ''
+        data.update(df)
+    return data
+
+
 def tokenize_matches(data):
 
     data['section'] = data['section'].apply(tokenize_string)
@@ -137,13 +224,13 @@ def tokenize_matches(data):
     data['subheader'] = data['subheader'].apply(tokenize_string)
     data['text'] = data['text'].apply(tokenize_string)
 
-
     return data
 
 ########## String Utilities ##########
 
-def contains_test(pieces, whole, exact_match=False, ignore_spacing=True, \
-    minimum_paragraph_length=10):
+
+def contains_test(pieces, whole, exact_match=False, ignore_spacing=True,
+                  minimum_paragraph_length=10):
     # Fuzzy matching tests to see if the max
     # similarity substring of size len(piece)
     # has a partial ratio > threshold
@@ -161,15 +248,17 @@ def contains_test(pieces, whole, exact_match=False, ignore_spacing=True, \
     threshold = 95
     return any([fuzz.partial_ratio(piece, whole) >= threshold for piece in pieces])
 
+
 def is_section(head):
     if not head:
         return False
     tok = head.split()[0]
     if tok.isdigit():
         return True
-    if tok.replace('.','',1).isdigit():
+    if tok.replace('.', '', 1).isdigit():
         return True
     return False
+
 
 def clean_label(lb):
     lb = lb.strip()
@@ -180,6 +269,8 @@ def clean_label(lb):
 
 NLP = spacy.load('en_core_web_sm')
 MAX_CHARS = 20000
+
+
 def tokenize_string(comment):
     if comment == None:
         return ''
@@ -197,6 +288,8 @@ def tokenize_string(comment):
 ############## Logistical Utilities ##############
 
 # Save / Load values from checkpoint file
+
+
 def save_value(key, val, path=None):
     d, base = os.path.split(path)
     if not os.path.isdir(d):
@@ -207,22 +300,24 @@ def save_value(key, val, path=None):
         assert(type(saved_env) == dict)
     except:
         saved_env = dict()
-            
+
     saved_env[key] = val
-    
+
     with open(path, 'wb') as f:
         f.write(pickle.dumps(saved_env))
-    
+
+
 def load_value(key, path=None):
-    
+
     with open(path, 'rb') as f:
         try:
             saved_env = pickle.load(f)
             ans = saved_env[key]
         except:
             ans = None
-        
+
         return ans
+
 
 def load_env_keys(path):
     with open(path, 'rb') as f:
@@ -230,15 +325,11 @@ def load_env_keys(path):
             saved_env = pickle.load(f)
         except:
             saved_env = dict()
-        
-        return saved_env.keys()
 
+        return saved_env.keys()
 
 
 if __name__ == '__main__':
 
     p = "/data/rsg/nlp/fake_proj/__temp__juanmoo__/bayer/VendorEMAforMIT/annotations.xmls"
     parse_spreadsheet(p)
-
-
-
