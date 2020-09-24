@@ -1,6 +1,8 @@
 jsons/
 xmls/
 pickle_dumps/
+other/
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
