@@ -61,7 +61,7 @@ class DummyFeaturizer:
 ## Model Training ##
 
 
-def svm_train(train_data, label, rationales=None, config=default_config, ignore_rationales=False):
+def svm_train_ema(train_data, label, rationales=None, config=default_config, ignore_rationales=False):
 
     # Instantiate Vectorizers #
     section_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
@@ -84,39 +84,38 @@ def svm_train(train_data, label, rationales=None, config=default_config, ignore_
                                       stop_words=config['stop_config'],
                                       min_df=config['min_df'])
 
+    try:
+        X_section = section_vectorizer.fit_transform(
+            train_data['section']).toarray()
+    except:
+        print('No data for sections. Skipping sections')
+        print('Training docs: ', list(pd.unique(train_data['doc_name'])))
+        section_vectorizer = DummyFeaturizer()
+        X_section = section_vectorizer.fit_transform(train_data['section'])
+
+    try:
+        X_subsection = subsection_vectorizer.fit_transform(
+            train_data['subsection']).toarray()
+    except:
+        print('No data for subsections. Skipping subsections')
+        print('Training docs: ', list(pd.unique(train_data['train_docs'])))
+        subsection_vectorizer = DummyFeaturizer()
+        X_subsection = subsection_vectorizer.fit_transform(
+            train_data['subsection'])
+
     if not ignore_rationales and label.startswith('populations'):
         header_vectorizer = RationaleFeaturizer(rationales)
         subheader_vectorizer = RationaleFeaturizer(rationales)
         text_vectorizer = RationaleFeaturizer(rationales)
+
         X_header = header_vectorizer.fit_transform(train_data['header'])
         X_subheader = subheader_vectorizer.fit_transform(
             train_data['subheader'])
         X_text = text_vectorizer.fit_transform(train_data['text'])
-        if label == "populations - paediatric":
-            X_train = np.hstack([X_header, X_subheader, X_text])
-        elif label == "populations - adolescent":
-            X_train = np.hstack([X_subheader, X_text])
-        else:
-            X_train = np.hstack([X_text])
-    else:
-        try:
-            X_section = section_vectorizer.fit_transform(
-                train_data['section']).toarray()
-        except:
-            print('No data for sections. Skipping sections')
-            print('Training docs: ', list(pd.unique(train_data['doc_name'])))
-            section_vectorizer = DummyFeaturizer()
-            X_section = section_vectorizer.fit_transform(train_data['section'])
 
-        try:
-            X_subsection = subsection_vectorizer.fit_transform(
-                train_data['subsection']).toarray()
-        except:
-            print('No data for subsections. Skipping subsections')
-            print('Training docs: ', list(pd.unique(train_data['train_docs'])))
-            subsection_vectorizer = DummyFeaturizer()
-            X_subsection = subsection_vectorizer.fit_transform(
-                train_data['subsection'])
+        X_train = np.hstack(
+            [X_section, X_subsection, X_header, X_subheader, X_text])
+    else:
 
         X_header = header_vectorizer.fit_transform(
             train_data['header']).toarray()
@@ -142,85 +141,65 @@ def svm_train(train_data, label, rationales=None, config=default_config, ignore_
         'label': label
     }
 
-## Model Testing ##
 
+def svm_train_fda(train_data, label, rationales=None, config=default_config, ignore_rationales=False):
 
-def svm_test(test_data, params, verbose=False, ignore_rationales=False):
+    # Instantiate Vectorizers #
+    parent_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+                                        stop_words=config['stop_config'],
+                                        min_df=config['min_df'])
 
-    label = params['label']
+    text_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+                                      stop_words=config['stop_config'],
+                                      min_df=config['min_df'])
 
     if not ignore_rationales and label.startswith('populations'):
-        X_header = params['head_vec'].transform(test_data['header'])
-        X_subheader = params['subh_vec'].transform(test_data['subheader'])
-        X_text = params['text_vec'].transform(test_data['text'])
-        if label == "populations - paediatric":
-            X_test = np.hstack([X_header, X_subheader, X_text])
-        elif label == "populations - adolescent":
-            X_test = np.hstack([X_subheader, X_text])
-        else:
-            X_test = np.hstack([X_text])
+        parent_vectorizer = RationaleFeaturizer(rationales)
+        text_vectorizer = RationaleFeaturizer(rationales)
+        X_parent = parent_vectorizer.fit_transform(train_data['parent'])
+        X_text = text_vectorizer.fit_transform(train_data['text'])
+        X_train = np.hstack([X_parent, X_text])
     else:
-        X_section = params['sec_vec'].transform(test_data['section']).toarray()
-        X_subsection = params['subsec_vec'].transform(
-            test_data['subsection']).toarray()
-        X_header = params['head_vec'].transform(test_data['header']).toarray()
-        X_subheader = params['subh_vec'].transform(
-            test_data['subheader']).toarray()
-        X_text = params['text_vec'].transform(test_data['text']).toarray()
-        X_test = np.hstack(
-            [X_section, X_subsection, X_header, X_subheader, X_text])
+        try:
+            X_parent = parent_vectorizer.fit_transform(
+                train_data['parent']).toarray()
+        except:
+            print('No data for parent. Skipping parent')
+            print('Training docs: ', list(pd.unique(train_data['file'])))
+            parent_vectorizer = DummyFeaturizer()
+            X_parent = parent_vectorizer.fit_transform(train_data['parent'])
 
-    Y_test = np.array((test_data[params['label']])).reshape(-1) * 1
+        X_text = text_vectorizer.fit_transform(train_data['text']).toarray()
+        X_train = np.hstack([X_parent, X_text])
 
-    pred = np.array(params['model'].predict(X_test)).reshape(-1) * 1
-    cm = np.array(confusion_matrix(Y_test, pred))
+    Y_train = train_data[label]
 
-    # Diagonal elemetns were correctly classified
-    diagonal = cm.diagonal()
+    model = Pipeline([('tfidf', TfidfTransformer(use_idf=config['tfidf_config'])),
+                      ('clf', LinearSVC(class_weight="balanced"))])
+    model.fit(X_train, Y_train)
 
-    # Input class Counts
-    class_sum = cm.sum(axis=1)
-
-    # Predicted class counts
-    pred_sum = cm.sum(axis=0)
-
-    # Per-class performance w/ no-examples -> 0 perf
-    recall = np.where(class_sum == 0, 0, diagonal/class_sum)
-    precision = np.where(pred_sum == 0, 0, diagonal/pred_sum)
-
-    if verbose:
-        output = {
-            'precision': precision[1:].sum(),
-            'recall': recall[1:].sum(),
-            'cm': cm,
-            'actual_positive': test_data.loc[Y_test > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
-            'true_positive': test_data.loc[Y_test * pred > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
-            'false_positive': test_data.loc[pred * (1 - Y_test) > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']],
-            'false_negative': test_data.loc[Y_test * (1 - pred) > 0][['doc_name', 'section', 'subsection', 'header', 'subheader', 'text']]
-        }
-    else:
-        output = {
-            'precision': precision[1:].sum(),
-            'recall': recall[1:].sum(),
-            'cm': cm
-        }
-
-    return output
+    return {
+        'model': model,
+        'par_vec': parent_vectorizer,
+        'text_vec': text_vectorizer,
+        'label': label
+    }
 
 
-def svm_predict(data, model, ignore_rationales=False):
+# Predict
+
+def svm_predict_ema(data, model, ignore_rationales=False):
 
     label = model['label']
     if not ignore_rationales and label.startswith('populations'):
+        X_section = model['sec_vec'].transform(data['section']).toarray()
+        X_subsection = model['subsec_vec'].transform(
+            data['subsection']).toarray()
         X_header = model['head_vec'].transform(data['header'])
         X_subheader = model['subh_vec'].transform(data['subheader'])
         X_text = model['text_vec'].transform(data['text'])
-        if label == "populations - paediatric":
-            X_test = np.hstack([X_header, X_subheader, X_text])
-        elif label == "populations - adolescent":
-            X_test = np.hstack([X_subheader, X_text])
-        else:
-            X_test = np.hstack([X_text])
+        X_test = np.hstack(
+            [X_section, X_subsection, X_header, X_subheader, X_text])
     else:
         X_section = model['sec_vec'].transform(data['section']).toarray()
         X_subsection = model['subsec_vec'].transform(
@@ -235,56 +214,17 @@ def svm_predict(data, model, ignore_rationales=False):
     return pred
 
 
-def svm_cross_validate(data, labels, k, rationales=None, config=default_config, ignore_rationales=False):
-    docs = pd.unique(data['doc_name'])
-    n = len(docs)//k
+def svm_predict_fda(data, model):
 
-    results = {l: {
-        'precisions': [],
-        'recalls': [],
-        'f1s': []
-    } for l in labels
-    }
+    label = model['label']
+    if label.startswith('populations'):
+        X_parent = model['par_vec'].transform(data['parent'])
+        X_text = model['text_vec'].transform(data['text'])
+        X_test = np.hstack([X_parent, X_text])
+    else:
+        X_parent = model['par_vec'].transform(data['parent']).toarray()
+        X_text = model['text_vec'].transform(data['text']).toarray()
+        X_test = np.hstack([X_parent, X_text])
 
-    for fold in range(k):
-        print('Starting fold %d!\n' % (fold + 1))
-        test_docs = []
-        train_docs = []
-
-        for i in range(len(docs)):
-            doc_name = docs[i]
-            if i == 1:
-                test_docs.append(doc_name)
-                train_docs.append(doc_name)
-            elif (fold * n <= i < (fold + 1) * n) or (i >= n * k and i < len(docs) % k):
-                test_docs.append(doc_name)
-            else:
-                train_docs.append(doc_name)
-
-        train_data = data.loc[data['doc_name'].isin(train_docs)]
-        test_data = data.loc[data['doc_name'].isin(test_docs)]
-
-        for l in tqdm(labels):
-            train_count = train_data[l].sum()
-
-            precisions = results[l]['precisions']
-            recalls = results[l]['recalls']
-            f1s = results[l]['f1s']
-
-            if train_count < 2:
-                precisions.append(None)
-                recalls.append(None)
-                f1s.append(None)
-
-            else:
-                model = svm_train(train_data, l, rationales=rationales.get(l, None) if rationales else None,
-                                  config=config, ignore_rationales=ignore_rationales)
-                output = svm_test(test_data, model, verbose=True,
-                                  ignore_rationales=ignore_rationales)
-                precisions.append(output['precision'])
-                recalls.append(output['recall'])
-                f1 = 2 * (precisions[-1] * recalls[-1]) / \
-                    max(precisions[-1] + recalls[-1], 1e-9)
-                f1s.append(f1)
-
-    return results
+    pred = np.array(model['model'].predict(X_test)).reshape(-1)
+    return pred
