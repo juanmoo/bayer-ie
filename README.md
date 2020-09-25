@@ -7,6 +7,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the pac
 
 ```bash
 pip install -r requirements.txt
+python -m spacy download en_core_web_sm
 ```
 
 The mechanism to process native PDF files is dependent on [xpdf](https://www.xpdfreader.com/)'s implementation of ```pdftohtml```. In order for the modules in this project to work properly, make sure to download ```pdftohtml``` from [here](https://www.xpdfreader.com/download.html) and add it to your PATH.
@@ -14,82 +15,29 @@ The mechanism to process native PDF files is dependent on [xpdf](https://www.xpd
 ## Usage
 The modules in this project are setup up so that they can be used through a Command-line interface (CLI).
 
-Currently, there are five available commands. These can be accessed through the ``main.py`` module located in [src](src/) and are as follows:
+Currently, there are three available commands. These can be accessed through the ``main.py`` module located in [src](src/) and are as follows:
 
-* trainModel
-    * Required Arguments
-        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs.
-        * ```annotations```: Path to spreadsheet containing the annotations to be used to train the model. In addition to the labels, this document should also contain a rationale column with pertinent phrases for the concept.
-        * ```output_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
-    * Optional Arguments
-        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
-        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
+* segment
+    * Positional Arguments:
+        * ```source```: Data source (EMA or FDA)
+        * ```dir```: Path to directory containing input documents (PDFs or XMLs)
+        * ```output-dir```: Path to desired output file(s)
 
-Example usage:
-```
-<path to project>/src/main.py trainModel --pool-workers=1 --exact-match <data-path> <annotations-path> <output-dir-path>
-```
+    * Optional Arguments:
+        * ```--pool-workers```: Number of pool workers to be used.
+        * ```--separate-documents```:  Separate segmentation in a per-document basis.
 
-* extractSections
-    * Required Parameters
-        * ```models```: Path to serialized model file created using ```trainModel```.
-        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
-        * ```output_path```: Desired path to output spreadsheed containing the extracted sections.
-    * Optional Parameters
-        * ```checkpoint_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
-        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
-        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
+* train
+    * Positional Arguments:
+        * ```Source```: Data source (EMA or FDA).
+        * ```data_dir```: Path to segmented file(s).
+        * ```rationales_path```:  Path to rationales file.
+        * ```output_dir```: Path to desired output directory.
 
-Example Usage:
-```
-<path to project>/src/main.py extractSections --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <output-path>
-```
-
-* extractLabeledParagraphs
-    * Required Parameters
-        * ```models```: Path to serialized model file created using ```trainModel```.
-        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
-        * ```annotations```: Path to spreadsheet containing the annotations to be used to train the model. In addition to the labels, this document should also contain a rationale column with pertinent phrases for the concept.
-        * ```output_dir```: Desired path to directory to place spreadsheets containing labeled extracted paragraphs.
-    * Optional Parameters
-        * ```checkpoint_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
-        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
-        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
-
-Example Usage:
-```
-<path to project>/src/main.py extractLabeledParagraphs --checkpoint-dir=<checkpoint-dir path> --pool-workers=1 --exact-match <models-path> <data-path> <annotations-path> <output-dir>
-```
-
-* extractSignificant
-    * Required Parameters
-        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
-        * ```output_path```: Desired path to output spreadsheed containing the extracted sections.
-    * Optional Arguments
-        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
-        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
-
-Example Usage:
-```
-<path to project>/src/main.py extractSignificant --pool-workers=1 --exact-match <data-path> <output-path>
-```
-
-* crossValidate
-    * Required Parameters
-        * ```data```: Path to directory containing PDFs or JSON document containing a parsed version of the PDFs. 
-        * ```annotations```: Path to spreadsheet containing the annotations to be used to train the model. In addition to the labels, this document should also contain a rationale column with pertinent phrases for the concept.
-        * ```output_dir```: Directory where the JSON-encoded representations of PDFs are to be placed if ```data``` is a directory containing PDFs.
-        * ```num_folds```: Number of folds to use during cross validation.
-    * Optional Parameters
-        * ```pool-workers```: In the case that the input data is a directory with PDFs, this option specifies the number of threads to be used simmultaneously to process the documents.
-        * ```exact-match```: If this flag is provided, annotations will be matched to the parsed documents using an exact-comparison method.  By default, this option is set to false and a Levenshtein Distance based fuzzy-matching method is used.
-        * ```no-exact-match```: This flag can be used to explicitly set the exact-match setting to False.
-
-Example Usage:
-```
-<path to project>/src/main.py crossValidate --pool-workers=1 --no-exact-match <data-path> <annotations-path> <output-dir-path> num_folds
-```
+* predict
+    * Positional Arguments:
+        * ```Source```: Data source (EMA or FDA).
+        * ```data_dir```: Path to segmented file(s).
+        * ```rationales_path```:  Path to rationales file.
+        * ```models_path```:  Path to trained models file.
+        * ```output_dir```: Path to desired output directory.
