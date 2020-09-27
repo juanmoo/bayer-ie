@@ -1,5 +1,6 @@
 # CSAIL NLP Bayer Project
-This is a python-based project to be used to parse and extract relevant portions of EMA-styled PDF documents.
+This is a python-based project to be used to parse and extract relevant portions of EMA/FDA/EPA PDF documents.
+The modules in this project are setup up so that they can be used through a Command-line interface (CLI).
 
 ## Installation
 
@@ -12,10 +13,12 @@ python -m spacy download en_core_web_sm
 
 The mechanism to process native PDF files is dependent on [xpdf](https://www.xpdfreader.com/)'s implementation of ```pdftohtml``` (version 0.62.0). In order for the modules in this project to work properly, make sure to download ```pdftohtml``` from [here](https://www.xpdfreader.com/download.html) and add it to your PATH.
 
-## EMA&FDA Usage
-The modules in this project are setup up so that they can be used through a Command-line interface (CLI).
+The reviews PDFs for the retrieval task are processed with [Grobid](https://grobid.readthedocs.io/en/latest/).
 
-Currently, there are three available commands. These can be accessed through the ``main.py`` module located in [src](src/) and are as follows:
+## Usage - EMA & FDA 
+Codes are located in [src/EMA_FDA](src/EMA_FDA).
+
+Currently, there are three available commands. These can be accessed through the ``main.py`` module and are as follows:
 
 * segment
     * Positional Arguments:
@@ -41,3 +44,19 @@ Currently, there are three available commands. These can be accessed through the
         * ```rationales_path```:  Path to rationales file.
         * ```models_path```:  Path to trained models file.
         * ```output_dir```: Path to desired output directory.
+
+## Usage - EPA
+Codes are located in [src/EPA](src/EMA_FDA).
+
+``preprocess.py`` converts PDFs to XMLs with ``pdftohtml`` and further parses them to a json file. Example can be found at [here](example_data/EPA/parsed_EPA.json).
+
+``process_label.py`` aligns the preprocessed data with the Excel annotation. The processed data is dumped to ``processed_data.pkl``. Please change the path of the excel file on your machine.
+
+``train.py`` trains and evaluates the model. The predictions are saved to ``predictions_EPA.xlsx``.
+
+## Usage - retrieval
+Codes are located in [src/retrieval](src/retrieval).
+
+``pdfToXML.py`` converts PDFs to XMLs. Grobid server needs to be launched beforehand.
+
+``main.py`` runs and evaluates the algorithm. Use the command ``--method [BOW|WMD]`` to specify the method.
