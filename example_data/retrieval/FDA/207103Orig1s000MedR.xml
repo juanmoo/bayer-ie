@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 /scratch/yujieq/grobid/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">CENTER FOR DRUG EVALUATION AND RESEARCH APPLICATION NUMBER: 207103Orig1s000 MEDICAL REVIEW(S) CLINICAL REVIEW Application Type NDA Application Number(s) 207,103 Priority or Standard Priority Submission Date (Rolling Submission)</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date>Part 1, June 30 th , 2014 Part 2, August 13 th , 2014</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<title level="a" type="main">CENTER FOR DRUG EVALUATION AND RESEARCH APPLICATION NUMBER: 207103Orig1s000 MEDICAL REVIEW(S) CLINICAL REVIEW Application Type NDA Application Number(s) 207,103 Priority or Standard Priority Submission Date (Rolling Submission)</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published">Part 1, June 30 th , 2014 Part 2, August 13 th , 2014</date>
+						</imprint>
+					</monogr>
+					<note type="submission">Completion Date January 15 th , 2015</note>
+					<note>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 1 PDUFA Goal Date April 13 th , 2015 Division / Office DOP1/OHOP Reviewer Name(s) Julia Beaver, MD (efficacy) Laleh Amiri-Kordestani, MD (safety) Patricia Cortazar, MD (CDTL) Review</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+
+		<encodingDesc>
+			<appInfo>
+				<application version="0.6.0-SNAPSHOT" ident="GROBID-SDO" when="2020-09-21T05:37+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid-sdo"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract/>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Established Name Palbociclib (Proposed) Trade Name Ibrance Therapeutic Class Kinase Inhibitor Applicant Pfizer, Inc.</p><p>Formulation(s) 100mg and capsule Dosing Regimen 125mg orally daily for 21 days followed by 7 days off treatment Indication(s) In combination with letrozole for the treatment of postmenopausal women with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer as initial endocrine-based therapy for their metastatic disease.   <ref type="figure">Submitted ..................................................................</ref>.... 27 <ref type="table" target="#tab_19">Table 5</ref>: Dose Levels (Applicant <ref type="table">Table)</ref>. <ref type="figure">...............................................................</ref>  <ref type="table">Table)</ref>    <ref type="figure">...................................................</ref>  <ref type="figure">2 ....................................</ref>    <ref type="figure">.........................................................</ref>  <ref type="figure">...............................................</ref>  <ref type="figure">..........................................................</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Recommendation on Regulatory Action</head><p>Based on review of the clinical data, the clinical review team recommends approval of palbociclib (Ibrance) under accelerated approval regulation 21CFR 314 (Subpart H) for the following indication:</p><p>IBRANCE is indicated in combination with letrozole for the treatment of postmenopausal women with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer as initial endocrine-based therapy for their metastatic disease.</p><p>The basis for this recommendation is a favorable benefit-risk profile for palbociclib when added to letrozole in first-line ER-positive, HER2-negative advanced breast cancer (see Section 1.2, 'Risk Benefit Assessment'). In the pivotal randomized Phase 2 study, PALOMA-1 (A5481003), a clinically meaningful and statistically significant 10 month improvement in median Progression Free Survival (PFS) was observed with a Hazard Ratio (HR) of 0.488 (95% Confidence Interval (CI): 0.319, 0.748, 1-sided p=0.0004) favoring the palbociclib plus letrozole treatment arm. The effect on progression free survival was consistent across relevant subgroups. The safety profile of palbociclib when added to letrozole was acceptable and the toxicities were transient and reversible. Palbociclib did increase adverse events particularly the incidence of neutropenia (an increase in neutropenic fevers was not seen in the pivotal study), however the drug was generally well tolerated and the adverse events were manageable. Continued approval for this indication will be contingent upon demonstration of improvement in PFS in the confirmatory trial (PALOMA-2), which is currently fully accrued and final results are expected in the first or second quarter of 2016. The results submitted to this NDA demonstrate a clinically meaningful benefit with an acceptable safety profile and accelerated approval would provide palbociclib to patients approximately two years earlier than awaiting the final Phase 3 trial results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.2">Risk Benefit Assessment</head><p>Advanced breast cancer is incurable and therefore is considered a serious and lifethreatening condition. In 2014, it is estimated that 40,000 women will die of breast cancer 1 . Despite the availability of hormone directed therapies for treatment of first-line HR-positive advanced breast cancer, patients ultimately develop resistance and progression of disease and go on to receive multiple additional therapies including many lines of toxic chemotherapies. It has been over 15 years since a drug was approved for this specific indication. There is a clear medical need to address to develop new therapies for the treatment of advanced breast cancer in order to extend life, delay disease progression and/or lessen breast cancer related symptoms. Under Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) <ref type="bibr">NDA 207,</ref><ref type="bibr">103</ref> Subpart H of the Code of Federal Regulations it is possible to grant accelerated approval of a drug for a life-threatening illness based on an effect on a surrogate endpoint that is reasonably likely to predict meaningful clinical benefit to patients over existing treatments.</p><p>The assessment of benefit in this NDA is based on the randomized portion of the PALOMA-1 study (A5481003). PALOMA-1 is an international, multicenter, open-label, randomized Phase 1/2 study in a population of postmenopausal HR-positive HER2negative advanced breast cancer patients. In the randomized Phase 2 portion of this pivotal study, a total of 165 patients who had not been treated previously for their advanced disease were enrolled. Patients were randomized 1:1 to receive palbociclib plus letrozole or letrozole alone. The study was broken up into two parts; Part 1 included an unselected patient population (N=66) and Part 2 included a biomarker selected population (N=99). The primary endpoint was investigator-assessed PFS of the combined Part 1 and Part 2 cohorts. The HR for this primary endpoint was 0.488 (95% CI 0.319, 0.748; 1-sided p-value 0.0004), with a median PFS of 20.2 months (95% CI 12.8, <ref type="bibr" target="#b36">27</ref>.5) for the palbociclib plus letrozole arm and 10.2 months (95% CI 5.7, 12.6) for the letrozole alone arm. The improvement in PFS is clinically meaningful and represents a large improvement over current therapy. However, there are limitations to the pivotal study. Many of the uncertainties in the clinical trial are due to the fact that the study was not planned or conducted with the expectation of supporting regulatory approval. As a result there were data-driven changes to the statistical analysis plan, protocol deviations and issues with respect to compliance and conduct of the study. In addition, while Blinded Independent Central Review (BICR) analysis supported the primary endpoint of PFS (in the combined Part 1 and Part 2 population), the BICR analysis of Part 1 of the study alone did not support the corresponding investigator-assessed PFS results. This discrepancy likely resulted from disagreements of progression events and censoring which could indicate a level of investigator bias. Despite these concerns and uncertainties, multiple sensitivity analyses supported the finding of clinical benefit.</p><p>Overall, the safety profile of palbociclib appeared to be acceptable relative to the benefit. Palbociclib did increase the incidence of cytopenias (particularly neutropenia), infections, diarrhea, nausea, eye disorders, and pulmonary embolisms. There is assurance given the data that the neutropenia can be appropriately managed as evidenced by a lower frequency of discontinuations in Part 2 of the study which took place after many of the dose modification issues were worked out in Part 1. There are no postmarketing safety requirements, however more information will be gained from multiple large planned or ongoing Phase 3 trials examining palbociclib in both the adjuvant and advanced breast cancer settings.</p><p>In conclusion, palbociclib in combination with letrozole for the first-line treatment of advanced breast cancer in postmenopausal patients with -positive HER2-negative disease demonstrates a favorable risk-benefit profile with enough evidence to recommend accelerated approval. Despite the concerns with the pivotal study, even if the demonstrated PFS benefit were halved there would still be a clinical benefit to this therapy given the life-threatening nature of advanced breast cancer and the acceptable Reference ID: 3691211</p><formula xml:id="formula_0">(b) (4)</formula><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 safety profile. Therefore, granting accelerated approval to palbociclib is justified due to the positive benefit risk and withholding this treatment from patients while awaiting results from the confirmatory trial will not be appropriate. However, continued approval for this indication may be contingent upon verification and description of clinical benefit in the Phase 3 trial PALOMA-2 (A5481008).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.3">Recommendations for Postmarket Risk Evaluation and Mitigation Strategies</head><p>No postmarketing risk evaluation and mitigation strategies are being recommended.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.4">Recommendations for Postmarket Requirements and Commitments</head><p>The clinical team recommends the following Postmarketing Requirement (PMR): Rationale: Further biomarker exploration is needed given that the pivotal study PALOMA-1 did not identify a biomarker for prediction or prognosis, but did indicate the potential that patients with CDKN2A loss might benefit less from palbociclib. These findings are preliminary in a small sample size and would require confirmation in a future study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Introduction and Regulatory Background</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Product Information</head><p>The cyclinD1-cyclin-dependent kinases 4 and 6 (CDK4/6)-retinoblastoma (Rb) pathway is critical to the regulation of the cell cycle and deregulation of this pathway has been implicated in cancer. CDK4 and CDK6 are activated early in the cell cycle by Cyclin D1 and other cyclins thus facilitating the cell cycle progression from gap 1 (G1)-to synthesis (S)-phase. Activated cyclin-CDK complexes lead to phosphorylation and inactivation of Rb and result in the transcription of factors involved in S-phase entry. Cyclin D1 is the product of the CCND1 gene and can regulate the growth of estrogen responsive tissues through binding to the hormone-binding domain of ER. Additional regulators of the cell cycle include the CDK inhibitors (CdkIs) such as the INK4 family. The INK4 proteins include p16 INK4A (the product of the CDKN2A gene) and block the formation of the cyclinD-CDK4/6 complexes 2 . The cyclinD1-CDK 4/6-Rb pathway is depicted in <ref type="figure" target="#fig_1">Figure 1</ref> 3 .</p><p>Frequencies of CCND1 amplification and CDKN2A loss vary based on the breast cancer subpopulation studied and the methods and cut-offs used. Amplification of CCND1 has been found in 15 to 20% of human mammary carcinomas and overexpression in up to 50% 4-6 . Within breast cancer, CCND1 amplification varies between subtypes with ~58% amplification in luminal B tumors compared to 29% in luminal A tumors <ref type="bibr" target="#b5">7</ref> . CDKN2A loss is found in approximately 4% of breast cancer tumors 8 .</p><p>While the prognostic ability of cyclin D1 overexpression in unstratified breast cancer samples is not clear this is likely due to the fact that cyclin D1 overexpression is strongly associated with the ER-positive, better prognosis subtype <ref type="bibr">5,</ref><ref type="bibr">9,</ref><ref type="bibr">10</ref> . Within the ER-positive subtype one study identified ER-positive breast cancer patients with cyclin D1 overexpression to have a shorter time to metastasis and decreased survival and another demonstrated that CCND1 amplification was a significant independent predictor of survival <ref type="bibr" target="#b21">11,</ref><ref type="bibr" target="#b22">12</ref> . Additional studies have shown an association between high cyclin D1 expression and poor outcome in women treated with tamoxifen <ref type="bibr" target="#b23">[13]</ref><ref type="bibr" target="#b24">[14]</ref><ref type="bibr" target="#b25">[15]</ref> . However some studies have either not detected an association with tamoxifen response or shown a worse prognosis for CCND1 amplified patients <ref type="bibr" target="#b26">[16]</ref><ref type="bibr" target="#b27">[17]</ref><ref type="bibr" target="#b28">[18]</ref><ref type="bibr" target="#b29">[19]</ref> . </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Availability of Proposed Active Ingredient in the United States</head><p>Palbociclib is a new molecular entity and is not currently marketed in the United States.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">Important Safety Issues With Consideration to Related Drugs</head><p>Palbociclib is a first in class CDK4/6 inhibitor and no other CDK4/6 inhibitors are currently marketed in the United States.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.5">Summary of Presubmission Regulatory Activity Related to Submission</head><p>March 9 th , 2004: IND 69324 for PD-0332991 (palbociclib) was submitted in the United States for the treatment of .</p><p>April 9 th , 2008: The protocol for Study A5481003 was submitted to the IND (SN39/SN0030). Amendments to this protocol are explained in detail in Section 5.3.1. There was no special protocol assessment requested for Study A5481003 (PALOMA-1) supporting the current NDA submission.</p><p>October 2 nd , 2012: A Type B End of Phase 2 (for Study A5481003) took place to discuss the potential submission of the Phase 2 trial results to support a Subpart H approval. FDA requested a pre-specified statistical analysis plan (SAP) and any amendments to the SAP for the Phase 2 trial as well as detailed safety information. FDA also recommended there be a central review of the Phase 2 PFS data as soon as possible. At this time FDA conveyed that the Phase 2 trial would be considered as two individual studies and recommended incorporating an early efficacy analysis (if expecting a large effect) or sizing the Phase 3 trial for the larger effect. FDA recommended an additional meeting be requested in order to discuss the potential of NDA submission in more detail.</p><p>Discussion also revolved around the plan for development of the Phase 3 confirmatory trial for the treatment of hormone receptor positive metastatic breast cancer patients with palbociclib. FDA recommended for the Phase 3 study that Pfizer define an appropriate patient population, determine HER2 negativity based on ASCO/CAP guidelines and reduce the number of stratification factors in order to have a sufficient number of patients for each combination of stratification factors. FDA agreed with the general SAP for the Phase 3 trial and agreed that investigator PFS was an appropriate endpoint for the confirmatory trial if strategies for addressing bias such as a centralized review were employed.</p><p>Additional discussion at this End of Phase 2 Meeting revolved around the potential for Pfizer to submit the Phase 2 trial results for a Subpart H approval. FDA requested a prespecified SAP and any amendments to the SAP for the Phase 2 trial as well as detailed safety information. FDA also recommended there be a central review of the Phase 2 PFS data as soon as possible. At this time FDA conveyed that the Phase 2 trial would be considered as two individual studies and recommended incorporating an early efficacy analysis (if expecting a large effect) or sizing the Phase 3 trial for the larger effect. FDA recommended an additional meeting be requested in order to discuss the potential of NDA submission in more detail.</p><p>February 8 th , 2013: Pfizer submitted a breakthrough therapy designation request.</p><p>April 1 st , 2013: FDA granted the breakthrough therapy designation based on the fact that breast cancer meets the criteria for a serious or life-threatening disease and the preliminary clinical evidence submitted on PD-0332991 Phase 1/2 trial that appeared to demonstrate substantial improvement in progression-free survival when compared to existing therapies.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>May 17 th , 2013:</head><p>A Type B Pre-NDA meeting was held. At this meeting FDA agreed to accept the NDA submission based on the top line results from Study A5481003 as the results appeared to be promising. The FDA expressed concern regarding the multiple looks at the data which FDA stated may make interpretation from a statistical point of view difficult. Pfizer proposed a gatekeeping strategy to maintain statistical rigor with a proposal to analyze the study as a whole and if positive move to individual cohort analyses. FDA recommended Pfizer conduct the analysis as two separate studies since duplication of results in the second study could strengthen the application and cautioned that the interpretation of p-values will be difficult since there were many looks at the data making the analysis not entirely pre-specified. Pfizer proposed setting the final analysis of the primary endpoint PFS when approximately 90 events had occurred (instead of the 114 previously stated). The FDA did not agree with the plan to decrease the number of PFS events as the proposal was based on the observed data and was not pre-planned. FDA and Pfizer agreed that BICR assessments should be done on 100% of the patients in the Phase 2 trial, however FDA stated they recommended that the BICR analysis should be the primary analysis and if investigator-assessed PFS was kept as the primary analysis convincing argument that minimal bias is present would need to be given. FDA agreed that the estimated subject experience with respect to safety data was acceptable to support an NDA submission. FDA encouraged Pfizer to open an expanded access program for palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>November 14 th , 2013:</head><p>A Type B Breakthrough Meeting follow-up discussed the overall development plan for palbociclib. Pfizer clarified that the interim analysis for the PALOMA-2 confirmatory A5481008 trial would not be available during the A5481003 Phase 2 based NDA review.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>December 17 th , 2013:</head><p>A Type B Pre-NDA Meeting was held and discussed the format and content of the NDA submission. For safety data it was recommended that Pfizer pool the safety data from studies with similar patient population, disease status and baseline risk factors. Other specifics of the NDA submission regarding datasets were agreed upon. FDA also agreed with Pfizer's proposal to submit a stand-alone exposureresponse analysis report for safety and efficacy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>February 28, 2014:</head><p>A Type B Pre-NDA Meeting was held to discuss the Top Line Results from the PALOMA-1 A5481003 study. FDA requested an analysis of the imbalance in censoring on the two arms and reasons for censoring observations in both investigator assessments and BICR analysis. FDA expressed concern that drug administration condition for the initial approval Phase 2 PALOMA-1 A5481003 trial was under the fasting condition and the confirmatory trial PALOMA-2 A5481008 was under the fed condition with a new free base to-be-marketed formulation. Pfizer responded they would address these issues prior to NDA submission.</p><p>May 6 th , 2014: A Type B Pre-NDA Meeting was held to discuss CMC issues. FDA agree that the bridging data between the capsule formulation used in fasting conditions in the Phase 2 PALOMA-1 trial with the free base capsule used in the Phase 3 PALOMA-2 trial to be adequate to support the proposal of commercializing the free base capsule (used in the Phase 3 PALOMA-2 study) although FDA stated the final determination would be an NDA review issue.</p><p>June 25 th , 2014: A rolling submission was granted to Pfizer and it was clarified that the review clock would begin after the complete submission was received.</p><p>September 12 th , 2014: FDA agreed with the applicants initial pediatric study plan and acknowledged the request for a full waiver from PREA requirements in ER-positive, HER2-negative advanced breast cancer.</p><p>October 9 th , 2014: The NDA was given priority review with PDUFA deadline of April 13 th , 2015.</p><p>Reviewer Comment: There were no meetings to discuss the initial development of the Phase 2 pivotal trial as this trial was not originally planned for registration.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.6">Other Relevant Background Information</head><p>In 2014, Breast Cancer was diagnosed in 232,670 women in the United States (U.S.) and it is estimated that 40,000 women will die of their disease this year. 1 In the U.S. 60.8% of patients are diagnosed with early stage localized disease, 32% of patients have spread to regional lymph nodes and are still considered early stage, 2% have unknown stage and 5% are diagnosed with de-novo metastatic disease. <ref type="bibr">1</ref> The median age of breast cancer at diagnosis is 61. Breast cancer can be categorized into different histopathologic subtypes based on expression of estrogen receptor (ER), progesterone receptor (PR) and HER2 overexpression. ER and PR positive cancers comprise the majority of breast cancer cases at approximately 60-65%. <ref type="bibr" target="#b33">24</ref> Patients with ER and PR positivity have specific treatment options centered on hormone directed therapy. Postmenopausal patients have multiple options for hormone directed therapy due to the main source of their estrogens resulting from the conversion of androgens to estrogens via aromatase enzyme activity. Postmenopausal patients with advanced breast cancer have the option for treatment with three steroidal and non-steroidal aromatase inhibitors (letrozole, anastrozole and exemestane) or tamoxifen a selective estrogen receptor </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Ethics and Good Clinical Practices</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Submission Quality and Integrity</head><p>The submission contains all required components of the eCTD. The overall quality and integrity of the application appear to be acceptable. Requests for additional information from the applicant throughout the review process were addressed in a timely fashion.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Compliance with Good Clinical Practices</head><p>According to the Applicant, the study was conducted in full conformance with the ethical principles of Good Clinical Practice (GCP) as required by the major regulatory authorities, and in conformance with the principles of the Declaration of Helsinki as amended in 2008. Written informed consent was obtained from each participant in the study. The protocol and subsequent amendments were approved by local Independent Ethics Committees (IEC) or Institutional Review Boards (IRB). and neutropenia and the AE log showed Grade 2. Also in this patient an event of neutropenia Grade 3 was not recorded into the eCRF.</p><p>-Three patients showed discrepancies between source documents and the eCRF pertaining to concomitant medications -Two patients out of 20 did not sign the most recent IRB approved informed consent form and three patients were not re-consented with change in procedure pertaining to administration of drug with or without food. -The site did not appropriately update changes in sub investigators and laboratory facilities Reviewer Comment: When each of the deviations noted at site 1001 are examined independently, no patient was placed at significant risk and key study outcome measures were not affected. However, due to the totality of inspectional observations demonstrating poor ability of site 1001 to adhere to the investigational plan, the OSI recommendation was to not use the data generated at site 1001 in the review of the study. A sensitivity analysis was performed removing all the patients from site 1001. This analysis does not change the conclusions of the study as presented in Section 6.1.11.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Financial Disclosures</head><p>All investigators were assessed for equity interest, significant payments, proprietary interests, and other compensation. Of the 1143 investigators listed in the study, certification was provided for 1141 (99.8%). Due diligence was required for 79 of the 1141 investigators. Twenty three of the 1243 investigators listed in the study report had financial information to disclose (1.8%). There were 381 investigators (58 principal investigators and 323 sub-investigators) in the pivotal study PALOMA-1. One hundred percent of these investigators were screened for financial disclosures. Eight had financial information to disclose and are summarized in the following table <ref type="table">(Table 3)</ref>. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Preclinical Pharmacology/Toxicology</head><p>For full details, please see Pharmacology/Toxicology review by Dr. Wei Chen. The nonclinical studies adequately support the safety of oral administration of palbociclib for the proposed indication and the recommendation from the team is for approval.</p><p>Non-clinical studies of palbociclib included safety pharmacology studies, genotoxicity studies, reproductive toxicity studies, pharmacokinetic studies, toxicokinetic studies and repeat-dose general toxicity studies which were conducted in rats and dogs. The pivotal toxicology studies were conducted in compliance with Good Laboratory Practice regulation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Pharmacology:</head><p>As described above, palbociclib is an inhibitor of CDK4 and CDK6. Palbociclib modulates downstream targets of CDK4 and CDK6 in vitro and induces G1 phase cell cycle arrest and therefore acts to inhibit DNA synthesis and cell proliferation. Combination of palbociclib with anti-estrogen agents demonstrated synergistic inhibition of cell proliferation in ER+ breast cancer cells. Palbociclib showed anti-tumor efficacy in animal tumor model studies. Safety pharmacology studies with palbociclib demonstrated adverse effects on both the respiratory and cardiovascular function of dogs at a dose of 125mg/day (four times and 50-times the human clinical exposure respectively) based on mean unbound C max .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>General toxicology:</head><p>Palbociclib was studied in single dose toxicity studies and repeated dose studies in rats and dogs. Adverse effects in the bone marrow, lymphoid tissues, and male reproductive organs were observed at clinically relevant exposures. Partial to complete reversibility of toxicities to the hematolymphopoietic and male reproductive systems was demonstrated following a recovery period (4-12 weeks), with the exception of the male reproductive organ findings in dogs. Gastrointestinal, liver, kidney, endocrine/metabolic (altered glucose metabolism), respiratory, ocular, and adrenal effects were also seen. See Section 7.7 for a more detailed description of hyperglycemia effects.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Genetic toxicology:</head><p>Palbociclib was evaluated for potential genetic toxicity in in vitro and in vivo studies. The Ames bacterial mutagenicity assay in the presence or absence of metabolic activation demonstrated non-mutagenicity. In addition, palbociclib did not induce chromosomal aberrations in cultured human peripheral blood lymphocytes in the presence or absence of metabolic activation. Palbociclib was identified as aneugenic based on kinetochore analysis of micronuclei formation in an in vitro assay in CHO-WBL cells. In addition, palbociclib was shown to induce micronucleus formation in male rats at doses ≥ 100 mg/kg/day (10x human exposure at the therapeutic dose) in an in vivo rat micronucleus assay.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reproductive toxicology:</head><p>Reference ID: 3691211</p><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) <ref type="bibr">NDA 207,</ref><ref type="bibr">103</ref> 22</p><p>No adverse effects were seen on estrous cycling, mating, fertility and early embryonic development when palbociclib was administered to female rats before and during the mating time frame, and continuing until gestation day (GD) seven. Repeat dosing of palbociclib did cause toxicities in male rat and dog reproductive organs. These toxicities were generally dose-dependent and did not fully recover after 12-weeks of a non-dosing period. When administered to animals during the period of organogenesis, palbociclib resulted in reduced fetal body weights, and lead to increased fetal incidence of cervical ribs (skeletal variation) in rats, and a low incidence of small phalanges on the forepaws in rabbits. Based on palbociclib' s mechanism of action and the role of CDK4/CDK6 in development, it is likely that palbociclib can cause fetal harm.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Carcinogenicity studies:</head><p>No carcinogenicity studies were submitted as supportive data for this NDA as the indicated population has advanced cancer.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Clinical Pharmacology</head><p>For full details, please see Clinical Pharmacology/ Pharmacometrics Reviews by Drs Ping Zhao, Jerry Yu, Rosane Charlab Orbach, and Jeanne Fourie Zirkelbach.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4.1">Mechanism of Action</head><p>Palbociclib is a reversible inhibitor of CDK4 and CDK6 and thus acts to prevent cellular proliferation by preventing G1 to S phase progression of the cell cycle. Please see Section 2.1 for a detailed description of the pathway on which palbociclib acts.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4.2">Pharmacodynamics</head><p>Palbociclib exhibited half maximal inhibitory concentration (IC 50 ) for CDK4 at 11nM and CDK6 at 15nM. Palbociclib was studied in multiple cell-line panels. Specifically palbociclib treatment demonstrated inhibition of cell proliferation in breast carcinoma cells with an IC 50 of 0.032 M. In cell lines without expression of Rb, palbociclib did not have an antiproliferative activity when assayed at concentrations up to 3 mM. The combination of palbociclib with tamoxifen or fulvestrant resulted in an additive inhibition on cell viability in hormone receptor positive breast cancer cell lines. The combination of palbociclib and letrozole (at 40 nM) provided an additional inhibition of cell proliferation of 39% in estrogen receptor positive cell lines. The addition of palbociclib to letrozole in an estrogen-dependent patient derived xenograft breast cancer model was shown to have result in decreased tumor growth compared to placebo or compared to either drug given individually.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4.3">Pharmacokinetics</head><p>The pharmacokinetics of palbociclib were characterized in patients with solid tumors including advanced breast cancer and in healthy subjects.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Absorption</head><p>The mean Cmax of palbociclib is generally observed between 6 to 12 hours (time to reach maximum concentration, Tmax) following oral administration. The mean absolute bioavailability of palbociclib after an oral 125 mg dose is 46%. In the dosing range of 25 mg to 225 mg, the AUC and Cmax increased proportionally with dose in general. Steady state was achieved within 8 days following repeated once daily dosing. With repeated once daily administration, palbociclib accumulated with a median accumulation ratio of 2.4 (range 1.5-4.2).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Food effect:</head><p>Palbociclib should be administered with food. A bioequivalence trial showed that the commercial freebase formulation was not bioequivalent to the isethionalte salt formulation used in the pivotal trial A5481003 under overnight fasted conditions. Therefore, the applicant conducted a comparative bioavailability trial which showed that the exposure of the commercial freebase formulation administered with food was comparable to the isethionate salt formulation used in trial A5481003, administered under a modified fasted condition similar to trial A5481003.</p><p>Palbociclib absorption and exposure were very low in approximately 13% of the population under the fasted condition. Food intake increased the palbociclib exposure in this small subset of the population, but did not alter palbociclib exposure in the rest of the population to a clinically relevant extent. Therefore, food intake reduced the intersubject variability of palbociclib exposure, which supports administration of palbociclib with food. Compared to palbociclib given under overnight fasted conditions, the population average AUCinf and Cmax of palbociclib increased by 21% and 38% when given with high-fat food (high-calorie (approximately 800 to 1000 calories with 150, 250, and 500 to 600 calories from protein, carbohydrate and fat, respectively), by 12% and 27% when given with low-fat food (approximately 400 to 500 calories with 120, 250, and 28 to 35 calories from protein, carbohydrate and fat, respectively), and by 13% and 24% when moderate-fat food (approximately 500 to 700 calories with 75 to 105, 250 to 350 and 175 to 245 calories from protein, carbohydrate and fat, respectively) was given 1 hour before and 2 hours after palbociclib dosing.</p><p>As a result, food intake reduced the inter-subject variability in palbociclib exposure for the commercial freebase formulation, compared to the overnight fasted condition, which supports the recommended administration of palbociclib with food. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Distribution</head><p>Binding of palbociclib to human plasma proteins in vitro was approximately 85%, with no concentration dependence over the concentration range of 500 ng/mL to 5000 ng/mL. The geometric mean apparent volume of distribution (Vz/F) was 2583 L (26% CV).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Metabolism</head><p>In vitro and in vivo studies indicated that palbociclib undergoes hepatic metabolism in humans. Following oral administration of a single 125 mg dose of [14C]palbociclib to humans, the major primary metabolic pathways for palbociclib involved oxidation and sulfonation, with acylation and glucuronidation contributing as minor pathways. Palbociclib was the major circulating drug-derived entity in plasma (23%). The major circulating metabolite was a glucuronide conjugate of palbociclib, although it only represented 1.5% of the administered dose in the excreta. Palbociclib was extensively metabolized with unchanged drug accounting for 2.3% and 6.9% of radioactivity in feces and urine, respectively. In feces, the sulfamic acid conjugate of palbociclib was the major drug-related component, accounting for 26% of the administered dose. In vitro studies with human hepatocytes, liver cytosolic and S9 fractions, and recombinant sulfotransferase (SULT) enzymes indicated that CYP3A and SULT2A1 are mainly involved in the metabolism of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Elimination</head><p>The geometric mean apparent oral clearance (CL/F) of palbociclib was 63.1 L/hr (29% CV), and the mean (± standard deviation) plasma elimination half-life was 29 (±5) hours in patients with advanced breast cancer. In 6 healthy male subjects given a single oral dose of [14C]palbociclib, a median of 91.6% of the total administered radioactive dose was recovered in 15 days; feces (74.1% of dose) was the major route of excretion, with 17.5% of the dose recovered in urine. The majority of the material was excreted as metabolites.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Pharmacokinetics in Special Populations</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Hepatic Impairment</head><p>Based on a population pharmacokinetic analysis that included 183 patients with cancer, where 40 patients had mild hepatic impairment (total bilirubin ≤ ULN and AST &gt; ULN or total bilirubin &gt;1.0 to 1.5 × ULN and any AST), mild hepatic impairment had no effect on the exposure of palbociclib. The pharmacokinetics of palbociclib have not been studied in patients with moderate or severe hepatic impairment (total bilirubin &gt;1.5 × ULN and any AST).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Renal Impairment</head><p>Based on a population pharmacokinetic analysis that included 183 patients with cancer, where 73 patients had mild renal impairment (60 mL/min ≤ CrCl &lt;90 mL/min) and</p><p>Reference ID: 3691211</p><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 25 29 patients had moderate renal impairment (30 mL/min ≤ CrCl &lt;60 mL/min), mild and moderate renal impairment had no effect on the exposure of palbociclib. The pharmacokinetics of palbociclib have not been studied in patients with severe renal impairment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Age, Gender, and Body Weight</head><p>Based on a population pharmacokinetic analysis in 183 patients with cancer (50 male and 133 female patients, age range from 22 to 89 years, and body weight range from 37.9 to 123 kg), sex had no effect on the exposure of palbociclib, and age and body weight had no clinically important effect on the exposure of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Drug Interactions</head><p>In vitro data indicate that CYP3A and sulfotransferase (SULT) enzyme SULT2A1 are mainly involved in the metabolism of palbociclib. Palbociclib is a weak time-dependent inhibitor of CYP3A following daily 125 mg dosing to steady state in humans. In vitro, palbociclib is not an inhibitor of CYP1A2, 2A6, 2B6, 2C8, 2C9, 2C19, and 2D6, and is not an inducer of CYP1A2, 2B6, 2C8, and 3A4 at clinically relevant concentrations.</p><p>CYP3A Inhibitors: Data from a drug interaction trial (N=12) in healthy subjects indicate that coadministration of multiple 200-mg daily doses of itraconazole with a single 125mg palbociclib dose increased palbociclib AUCinf and the Cmax by approximately 87% and 34%, respectively, relative to a single 125-mg palbociclib dose given alone.</p><p>CYP3A Inducers: Data from a drug interaction trial in healthy subjects (N=14) indicated that coadministration of multiple 600-mg daily doses of rifampin with a single 125 mg palbociclib dose decreased palbociclib AUCinf and the Cmax by 85% and 70%, respectively, relative to a single 125 mg palbociclib dose given alone.</p><p>CYP3A Substrates: Palbociclib is a weak time-dependent inhibitor of CYP3A following daily 125 mg dosing to steady state in humans. In a drug interaction trial in healthy subjects (N=26), coadministration of midazolam with multiple doses of palbociclib increased the midazolam AUCinf and the Cmax values by 61% and 37%, respectively, as compared with administration of midazolam alone.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Gastric pH Elevating Medications:</head><p>In a drug interaction trial in healthy subjects, coadministration of a single 125 mg dose of palbociclib with multiple doses of the PPI rabeprazole under fed conditions decreased palbociclib Cmax by 41%, but had limited impact on AUCinf (13% decrease), when compared to a single dose of palbociclib administered alone. Given the reduced effect on gastric pH of H2-receptor antagonists and local antacids compared to PPIs, the effect of these classes of acid-reducing agents on palbociclib exposure under fed conditions is expected to be minimal. In another healthy subject study, coadministration of a single dose of palbociclib with multiple doses of the PPI rabeprazole under fasted conditions decreased palbociclib AUCinf and Cmax by 62% and 80%, respectively, when compared to a single dose of palbociclib administered alone. Letrozole: Data from a drug interaction trial in patients with breast cancer showed that there was no drug interaction between palbociclib and letrozole when the two drugs were coadministered.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Effect of Palbociclib on Transporters:</head><p>In vitro evaluations indicated that palbociclib has a low potential to inhibit the activities of drug transporters P-glycoprotein (P-gp), breast cancer resistance protein (BCRP), organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)2 and organic anion transporting polypeptide (OATP)1B1, OATP1B3 at clinically relevant concentrations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Effect of Transporters on Palbociclib:</head><p>Based on in vitro data, P-gp and BCRP mediated transport are unlikely to affect the extent of oral absorption of palbociclib at therapeutic doses.</p><p>Coadministration of midazolam with multiple doses of palbociclib increased the midazolam AUC by 61%, in healthy subjects, compared with administration of midazolam alone. Therefore, concomitant use of sensitive CYP3A substrate drugs with a narrow therapeutic index (e.g., alfentanil, cyclosporine, dihydroergotamine, ergotamine, everolimus, fentanyl, pimozide, quinidine, sirolimus and tacrolimus) palbociclib may increase their exposure. If coadministration of palbociclib with a sensitive CYP3A substrate drug with a narrow therapeutic index cannot be avoided, the dose of the sensitive CYP3A substrate may need to be reduced.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Sources of Clinical Data</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Tables of Studies/Clinical Trials</head><p>Data from 18 studies were submitted to the NDA. This included the pivotal Phase 1/2 study (PALOMA-1/A5481003), the confirmatory Phase 3 study (PALOMA-2/A5481008), and two other clinical studies (A5481023, A5481004). Additional studies submitted included two bioavailability (BA) studies (A5481015, A5481021), four comparative BA and bioequivalence (BE) studies (A5481009, A5481020, A5481022, A5481036), three PK and tolerability studies (A5481011, A5481001, A5481010), four extrinsic factor PK studies (A5481012, A5481017, A5481018, A5481026) and a patient PD and PK/PD study (A5481002).</p><p>For the purpose of this review, the key clinical study is the randomized Phase 2 portion of PALOMA-1, Study A5481003 (shown in <ref type="table">Table 4</ref>). </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>PALOMA-1 Study Design and treatment plan:</head><p>The protocol design was a Phase 1/2, randomized, multicenter, international, two-arm, open-label clinical trial designed to compare the safety and efficacy of palbociclib plus letrozole with that of letrozole alone for ER-positive, HER2-negative MBC.</p><p>The Phase 1 portion of the study was a limited safety and tolerability study and also served to exclude a pharmacokinetic interaction with the combination of letrozole and palbociclib. Twelve patients were treated to establish the Recommended Phase 2 Dose (RP2D). The review does not focus on this portion of the study.</p><p>The Phase 2 portion of the study was divided into two parts (schema shown in <ref type="figure">Figure  2</ref>). Part 1 included 66 biomarker-unselected patients randomized to receive palbociclib plus letrozole or letrozole alone in a 1:1 fashion. Part 2 included 99 biomarker-positive (CCND1 gene amplification and/or loss of CDKN2A) patients randomized in the same fashion as in Part 1. Enrolment occurred in more than 10 countries worldwide.</p><p> Arm A (experimental arm): Palbociclib 125mg/day orally for 3 weeks followed by 1 week off plus letrozole 2.5mg/day orally  Arm B (control arm): letrozole 2.5mg/day orally Randomization occurred based on disease site (visceral vs. bone only vs. other) and by disease-free interval (&gt; 12 months after completion of previous adjuvant treatment vs. &lt;12 months or de novo disease).</p><p>Patients received study treatment until progressive disease (as assessed by the investigator), unmanageable toxicity, or consent withdrawal. Assessment of PFS, the primary objective for this trial, was based on Response Evaluation Criteria in Solid Tumors (RECIST Version 1.0) and was determined by independent review of baseline and follow-up assessments obtained every eight weeks or if progression was expected regardless of study treatment discontinuation.</p><p>Reference ID: 3691211 Reviewer Comment: This trial was not originally designed to support registration. Multiple data driven amendments occurred throughout the study as noted below in the "PALOMA-1 Protocol Amendments" Section. Although these changes could have affected the interpretation of the results, multiple sensitivity analyses conducted by the sponsor as well as the FDA review team confirm the improved efficacy findings of palbociclib treatment (see Section 6).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>PALOMA-1 Phase 2 Objectives</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Primary Objective</head><p> To assess the effect of palbociclib plus letrozole compared to letrozole alone on progression-free survival (PFS) in the first-line treatment of ER+, HER2 negative Advanced Breast Cancer in postmenopausal women.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Secondary Objectives</head><p> To assess secondary measures of efficacy for palbociclib administered in combination with letrozole and for letrozole alone.  To assess the safety and tolerability of palbociclib administered in combination with letrozole and of letrozole alone.  To assess the impact of palbociclib in combination with letrozole and of letrozole alone on patient reported outcomes of pain severity and pain interference with various activities of daily life.  To explore the relationship between copy number and expression of baseline genes of interest and protein levels including Rb, p16/INK4A, CCND1, CDK4, CDK6, and Ki67 markers with tumor response.  To explore the relationship between germline polymorphism in CYP19A1 and CCND1 genes and tumor response.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>PALOMA-1 Eligibility Criteria</head><p>Inclusion Criteria:</p><p>Subjects must have met all of the following inclusion criteria to have been eligible for enrollment into the study:</p><p> Histologically or cytologically proven diagnosis of adenocarcinoma of the breast with evidence of 1) locally recurrent disease not amenable to resection or radiation therapy with curative intent, or 2) metastatic disease.  ER positive tumor. Positivity is defined either as ≥10 fmol of H3 -estrogen binding per mg of cytosol protein for dextran-coated charcoal and sucrose density methods, or ≥0. o Total serum bilirubin ≤1.5 x ULN regardless of liver involvement secondary to tumor. Inclusion of patients with increased serum indirect bilirubin due to Gilbert's syndrome is permitted; o Serum creatinine ≤1.5 x ULN; o QTc ≤470 msec (based on the mean value of the triplicate ECGs).  Evidence of a personally signed and dated informed consent document indicating that the subject (or a legal representative) has been informed of all pertinent aspects of the study.  Subjects who are willing and able to comply with scheduled visits, treatment plan, laboratory tests, and other study procedures.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Exclusion Criteria:</head><p>Subjects presenting with any of the following were not to be included in the study: Upper gastrointestinal surgery including gastric resection.  Known hypersensitivity to letrozole or to any of its excipients.  Known human immunodeficiency virus infection.  Other severe acute or chronic medical or psychiatric condition or laboratory abnormality that may increase the risk associated with study participation or investigational product administration or may interfere with the interpretation of study results and, in the judgment of the investigator, would make the subject inappropriate for entry into this study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Palbociclib Formulation and Packaging:</head><p>Palbociclib is formulated in capsules containing 25 mg or 100 mg of study medication. Medication was provided in non-patient specific bottles containing either 25 mg or 100 mg capsules.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Letrozole Formulation and Packaging:</head><p>Letrozole (FEMARA®) is commercially available as film-coated tablets. Each tablet contains 2.5 mg letrozole as active ingredient.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Rationale for Dose Selection:</head><p>Based on clinical results for safety and toxicity from prior studies 1001 and 1002 the recommended dose of palbociclib was deemed to be 125mg/day. The Phase 1 portion of the study determined the RP2D in combination with letrozole (2.5mg/day) as 125mg/day given for three weeks with one week off. The approved letrozole dose for this indication is 2.5mg/day and thus that was used in both study arms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Palbociclib Drug Administration:</head><p>Patients were instructed to swallow the study medication whole and not chew the capsule prior to swallowing. Patients were instructed to take their dose at approximately the same time each day. If a patient missed a day's dose entirely, they were instructed not to "make it up" the next day by taking an extra dose. If a patient inadvertently took 1 extra dose during a day, the patient was not to take the next day's dose of palbociclib. Patients in the Phase 2 study were to be fasted from 1 hour before to 2 hours after palbociclib dosing.</p><formula xml:id="formula_1">Reference ID: 3691211 (b) (4)</formula><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) <ref type="bibr">NDA 207,</ref><ref type="bibr">103</ref> Reviewer Comment: Initially there was no instruction for fasting or fed state; Amendment 2 (July 2009) indicated the need for fasting state. The Phase 3 confirmatory study PALOMA-2 requires a fed state due to bioequivalence issues with the formulation (see Section 4.4.3, Clinical Pharmacology review, and CMC review). The formulation used in the Phase 3 study will be the formulation marketed if this application receives accelerated approval.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Dose Delay and Modification of Palbociclib:</head><p>Palbociclib was to be adjusted for toxicity as described in <ref type="table" target="#tab_19">Table 5</ref> and 6. Patients requiring more than two dose reductions were to be discontinued from the study. A new cycle of treatment with palbociclib could only begin if patients had an ANC ≥1,000/L, Platelets ≥50,000/L and their non-hematologic toxicities had returned to baseline or Grade ≤1 severity (or Grade ≤ 2 at the investigator discretion if not considered a safety risk). If these conditions were not reached letrozole could be continued and palbociclib delayed by one week. If after this delay all toxicities had recovered to the criteria above then palbociclib could be resumed. If the patient did not recover after 2 weeks (including the scheduled 1-week off treatment period within a cycle) treatment with palbociclib was permanently discontinued.   <ref type="table">Table)</ref> Source: protocol A5481003 p554</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Dose Delay and Modification of letrozole:</head><p>No dose adjustment was permitted for letrozole; interruptions were allowed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Concomitant Medications:</head><p>Medications taken by the patient during the trial were to be recorded on the CRF. CYP3A isoenzyme inhibitors or inducers were not permitted during the study. While no additional anticancer therapy was permitted, patients were allowed to continue bisphosphonates and receptor activator of nuclear factor kappa-B ligand (RANKL) inhibitors if they were receiving them at the time of study entry. If patients required initiation of these bone modulating agents the investigator had to consult with the applicant and confirm that the treatment was not indicative of disease progression. Prophylactic use of granulocyte-colony stimulating factors was not permitted but use was allowed if treatment-emergent neutropenia was experienced as indicated by current guidelines. If neutropenic complications were observed in a cycle, the protocol allowed secondary prophylaxis at the discretion of the investigator if dose reduction or delay were not options. Erythropoietin was also allowed at the investigators discretion.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Concomitant Radiation or Surgery:</head><p>Palliative radiotherapy was permitted for the treatment of painful bony lesions as long as the lesions were known to be present at the time of study entry and the investigator did not believe the need for radiation indicated disease progression. Surgeries were allowed during treatment with caution advised.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comment:</head><p>Radiation or surgery could be problematic if palliative radiotherapy or surgery were performed on the only site of metastatic disease (see Section 6.1.3).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Safety and Efficacy Assessments:</head><p>Assessments of adverse events included type, incidence, severity (graded by National Cancer Institute Common Terminology Criteria for Adverse Events [NCI CTCAE] version 2.0), timing, seriousness, and relatedness. Disease assessment at screening included physical exam, CT or MRI scans (chest, abdomen and pelvis), and x-rays for bone lesions (if applicable) within 4 weeks of start of treatment. Subsequent assessments were performed every 8 weeks until disease progression or a patient begins a subsequent anticancer therapy independent of discontinuation of palbociclib. Bone scans were carried out at baseline and every 12 weeks thereafter or if suspicion of new lesions. See <ref type="table" target="#tab_21">Table 7</ref> for full details of study assessments.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reference ID: 3691211</head><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 Biomarker Assessment:</p><p>Tumor tissue samples were used for both Part 1 and Part 2 of the Phase 2 study. Paraffin blocks or 10 glass slides of fresh or archived tumor samples were obtained. For Part 2 the tissue samples were prospectively sent to a central laboratory for the assessment of CCND1 amplification and p16 loss. For Part 1, the assessment of biomarkers was performed retrospectively for all available samples. CCND1 amplification was determined by fluorescence in situ hybridization (FISH) analysis with amplification determined by a CCND1/CEP11 ratio &gt;1.5. CDKN2A/p16 INK4A (CDKN2A) gene loss was determined by a CDKN2A/CEP9 ratio &lt;0.8 by FISH analysis. A patient was deemed biomarker-positive if they were found to have the following profile by FISH analysis:</p><p> &gt;1.5 ratio for CCND1/cep11 and/or  &lt;0.8 ratio for CDKN2A/cep9</p><p>Part 2 screened 319 patients with 99 patients testing as biomarker positive.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comment:</head><p>It is important to note that the cut off for CCND1 expression is a very inclusive value for CCND1 amplification and thus captured a large percentage of screened patients. Please see Section 6.1.6 and 6.1.8 for a detailed discussion of the relevance of the biomarker population in this study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>PALOMA-1 (A5481003) Phase 2 Study Endpoints</head><p>Reference ID: 3691211 CKD6, and Ki67 and copy number of CCND1 and p16  Germline polymorphism in CYP19A1 and CCND1 genes Reviewer Comment: The PFS endpoint is a common endpoint in oncology trials and has been used to support both accelerated and full approval in various malignancies. The confirmatory study PALOMA-2 also has PFS as its primary endpoint. It is difficult to detect an OS benefit in the proposed indication where patients will be treated with multiple subsequent lines of therapy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Sample Size Determination:</head><p>The randomized Phase 2 study as previously mentioned was divided into two parts. Initially prior to the addition of the Part 2 biomarker enriched population the study was meant to enroll 150 unselected patients, however enrollment to this cohort was stopped at 66 patients. Part 2 of the study was designed to enroll 150 patients (75 per treatment arm) over 13 months as determined by the primary endpoint of PFS. Assuming a PFS of 9 months for the control treatment arm and a 50% improvement in the combination arm, 114 PFS events were anticipated to be observed for a total follow-up time of 30 months. Under the alternate hypothesis with a 1-sided alpha = 0.10, there was 80% power to detect a hazard ratio of 0.67 assuming one futility interim analysis. However an adjustment was made based on data from the interim analyses (the first performed at Reference ID: 3691211 Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 39 28% of information and 31 PFS events and the second at 50% of information and 57 PFS events) demonstrating a lower event rate and a larger effect size in both the biomarker enriched and the unselected population. Therefore the final analysis of PFS was changed to occur when 95 PFS events had accumulated. At 95 PFS events, there would be more than 98% power to detect a hazard ratio of 0.50 at 1-sided alpha = 0.10 or 75% power to detect a hazard ratio of 0.67. In the Part 2 portion it was estimated that 50 PFS events would be observed at the time of final analysis. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Efficacy Analysis Populations:</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Safety Analysis Population:</head><p>Patients who received at least one dose of study medication (based on the treatment they actually received) were to be included in the safety analyses.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Deviations:</head><p>Major deviations were defined as having been treated according to the other treatment arm. Patients not treated with one of the treatments were excluded from the safety analysis. Other deviations did not exclude patients from the analysis.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Handling of Missing Values:</head><p>If a day is missing the 1 st of the month was used to replace the missing date. If baseline tumor assessment is lacking the patient were considered indeterminate (IND) and PFS data was censored. If measurements for one or more target lesions were missing the status for the evaluation was indeterminate. Missing non-target disease assessment generally did not affect response determination except if CR then the patient was deemed partial response.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Efficacy Analysis:</head><p>The protocol specified primary efficacy analyses were based on investigator assessment of progression and response. Additional analyses based on BICR were considered secondary analyses. The primary analysis population was all randomized patients from the Phase 2 study (both Part 1 and Part 2 combined). This analysis population was the intention to treat (ITT) population. The critical value that was utilized Reference ID: 3691211 Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 40 to determine statistical significance at the time of the final analysis was based on the actual number of events observed and the α spent in the two interim analyses. Efficacy analyses for the Phase 2 study are summarized in <ref type="table">Table 8</ref>. The null hypothesis was that the addition of palbociclib had no treatment effect. At the final PFS analysis a gatekeeping procedure was used for hypotheses testing in a hierarchical approach to control the family-wise error rate. The testing started with the combined patient population from Part 1 and Part 2. If unable to reject the null hypothesis based on the combined population a Holm procedure was used to test Part 1 and Part 2 as individual cohorts. If the null hypothesis was rejected, the same hypotheses was tested for Part 1 and Part 2 as two cohorts separately at the next level with the same significant level  as used for the previous testing.</p><p>The significance level for the final analysis was to be adjusted for the two interim analyses. PFS for the palbociclib plus letrozole and letrozole alone arm was assessed using Kaplan-Meier (KM) methods and displayed graphically with median event times and confidence intervals. In addition, the difference in PFS between the treatment and control arms was analyzed using a stratified log-rank test. Unstratified log-rank test was to be applied as a sensitivity analysis and cox regression models were used to estimate the treatment hazard ratio and the confidence intervals.</p><p>Subgroup analyses of PFS based on the investigator assessment were to beperformed for the baseline stratification factors, baseline patient characteristics and selected biomarkers.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reference ID: 3691211</head><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 42 o There were two exceptions. If objective progression or death was documented within 28 days after discontinuation of treatment the progression or death is an event. If a new anti-cancer treatment (including surgery) was started prior to progression and prior to 28 days after discontinuation of treatment, then censorship was at the date of the last objective disease assessment that verified lack of disease progression prior to the new treatment. o Patients with documentation of progression or death after an unacceptably long interval (&gt;2 consecutive assessments) since the last tumor assessment were censored at the time of last objective assessment documenting no progression. The study was open-label and thus the patients and investigators were not blinded. The study team had full access to the data from Phase 2 Part 1 as the study was ongoing until the final amendment at which point results were only reported in the interim analyses. The study team did not have access to aggregate analyses or summaries by treatment arm for Phase 2 Part 2 except at the time of the interim analyses. The results from the interim analyses were reviewed by the study team and reported to the applicant's upper management.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>PALOMA-1 Protocol Amendments:</head><p>Original Protocol March 27, 2008 <ref type="figure" target="#fig_1">Sites 1001, 1002, 1004, 1006, 1020, 1025,</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a1, 8 May 2009 (</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>and 1045 only):</head><p>Only changes to the Phase 1 portion were included in this amendment. The Phase 1 portion of the Study was amended to clarify how many patients were to be enrolled in the dose expansion and drug-drug interaction assessments. Inclusion and Exclusion criteria were also modified in the Phase 1 portion of the study only allowing for enrollment of patients with non-measurable disease and prior treatment with (neo)adjuvant letrozole as well as updating the list of prohibited drugs. A new guideline was added for patients to fast from 1 hour before to 2 hours after palbociclib administration. PK sampling instructions were edited and additional guidance for concomitant medications and surgical procedures occurring during the study were added.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a2, 31 July 2009:</head><p>The Phase 1 study was further clarified with regard to number of patients enrolled and eligibility for patients who had non-measurable disease and prior treatment with letrozole in the (neo)adjuvant setting. The Phase 2 study was amended with respect to the PK sample collection, and an exclusion criteria excluding patients who were taking or would need strong CYP3A4 food or drugs. Both Phase 1 and 2 were amended to require fasting for administration of palbociclib and a list of prohibited drugs that interact with CYP3A4 was updated. PK sampling was also clarified and additional guidance was added for concomitant medications and surgical procedures occurring during the study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a3, 1 July 2010:</head><p>This amendment split Phase 1 into 2 parts: Part 1 to include 60 patients randomized in a 1:1 fashion to the two arms and Part 2 to include 150 biomarker-positive (CCND1 gene amplification and/or loss of CDKN2A) randomized in the same fashion as Part 1. The primary endpoint for the Phase 2 study was made progression-free survival from Part 2 only. The Phase 2 study was amended to allow for enrollment of patients with prior treatment with (neo)adjuvant letrozole if disease recurrence occurred &gt;12 months. A change to the statistical analysis plan instructed an interim analysis for Part 2 of the study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a4, 10 August 2011:</head><p>Phase 2 Part 2 tumor tissue samples were allowed to be stored for additional analyses. PK time points were edited.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a5, 20 June 2012:</head><p>The primary endpoint for the Phase 2 portion was changed from PFS from Part 2 only to PFS from a combination of Part 1 and Part 2. The primary analysis population would therefore include all randomized patients from the Phase 2 study (Part 1 and Part 2). The statistical analysis plan was amended accordingly. The Adverse event reporting was updated to align with recent FDA guidance. Medication errors were changed to be considered adverse events. Tumor assessment imaging scans were no longer required to be submitted to the central imaging lab for review. The formerly planned futility interim analysis for Part 2 Phase 2 was replaced by two or possibly three efficacy interim analyses.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a6, 8 November 2012:</head><p>The Phase 2 study was amended to allow for post-study survival status every 2 months until death. Tumor assessment imaging scans were required to be submitted to the central imaging lab for review for all patients in the Phase 2 study (Part 1 and Part 2). Reporting of adverse events were changed to not require reporting of events that were part of the disease under study or caused by subsequent anti-cancer treatments.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Version a7, 11 July 2013:</head><p>The final analysis plan for the primary endpoint of PFS was adjusted to be performed when 95 PFS events were accumulated due to the event rate evaluation being slower than observed. Also a formal hypothesis testing procedure to reflect Part 1 and Part 2 as individual cohorts/studies to be analyzed separately was added. The third interim analysis was removed. Adjustments in various sections were performed to conform to the Pfizer protocol template.</p><p>Reviewer Comment: Amendment 3, 5 and 7 were data driven amendments to the protocol and SAP. Initially the protocol was written to enroll 150 biomarker unselected patients. Amendment 3 (July 2010) split the Phase 2 study into two parts by beginning Part 2 which was planned to be 150 biomarker positive patients. It also allowed for an interim analysis for Part 2. This change was based on pre-clinical data indicating a potential effect in the biomarker enriched population. PFS in Part 2 was to be the primary endpoint. After an interim analysis of the Part 1 data was performed and supported a potential benefit in the biomarker unselected population as well as better efficacy than hypothesized, amendment 5 (June 2012) halted enrollment to the Part 2 program and the primary endpoint was changed to include all of the Phase 2 study (Part 1 and Part 2 together). Additionally, amendment 5 replaced the formerly planned futility interim analysis with two or possibly three efficacy interim analyses. Amendment 7 (July 2013) adjusted the final analysis plan for the primary endpoint of PFS to be performed when 95 PFS event accumulated. The option for third interim analysis was removed. It is important to note that this trial was not initiated to be a registration trial and many data driven changes were incorporated as the trial was ongoing. It is possible these data driven changes affected the quality of the study and the integrity of the data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.2">Phase 3 PALOMA-2 (A5481008)</head><p>The PALOMA-2 Trial (U.S. study number A5481008) is currently ongoing and is the confirmatory trial for PALOMA-1. PALOMA-2 is entitled: PALOMA-2 (A5481008) is a Phase 3, randomized, multicenter, international, doubleblind trial designed to confirm the findings of PALOMA-1. This trial has fully accrued and randomized 650 patients 2:1 to receive palbociclib plus letrozole or letrozole plus placebo according to the same dosage and schedule as PALOMA-1. The schema is shown in <ref type="figure" target="#fig_7">Figure 3</ref>. The key inclusion and exclusion criteria are the same as PALOMA-1. The same stratification factors as PALOMA-1 are used with the addition of prior (neo)adjuvant therapy (hormonal vs. non hormonal). The primary endpoint of investigator-assessed PFS is also the same as PALOMA-1. There is a planned interim analysis at events with the ability to detect a HR of or smaller which equates to approximately a month difference in median PFS. For the final analysis the study is powered to detect a HR of which equates to approximately a month difference in median PFS.</p><formula xml:id="formula_2">"A Randomized,</formula><p>Interim analysis results are expected in the third or fourth quarter of 2015 at ( % of final) events and final analysis at events is expected in the first or second quarter of 2016.</p><p>Reviewer Comment: PALOMA-2 is fully accrued which reassures the review team that the final analysis of this study would not be affected by the marketing of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Review of Efficacy</head><p>Efficacy Summary</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Indication</head><p>Pfizer initially proposed the following indication in their NDA submission: "IBRANCE is indicated in combination with letrozole for t he treatment of postmenopausal women with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer who have not received previous systemic treatment for their advanced disease".</p><p>During the review process the indication was modified to the following: "IBRANCE is indicated in combination with letrozole for t he treatment of postmenopausal women with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer as initial endocrine-based therapy for their metastatic disease."</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.1">Methods</head><p>The single trial supporting the efficacy review of this NDA is the randomized Phase 2 portion of PALOMA-1 (A5481003). For detailed information on PALOMA-1 trial design see Section 5.3.1. For the statistical review, please see Dr. Erik Bloomquist's review. As mentioned earlier, this efficacy analysis will not take into account the non-randomized Phase 1 portion of PALOMA-1. The Phase 2 portion of the study was a randomized, open-label multi-national trial with two Parts which were determined by biomarker status. The primary analysis population or ITT population was all randomized patients from the Phase 2 study (both Part 1 and Part 2 combined).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.2">Protocol Deviations</head><p>Overall there was a large percentage of protocol deviations in study A5481003 as summarized in <ref type="table" target="#tab_1">Table 11</ref>. Specifically protocol deviations occurred with respect to inclusion/exclusion criteria, randomization, deviations from the conduct of the study and study assessments. Investigational product deviations reflected that the exact study drug dose and schedule were not adhered to with typically just a few dosing errors. Many of the laboratory protocol deviations were related to lab testing not being done in a given cycle or PK deviations.</p><p>Notable deviations included multiple patients being stratified incorrectly at randomization. The stratification factors for these patients used for randomization were different than what was reported on the CRF (assumed to be the accurate variable). Please see Section 6.1.11 for an analysis of PFS based on the data in the CRF. Within the visit schedule and procedure/tests were a few assessments of tumor status that were outside of the window allowed. These deviations typically were only two to three weeks outside of the window or had subsequent assessments without progression. According to the investigator assessment, only one patient had missed assessments immediately before progression and the patient was appropriately censored (SID 10553003). Other important deviations include patients being treated with bisphosphonates who were not receiving treatment upon entering the study. Bisphosphonate use is further detailed in Section 6.1.3.</p><p>Significant protocol deviations as determined by the applicant had only 1 or 2 patients in each category except for inclusion/exclusion. These inclusion/exclusion deviations included: failure to determine postmenopausal status (n=4), ALT/AST levels being elevated and failure to demonstrate a measurable lesion in that same patient (SID 10102001), failure to obtain a tissue sample prior to randomization (SID 10542002), radiation therapy given within 2 weeks of randomization (SID 10523005), a patient on tamoxifen who continued with palbociclib refusing to take letrozole (SID 11023003), and a patient who received prior anti-cancer therapy for advanced disease (SID 11053004).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reference ID: 3691211</head><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 55</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Stratification Factors:</head><p>Patients were stratified based on site of disease (visceral vs. bone only vs. other) and based on disease free interval (&gt; 12 months from prior diagnosis vs. &lt;12 months or de novo disease). Incorrect stratification factors were used at the time of randomization for many patients. Thus while in the ITT population the stratification factors are balanced across the treatment arms, when using the case report form (CRF) data there are imbalances between the treatment arms. A lower percentage of patients had visceral disease in the palbociclib plus letrozole arm (44.1%) compared to the letrozole alone arm (53.1%) and a higher percentage of patients had bone only disease in the palbociclib plus letrozole arm (20.2%) compared to the letrozole alone arm (14.8%). Within Part 1 of the study a lower percentage of patients had visceral disease in both arms compared to both arms of the Part 2 study. These imbalances are shown in <ref type="table" target="#tab_1">Table  16</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reference ID: 3691211</head><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) <ref type="bibr">NDA 207,</ref><ref type="bibr">103</ref> radiation to their only site of disease were both on the letrozole arm. All of these instances might only have benefited the letrozole arm and thus do not call into question the interpretation of the results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.4">Subject Disposition</head><p>From December 22 nd , 2009 to May 12 th , 2012, a total of 165 women were randomized. These 165 women represent the number available for the primary efficacy analysis (ITT). The total number of patients screened was 400. Since Part 2 was only a biomarker positive population this accounted for the larger number of the screen failures. See <ref type="figure" target="#fig_8">Figure 4</ref> for a consort diagram of patient enrollment and randomization.</p><p>In the Phase 2 study, 84 patients were randomized to the palbociclib plus letrozole arm and 81 patients were randomized to the letrozole alone arm and thus make up the ITT analysis population. Five patients were randomized but not treated, one in the palbociclib plus letrozole arm and four in the letrozole alone arm. The Part 1 portion included 34 and 32 patients respectively on the palbociclib plus letrozole and letrozole alone arm and the Part 2 portion included 50 and 49 patients respectively on the palbociclib plus letrozole and letrozole alone arm.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.5">Analysis of Primary Endpoint(s)</head><p>The primary endpoint of the Phase 2 study was investigator-assessed PFS in the combined (Part 1 and Part 2) population. As of the November 2013 data cut-off, 100 investigator-assessed PFS events had occurred, 41 (48.8%) in the palbociclib plus letrozole arm and 59 (72.8%) in the letrozole alone arm. The median PFS in the palbociclib plus letrozole arm was 20.2 months compared to 10.2 months in the letrozole alone arm, (HR=0.488, 95% CI: 0.319-0.748; p=0.0004), as summarized in <ref type="table" target="#tab_1">Table 18</ref> and <ref type="figure">Figure 5</ref>.  investigator bias. However, further sensitivity analyses and in depth review of individual cases was performed (see Section 6.1.11) reassuring the review team to the validity of the data and the activity of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Overall Survival:</head><p>At the data cut off in November 2013, there were 61 deaths out of the total 165 patients. The median follow-up time was 29.6 months (95% CI: 27.9-36.0) in the palbociclib plus letrozole arm and 27.9 months (95% CI: 25.5-31.1) in the letrozole alone arm. The was not a statistically significant difference in overall survival between the two treatment arms although there was a trend toward improvement in the palbociclib plus letrozole arm. The HR was 0.813 (95% CI: 0.492-1.345; p=0.2105). The Overall Survival data is also shown in <ref type="table">Table 28</ref> and <ref type="figure">Figure 9</ref>. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Overall Tumor Response for Patients with Measurable Disease by Investigator:</head><p>For the ITT population investigator ORR for patients with measurable disease was 55.4% in the palbociclib plus letrozole arm compared with 39.4% in the letrozole alone arm. These results were consistent in the Part 1 and Part 2 cohorts of the study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Overall Tumor Response for Patients with Measurable Disease by BICR:</head><p>Objective response rate was assessed by the BICR for the for patients with measurable disease and was 49% in the palbociclib plus letrozole arm compared with 32.7% in the letrozole alone arm.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Duration of Response:</head><p>In patients with either a complete or partial response to therapy as assessed by the investigator, the duration of response was longer in the palbociclib plus letrozole arm (20.3 months; 95% CI 13.4-25.8) compared to the letrozole alone arm (11.1 months;95% CI: 9.3-31.6).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Clinical Benefit Response:</head><p>The clinical benefit response rate (CR or partial response or SD ≥24 weeks) was 81% in the palbociclib plus letrozole arm and 58% in the letrozole alone arm with an odds ratio of 3.18 (5% CI: 1.48-6.98; stratified 1-sided p-value=0.0009) in favor of palbociclib plus letrozole.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comment:</head><p>The secondary response endpoints support the overall findings. The numeric increase in response rate in the palbociclib plus letrozole arm supports the activity of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Patient-Reported Outcome:</head><p>The Modified Brief Pain Inventory Questionnaire (mBPI-sf) was employed for a secondary patient-reported outcome (PRO) endpoint. To qualify for inclusion in the endpoint patients had to complete over 50% of the questions at each cycle and end of treatment and 98% of patients were able to be included. The numeric score of pain severity was lower in the palbociclib plus letrozole arm and had a greater reduction from baseline than the letrozole alone arm until approximately Cycle 30 at which point the samples sizes became small. This study was undertaken in order to determine if palbociclib added to the commonly reported myalgias and joint pains seen with letrozole alone.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comment: It is difficult to interpret PROs in the setting of an open-label trial. The mBPI-sf is not a comprehensive or sensitive PRO instrument however the results might suggest that palbociclib plus letrozole does not increase pain. Additional PRO instruments (FACT-B and EuroQol-5D) are being examined in the confirmatory trial PALOMA-2.</head><p>Reference ID: 3691211 Cell Cycle-Relevant Biomarkers:</p><p>As described in Section 5.3.1, the Phase 2 portion of PALOMA-1 was broken down into two Parts which differed based on biomarker status. Biomarker positive was determined by CCND1 amplification and/or CDKN2A loss. CCND1/CEP11 FISH ratio &gt; 1.5 translates into &gt; 3 copies of CCND1 gene in a diploid genome and was used as the cutoff for CCND1 amplification. The cut-off is on the lower end of published analyses of CCND1 gene amplification and thus per the applicant was chosen as such to be very inclusive and was based on the applicant's analysis of archived tissue samples with ERpositive Her2-negative advanced breast cancer. The applicant chose this low cut-off point in order to include ER+/HER2-advanced breast cancer patients with any potential for CCND1 amplification and planned on defining a more relevant cut-off value based on the data from Phase 2 with the "intent of confirming the predictive effect of this biomarker in Phase 3 study". The CDKN2A loss was determined by CDKN2A/CEP2 FISH ratio of &lt;0.8 and was based on the average value resulting from enumeration of &gt; 20 tumor cell nuclei. A ratio of &lt; 0.5 represents heterozygous deletion. Other mechanisms resulting in gene expression or loss of expression such as transcription and translation regulation, or post transcription modification were not assessed .</p><p>The Part 1 cohort was an unselected patient population which had retrospective analysis of biomarker status. The Part 2 cohort was selected prospectively based on biomarker positive status (165 patients failed to screen positive for the biomarker) and all patients from that cohort were biomarker positive. See <ref type="figure" target="#fig_1">Figure 10</ref> for a breakdown of biomarker status within the cohorts.   <ref type="figure" target="#fig_1">1.1.b, 14.2.15.1.b, 14.2.15.1.2</ref></p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>.b</head><p>There was a different distribution of biomarkers within the biomarker positive populations between Parts of the study. In Part 1 of the study there were 21 biomarker positive patients all of which had CCND1 amplification. Only 2 patients (9%) in Part 1 met criteria for CDKN2A loss (both in the letrozole alone arm). In Part 2 of the study, 31 patients from the palbociclib plus letrozole arm had CCND1 amplification alone, 11 had CDKN2A loss alone and 8 had a combination of CCND1 amplification and CDKN2A loss. In the Part 2 Letrozole alone arm, 36 patients had CCND1 amplification alone, four patients had CDKN2A loss alone and eight patients had a combination of CCND1 amplifciation and CDKN2A loss. The palbociclib plus letrozole had seven more patients with CDKN2A loss (n=19) compared to the letrozole alone arm in Part 2 of the study (n=12).</p><p>Across Parts of the study there was also differing distributions of FISH cut-off values. These distributions are graphically depicted in <ref type="figure" target="#fig_1">Figure 11A</ref> and 11B.  population, there was a wide distribution of the cut-offs and the cut-off for CCND1 which accounted for the majority of biomarker positive calls was low and more inclusive. For these reasons and the fact that exploratory analyses demonstrate the maintained benefit on PFS of palbociclib plus letrozole regardless of biomarker the unselected patient population indication appears acceptable. However, given some of the exploritory analyses performed by the clinical and statistical review team (see Section 6.1.8) it appears that further analysis in the Phase 3 confirmatory study to identify a biomarker population that may be predictive of palbociclib benefit is merited.</p><p>Additional analyses examining Ki67 and CYP19A1 and CCND1 genotypes were conducted. No statistically significant difference in PFS between Ki67 (&lt; or &gt;20%), CYP19A1 (wild-type vs. mutant) genotypes or CCND1 (wild-type vs. mutant) genotypes were seen. A more detailed description of these analyses can be found in the pharmacogenomics review by Dr. Rosane Charlab Orbach.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.7">Other Endpoints</head><p>Not applicable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.8">Subpopulations</head><p>Multiple subpopulations were examined, including subgroups by biomarker, age, region, grade, stratification factors, and prior treatment. The forest plots of the subgroups analyses of PFS are shown in <ref type="figure" target="#fig_1">Figure 13</ref>.</p><p>Reference ID: 3691211</p><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Figure 13: Primary and Subgroup Analyses of Investigator-Assessed Progression-Free Survival with Stratification Factors per CRF: Intent-to-Treat Population (Applicant Figure)</head><p>Abbreviations: Adju=Adjuvant; CI=Confidence interval; CRF=Case report form; Dis=Disease; ECOG=Eastern Cooperative Oncology Group; ITT=Intent-to-treat; Pts=Patients; Recur=Recurrence; Trt=Treatment. Source: CSR Page 150, <ref type="table" target="#tab_1">Table 14</ref>.2. <ref type="bibr">13.2.b</ref> Reviewer Comment: In the majority of the subgroups the HR and CIs are preserved supporting the overall conclusions of the study. In some cases such as prior chemotherapy without hormonal therapy and biomarker unknown status the spread of the confidence interval is broad due to a small number of patients. No subgroups demonstrate a detriment of palbociclib plus letrozole.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Biomarker:</head><p>The review team performed multiple analyses using various biomarker cut-offs. For CCND1, the benefit in median PFS appeared to remain constant regardless of the cut off used. In the CCND1 &gt;1.5 group, the HR was 0.408 (95% CI: 0.242, 0.686) favoring the palbociclib plus letrozole arm with an improvement in median PFS from 10.4 months to 21.9 months (see <ref type="figure" target="#fig_1">Figure 14</ref>). In the CCND1&lt;1.5 group the HR was 0.418 (95% CI: 0.218, 0.803) favoring the palbociclib plus letrozole arm with an improvement in median PFS from 8.7 months to 20.1 months. Further analyses (not shown) indicated a similar preservation of palbociclib plus letrozole benefit on PFS using ratios of &gt; 2, &gt; 3, and &gt; 4 for CCND1 amplification. When an analysis was performed examining PFS by CDKN2A loss or gain the results did not demonstrate a palbociclib plus letrozole PFS benefit for the CDKN2A loss population (see <ref type="figure" target="#fig_1">Figure 15</ref>). In the CDKN2A &gt;0.8 group the HR was 0.315 (95% CI: 0.189, 0.523) favoring the palbociclib plus letrozole arm with an improvement in median PFS from 8.7 months to 26.1 months. In the CDKN2A &lt;0.8 group the HR was 0.793 (95% CI: 0.387, 1.624) with median PFS 11 vs. 11.2 months in the palbociclib plus letroole arm vs. the letrozole alone arm respectively.  Rb negative breast cancer cell lines have been shown to demonstrate resistance to palbociclib, however HR positive luminal A breast cancers typically do not exhibit Rb loss and only four patients (out of 80 samples tested) had Rb loss in this study <ref type="bibr" target="#b31">21,</ref><ref type="bibr">22</ref> . These four patients (two on each arm) did not have a detectable difference in median PFS.</p><p>Reviewer Comment: The results described above are ad hoc and exploratory with low sample size however it appears that CDKN2A loss may predict a level of resistance to palbociclib. This finding is paradoxical given the current knowledge of the Rb pathway and prior pre-clinical work <ref type="bibr" target="#b31">21,</ref><ref type="bibr">22</ref> . However resistance to palbociclib was seen in another study in six out of nine glioblastoma cell lines with CDKN2A deletion <ref type="bibr" target="#b38">29</ref> . Compensatory INK family expression (such as p18) might partially account for some resistance but does not fully explain these findings. There are many mechanisms for gene overexpression and loss of expression; PALOMA-1 only examined gene amplification and deletion. Further analysis is warented and the clinical post marketing commitment is meant to address the better detection of a predictive biomarker.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.9">Analysis of Clinical Information Relevant to Dosing Recommendations</head><p>The dose and schedule of letrozole used in Study A5481003 represents the standard dose and schedule used in the advanced breast cancer setting and reflected in the approved product labeling. Please see the Clinical Pharmacology Review for a discussion of palbociclib dosing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.10">Discussion of Persistence of Efficacy and/or Tolerance Effects</head><p>These issues are addressed throughout the efficacy review given that the primary endpoint of the trial is a time to event endpoint</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.11">Additional Efficacy Issues/Analyses</head><p>A number of sensitivity analyses were conducted by the FDA clinical and biostatistical reviewers. Those most pertinent to the recommended regulatory action are presented below.</p><p>The first sensitivity analysis relied upon combined data from the investigator assessment and the BICR as decided by the review team going over each case of discordance in detail. Ninety six cases where the investigator and the BICR disagreed with respect to type of event or censor, date of event or censor, or event or censor reason were identified. Each of these 96 cases was examined by the review team in a blinded fashion based on the data available to FDA including a review of the narrative, case report form, radiology written report (if available), BICR adjudication, and datasets. The review team made determinations based on each of these cases regarding agreement or disagreement with the investigator assessment. In most cases, the review team agreed with the event to be progressive disease (PD) based on the earliest PD assessment (either by the investigator or the BICR). Per FDA's analysis the median PFS in the palbociclib plus letrozole arm was 18.1 months and in the letrozole alone arm was 8.1 month (HR 0.576) as shown in <ref type="table">Table 30</ref>. The results were consistent with the primary analysis and fell in-between the BICR and investigator-assessed PFS results as shown in <ref type="figure" target="#fig_1">Figure 16</ref> with all three analysis showing a 10 month improvement in median PFS. An additional sensitivity analysis based on progression of bone disease was performed.</p><p>Of the 96 patients above, 42 cases called by the investigator as progression were considered stable disease by BICR (26 on the letrozole alone arm and 16 on the palbociclib plus letrozole arm). Of those 42 cases, 20 were related to progression based on bone disease (14 on the letrozole only arm and 6 on the palbociclib plus letrozole arm). When these 20 patients were censored at the time they were considered progressive disease by the investigator the improvement in median PFS from the palbociclib plus letrozole arm to the letrozole alone arm was 14.7 to 10.1 months respectively with a HR of 0.703 (95% CI: 0.445, 1.105).</p><p>We also conducted an additional "worst case" analysis of PFS, in which patients who discontinued treatment without a documented PFS event were censored in the control arm but were classified as having had a PFS event in the palbociclib plus letrozole arm. In this worst case analysis of PFS using the investigator data, the hazard ratio favors the palbociclib plus letrozole arm as shown in <ref type="table" target="#tab_1">Table 31</ref> below. Reviewer Comment: The results of these sensitivity analyses support the robustness of the primary efficacy analysis.</p><p>Additional sensitivity analyses were run to reassure the reviewers regarding investigator and financial interests. When the sites with the investigators disclosing financial interest in the outcome of the study were removed individually from the analysis population or removed all together the benefit of palbociclib remained (see <ref type="table" target="#tab_33">Table 32</ref>).</p><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) <ref type="bibr">NDA 207,</ref><ref type="bibr">103</ref> 88 supporting this NDA is primarily derived from the Phase 1/2 Study A5481003 or PALOMA-1 (Phase 1, N=12, Phase 2, N=83).</p><p>Key safety findings from PALOMA 1 (A5481003), and from the supportive safety database:</p><p> Deaths: There were no deaths on-study in the Phase 1 part of PALOMA-1. As of 29 November 2013, 1 of 83 patients in the palbociclib plus letrozole arm and 0 of the 77 patients in the letrozole alone arm died on-study (within 28 days of the last dose) in the Phase 2 part of PALOMA-1. Per investigator assessment this one death was considered due to disease progression.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head> Serious Adverse Events (SAE), Discontinuations and Dose Modifications:</head><p>In the Phase 1 portion of PALOMA-1, two patients had SAEs (pulmonary embolism and pain); neither of the SAEs were considered by the investigator to be treatment-related or resulted in permanent or temporary discontinuation of study treatment. In the Phase 2 part of PALOMA-1, 18 patients (21.7%) who received palbociclib plus letrozole, and 5 patients (6.5%) who received letrozole experienced SAEs. One was considered treatment-related SAE (Colitis ischemic). In addition, there were more AEs leading to permanent discontinuation (14.5% palbociclib plus letrozole, 2.6% letrozole alone).</p><p> Grade 3 and 4 Adverse Reactions: There were higher grade 3-4 adverse reactions on palbociclib plus letrozole arm compared to the letrozole alone arm (77.1% vs. 20.8%). One patient in the palbociclib plus letrozole arm had a grade 5 Treatment-Emergent Adverse Event (TEAE) (due to disease progression). A numerical increased rate of pulmonary embolism was observed in the palbociclib plus letrozole arm (4.8%) than in the letrozole alone arm (0%). In addition there was one case of pulmonary embolism seen in Phase 1 part of PALOMA-1 (N=12).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head> Common Adverse Reactions</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1">Methods</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1.1">Studies/Clinical Trials Used to Evaluate Safety</head><p>The clinical safety data supporting this NDA is primarily derived from the Phase 1/2 study PALOMA-1 (A5481003). <ref type="table">Table 33</ref> outlines the safety studies submitted to the NDA, as well as the data cut-offs for initial submission and 120 day safety update. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2">Adequacy of Safety Assessments</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.1">Overall Exposure at Appropriate Doses/Durations and Demographics of Target Populations</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Overall Exposures Phase 2</head><p>Exposure to palbociclib plus letrozole and letrozole in Phase 2 part of PALOMA-1 is summarized in <ref type="table">Table 34</ref> below.</p><p>In the Phase 2 portion (Part 1 and Part 2), the median daily dose of palbociclib was 125.0 mg (range: 79.6 mg to 266.7 mg). The median daily dose of letrozole was 2.5 mg (range: 2.5 mg) in both the palbociclib plus letrozole arm and the letrozole alone arm.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.4">Routine Clinical Testing</head><p>In PALOMA-1, routine laboratory analyses (including hemoglobin, WBC, neutrophils, lymphocytes, platelet count. BUN (or urea), creatinine, albumin, AST/ALT, total bilirubin, alkaline phosphatase, LDH, sodium, potassium, calcium, magnesium, phosphorous, uric acid) were obtained at screening (≤28 day prior to dosing), Day 1 and 14 of cycles 1 and 2 and day 1 of cycles ≥3 and end of treatment visit.</p><p>Physical Examination included an examination of major body systems (at screening and on Day 1 of each cycle), height (at screening only); weight, blood pressure and pulse rate (on Day 1 of each cycle).</p><p>Vital signs, urine pregnancy test, and physical exams were obtained at screening (-30 to -1), during each cycle, and at the study drug completion visit (30 days +/-7 after last dose of study drug).</p><p>Scheduled three consecutive 12-lead ECGs were performed approximately 2 minutes apart to determine the mean QTc interval. Arm A: on Day 1 of Cycles 1 and 3; and on Day 14 of Cycles 1 and 2, Arm B: on Day 1 of Cycles 1, 2, and 3.</p><p>Reviewer Comment: Pregnancy test, urinalysis and INR and aPTT were not collected in the study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.5">Metabolic, Clearance, and Interaction Workup</head><p>See Clinical Pharmacology review.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.6">Evaluation for Potential Adverse Events for Similar Drugs in Drug Class</head><p>Palbociclib is a selective, reversible, small molecule inhibitor of CDK 4 and 6. Cyclin D1 and CDK4/6 are downstream of multiple signaling pathways which lead to cellular proliferation. Through inhibition of CDK4/6, palbociclib reduced cellular proliferation by blocking progression of the cell from G1 into S phase of the cell cycle. There are no other similar drugs in this drug class on the market. Adverse events associated with reduced cellular proliferation may include myelosuppression, GI toxicity, fatigue and alopecia.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3">Major Safety Results</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.1">Deaths</head><p>Deaths in the pivotal study 1003 (PALOMA-1): There were no deaths on-study in the Phase 1 portion of PALOMA-1. As of November 19 th , 2013, one of 83 (1.2%) patients</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Deaths in the Investigator-Initiated Research (IIR) Studies:</head><p>There were no deaths in patients receiving palbociclib monotherapy or in combination with chemotherapy or non-chemotherapy in breast cancer studies as of the November 29 th 2013 data cutoff date.</p><p>Eleven patients had events with a fatal outcome in studies of single-agent palbociclib in non-breast cancer solid tumors. The events with a fatal outcome were disease progression (n=8), cardiac arrest (n=1), death (n=1 [unknown cause of death]), and lung infection (n=1). The fatal events were assessed as related to study treatment in two cases (Case 2011273560 and Case 2011033731). An additional four patients died, but did not have an event with a fatal outcome reported. The events reported in the cases for these four patients were The cause of death was not provided for the other two patients; however, the patient in Case 2011042267 had discontinued the study 63 days prior to death due to clinical progression and the patient in Case 2013281179 permanently discontinued the study in response to the events 21 days prior to death.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comments:</head><p>The majority of the deaths (eight out of 11 cases) appear to be due to disease progression.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.2">Nonfatal Serious Adverse Events</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Phase 1 Part of Study A5481003</head><p>In the phase 1 portion of PALOMA-1 (A5481003), two patients had SAEs; neither of the SAEs were considered by the investigator to be treatment-related or resulted in permanent or temporary discontinuation of study treatment: </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Patient 10011008:</head><p>A 68-year-old, Caucasian female subject started receiving palbociclib on July 27 th , 2009 on a 3/1 schedule and oral letrozole 2.5 mg daily on August 7 th , 2009. On December 21 st , 2009, the subject called clinic complaining of severe pain on left side in the abdominal area, just below ribs and above hip bone. The subject was prescribed ciprofloxacin 500 mg twice daily for 3 days as infection prophylaxis. The subject was told to follow up in clinic or with primary care physician if pain persisted. The subject went to emergency room on with similar complaint and on the same day she was admitted. A CT scan of the lumbar spine revealed a pathologic fracture of the left aspect of the L2 vertebral body. No action was taken with study drugs. Therapeutic measure taken to treat the event included a cortisone injection. The subject was discharged on There were two additional cases of SAEs (Grade 3 nausea and vomiting) reported with the 120 day Safety update (15 April 2014) for the same two patients, none were reported to be fatal or treatment-related.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Phase 2 Part of Study A5481003</head><p>In the phase 2 part of PALOMA-1 (A5481003), as of the November 29 th , 2013 data cutoff date, 18 patients (21.7%) who received palbociclib plus letrozole, and 5 patients (6.5%) who received letrozole experienced Serious Adverse Events (SAEs). </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Patient 10913002 Case of Ischemic Colitis</head><p>A 55-year-old, Caucasian, female from Spain with no history of thromboembolism nor any cardiac disorder or concomitant medications was admitted to hospital on (started therapy February 7 th , 2012) with lower gastrointestinal bleed due to ischemic colitis confirmed by a colonoscopy and biopsy. On admission, labs included: hemoglobin 12.1 g/dl and platelets 232 x10 3/mm3, leukocytes 7.4 x10 9/L. Palbociclib was permanently discontinued on June 27 th , 2012 and on July 17 th , 2012; the subject was discontinued from the study but continued with letrozole out of the study. The subject recovered from the event ischemic colitis and was discharged. Diagnostic of the discharge report included lower gastrointestinal tract hemorrhage and ischemic colitis (mild-moderate).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comment:</head><p>Colitis with ischemia needs to be graded as grade 4 per CTCAEV3. Given there were additional 5 cases of PE with palbociclib present, there may be a potential causality for thromboembolic events with palbociclib.</p><formula xml:id="formula_3">Reference ID: 3691211 (b) (6) (b) (6)</formula><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) <ref type="bibr">NDA 207,</ref><ref type="bibr">103</ref> With the 120 day safety update (15 April 2014), a total of 19 patients (22.9%) in the palbociclib plus letrozole arm and 6 patients (7.8%) in the letrozole alone arm experienced at least 1 SAE in the Phase 2 part of the study. One additional patient of the palbociclib plus letrozole arm experienced any SAE as of 15 April 2014: 19 patients (22.9%) reported in the safety update versus 18 (21.7%) reported in the initial report for the total Phase 2 population. Four SAEs including Grade 3 campylobacter infection, Grade 2 gastritis, Grade 2 mastoiditis, and Grade 3 renal failure acute, which were not reported for the palbociclib plus letrozole arm as of 29 November 2013, were reported for that treatment arm as of April 15 th , 2014. None of these four SAEs was assessed as related to treatment. Two new SAEs, plasma cell myeloma and upper limb fracture, were reported for the letrozole alone arm as of April 15 th , 2014.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Study A5481001: A Phase 1 Clinical, Pharmacokinetic, and Pharmacodynamic Evaluation of 2 Schedules of Oral PD 0332991, a Cyclin-Dependent Kinase Inhibitor, in Patients with Advanced Cancer</head><p>Seven patients (9.5%) experienced a TEAE with a maximum severity of Grade 4 (. The Grade 4 TEAEs were neutropenia (4.1%) and anemia, thrombocytopenia, blood uric acid increased, hyperglycemia, and pulmonary embolism (1.4% each).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Ongoing Advanced Breast Cancer Phase 3 Study A5481008</head><p>As of the November 29 th , 2013 data cut-off date, one patient (1/126 [0.8%]) experienced an event with a fatal outcome in ongoing Study A5481008; the event, cardiac arrest, was not considered related to the study drugs (blinded therapy and letrozole) by the investigator or the Applicant. The patient had a history of left axillary thrombophlebitis and pulmonary embolism was reported to be the suspected reason for the patient's death.</p><p>Reviewer Comment: This is the only reported fatal case with pulmonary embolism. However, this study is blinded and it is not clear if the patient was on the palbociclib plus letrozole arm.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.3">Dropouts and/or Discontinuations</head><p>As of the November 29 th , 2013 data cut-off date, 12 patients (14.5%) discontinued palbociclib plus letrozole due to an AE, and two patients (2.6%) discontinued letrozole due to an AE <ref type="table" target="#tab_21">(Table 37)</ref>.</p><p>With 120 day safety update (April 15 th , 2014), there was one additional patient in the palbociclib plus letrozole arm of the Phase 2 Part 2 cohort who experienced treatmentrelated AEs of Grade 2 weight decreased and Grade 3 fatigue leading to permanent discontinuation from treatment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer comment:</head><p>The majority of patients in the palbociclib did not have concomitant events in the Infections and Infestations SOC. It is reassuring that only one patient with neutropenia had a concomitant Grade 3/4 event (Influenza) in this SOC.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3.5.2">Infections</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Phase 1 Part of Study A5481003</head><p>Six patients experienced TEAEs MedDRA system organ class (SOC) Infections and Infestations. None experienced a Grade 3/4 event. The most frequently reported TEAEs (&gt;2 patients) within this SOC were Upper respiratory tract infection (3 patients) and Sinusitis (2). Influenza, Tooth infection, and Upper respiratory tract infection experienced by 1 patient each were considered to be related to treatment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Phase 2 Part of Study A5481003</head><p>A higher rate of infections was observed in the palbociclib plus letrozole arm (55.4%) than in the letrozole alone arm (33.8%). There were no discontinuations from study treatment due to an infection-related event and no febrile neutropenia. Three patients (3.6%) had Grade 3 events (influenza, pneumonia, upper respiratory tract infection, and staphylococcal bacteremia), and one patient (1.2%) (Subject ID 10083003) had a Grade 4 event (gangrene) in the infections and infestations SOC.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Gangrene Case (Subject ID 10083003)</head><p>A 64 year old woman from Hungry with history of diabetes and hypertension started to receive palbociclib and letrozole on June 28 th , 2011. Palbociclib and letrozole were stopped on July 1 st , 2013 and July 8 th , 2013 respectively due to progression of primary disease. On an unknown date in the beginning of , the subject was found to have some infection on her left big toe. Gangrene on the left hallux and left leg phlegmone was identified. She was treated with antibiotics. On the subject was admitted to the hospital due to significant pain for 2 days, for which she could not sleep. Infectious and necrotic condition of the leg progressed therefore amputation of left big toe with gangrene and necrectomy of the left foot was done on the same day with urgency. The subject eventually expired on in the same course of hospitalization. The event of gangrene was considered by the investigator and applicant to be due to diabetes mellitus.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer Comment:</head><p>There is a possibility that palbociclib could have contributed to the development of gangrene. The event death had occurred outside of reporting period therefore the event was only considered Grade 4.</p><p>Reference ID: 3691211</p><formula xml:id="formula_4">(b) (6) (b) (6) (b) (6)</formula><p>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4.1">Common Adverse Events</head><p>The most common (≥20%) TEAEs observed following treatment with palbociclib plus letrozole were neutropenia, leukopenia, fatigue, anemia, nausea, arthralgia, alopecia, diarrhea, and hot flush, and the most common (≥20%) TEAE observed following treatment with letrozole alone was fatigue.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4.2">Laboratory Findings</head><p>Per protocol, hematology and blood chemistry were obtained at baseline, Day 1 and 14 of the first two cycles and Day 1 of the cycles ≥3. Hematology included hemoglobin, WBC, neutrophils, lymphocytes, platelet count. Blood chemistry included BUN (or urea), creatinine, albumin, AST/ALT, total bilirubin, alkaline phosphatase, LDH, sodium, potassium, calcium, magnesium, phosphorous, uric acid.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4.3">Vital Signs</head><p>Per protocol, only blood pressure and pulse rate were captured in CRF (on screening, and Day 1 of each cycle). These were obtained at screening and during each follow up visit. However, changes in vital signs thought to be abnormal (by the investigator) were reported as AEs and graded as per NCI CTCAE v.3.0.</p><p>No patients had SAEs reporting events consistent with clinically relevant changes in blood pressure, pulse rate, respiratory rate, or body temperature during the Phase 1/2 study and no clinically meaningful changes were observed in the treatment arm as compared to the control arm.</p><p>In Phase 2 (Ph2P1+Ph2P2), a higher percentage of patients in the palbociclib plus letrozole arm (30 patients, 36.1%) had a systolic BP value of &gt;150 mmHg or a diastolic BP of &gt;100 mmHg than in the letrozole alone arm <ref type="bibr">(19 patients, 24.7%</ref>). An additional patient in the palbociclib plus letrozole arm had a systolic BP value of &gt;200 mmHg or diastolic BP of &gt;110 mmHg.</p><p>A similar percentage of patients in each arm had a maximum increase from baseline in systolic BP ≥20 mmHg (19 patients [22.9%] and 23 patients <ref type="bibr">[29.9%]</ref> in the palbociclib plus letrozole arm and the letrozole alone arm, respectively). Four patients (4.8%) and 5 patients (6.5%) in the palbociclib plus letrozole and the letrozole arm, respectively, had a maximum increase from baseline in systolic BP ≥40 mmHg. Another patient in the palbociclib plus letrozole arm had a maximum increase from baseline in systolic BP ≥60 mmHg.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4.4">Electrocardiograms (ECGs)</head><p>For full details, see Clinical Pharmacology review and QT-IRC review.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4.6">Immunogenicity</head><p>Not applicable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5">Other Safety Explorations</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5.1">Dose Dependency for Adverse Events</head><p>See the Clinical Pharmacology Review</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5.2">Time Dependency for Adverse Events</head><p>See the Clinical Pharmacology Review</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5.3">Drug-Demographic Interactions</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Age</head><p>The overall incidence of SAEs was higher in patients ≥65 years (29.7%) than in patients &lt;65 years (15.2%) in the palbociclib plus letrozole arm. Discontinuations due to AEs were similar for patients &lt;65 years (13.0%) and patients ≥65 years (16.2%) in the palbociclib plus letrozole arm. The most frequently reported (≥20%) TEAEs in patients &lt;65 years were neutropenia, fatigue, anemia, nausea, diarrhea, vomiting, constipation, and thrombocytopenia. The most frequently reported (≥20%) TEAEs in patients ≥65 years were fatigue, nausea, neutropenia, dyspnea, anemia, constipation, diarrhea, flatulence, rash, and abdominal pain. (See <ref type="table">Table 43</ref>). Reviewer comment: There were some differences in safety parameters based on age in Study A5481003, but these differences do not indicate that dosage adjustment is required.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Race</head><p>The majority of patients in both the palbociclib plus letrozole arm (75/83 [90.4%]) and the letrozole alone arm (69/77) of the Phase 2 part of advanced breast cancer Study 1003 were White. In the palbociclib plus letrozole arm, only six patients were Asian, one patient was Black, and one patient was classified as "Other" race. In the letrozole alone arm, only three patients were Asian, one patient was Black, and four patients were classified as "Other" race.</p><p>Reviewer Comment: Due to the small numbers of patient, it is difficult to draw meaningful conclusions regarding the effect of race on the safety of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Gender</head><p>All patients in advanced breast cancer Study 1003 were female.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Geographic Region</head><p>The majority of the patients in the palbociclib plus letrozole (79.5%) and letrozole alone arms (70.1%) were treated in Europe. In addition, 16.9% of patients (14/83) in the palbociclib plus letrozole arm and 26.0% of patients (20/77) in the letrozole alone arm were treated in North America. The remaining patients (3 in each treatment group) were in other regions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reviewer comment:</head><p>Due to the small numbers of patient, it is difficult to draw meaningful conclusions regarding the effect of region on the safety of palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5.4">Drug-Disease Interactions</head><p>See the Clinical Pharmacology review.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.5.5">Drug-Drug Interactions</head><p>For full details, see Clinical Pharmacology Review.</p><p>In nonclinical studies, palbociclib and its active lactam metabolite, PF-05089326, demonstrated little or no inhibition of cytochrome P450 (CYP) 1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, or CYP2D6 enzyme activities. However, palbociclib and its metabolite, PF-05089326, caused time-dependent inhibition of CYP3A-mediated midazolam 1'-hydroxylase and testosterone 6β-hydroxylase activities and, therefore, may have the potential for PK DDI with drugs for which CYP3A-mediated metabolism constitutes the primary mechanism of clearance.</p><p>Palbociclib did not cause induction of CYP1A2, CYP2B6, CYP2C8, or CYP3A4 messenger ribonucleic acid expression and/or enzyme activity in vitro in human hepatocytes at concentrations exceeding 50-fold of the palbociclib unbound steadystate plasma Cmax determined at therapeutic doses in humans; thus, the potential for palbociclib to induce these enzymes is considered to be low at clinically relevant concentrations.</p><p>The potential for palbociclib to inhibit the activities of selected uridine diphosphate glucuronosyltransferase (UGT) enzymes (UGT1A1, UGT1A4, UGT1A6, UGT1A9, and UGT2B7) was also assessed, and the likelihood of DDI associated with inhibition of these Phase 2 enzymes at clinically relevant concentrations is considered low. Inhibition of efflux transporters (p-glycoprotein [P-gp] and breast cancer resistant protein [BCRP]), hepatic uptake transporters (organic anion-transporting polypeptide (OATP) 1B1 and OATP1B3), hepatic efflux transporter (bile salt export pump [BSEP]), and renal transporters (organic anion transporter [OAT] 1, OAT3, and organic cation transporter [OCT] 2) by palbociclib was assessed in vitro and was considered to be unlikely at clinically relevant palbociclib concentrations.</p><p>In vitro, palbociclib is metabolized mainly by CYP3A and sulfotransferase 2A1 enzymes. Drugs that are known to induce or inhibit the activities of these enzymes may alter the clearance and systemic exposure of palbociclib.</p><p>As an orally administered drug that exhibits pH-dependent solubility, co-administration with gastric acid-reducing agents could significantly reduce the solubility of palbociclib in stomach and impair its absorption as well as bioavailability due to elevated gastric pH.</p><p>Reviewer Comment: Given palbociclib is metabolized mainly by CYP3, strong inducers and inhibitors of this enzyme should be avoided. In addition needs to be avoided. These are appropriately addressed in the proposed PI.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.6">Additional Safety Evaluations</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.6.1">Human Carcinogenicity</head><p>See Pharmacology/Toxicology Review.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.6.2">Human Reproduction and Pregnancy Data</head><p>See Pharmacology/Toxicology Review. In Study A5481003, one patient (11053004) took 100 mg, vomited and then took another 100 mg, two patients (10011008 and 10553003) received 200 mg instead of 125 mg for 13 and 21 days, respectively, and one patient (10793003) received 250 mg instead of 125 mg for 18 days. Patient 10011008 experienced nausea, vomiting, and dizziness, but the events resolved and no clinically significant findings were reported. There were no associated AEs reported for Patients 11053004 and 10553003; Patient 10793003 permanently discontinued due to Grade 4 neutropenia associated with the overdose. The patient did not receive any treatment for the neutropenia, which was considered resolved on follow-up Day 11 (Study Day 29). While the neutropenia was ongoing, the patient experience a number of non-serious AEs, thrombocytopenia, diarrhea, nausea, vomiting, mucositis, dysgeusia, peripheral neuropathy, and epistaxis.</p><p>Patient 10334002 from Study A5481004 received 150 mg QD for 12 days instead of 75 mg; no relevant AEs and no SAEs were experienced during this period.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Drug Abuse</head><p>There are no data available on the potential for drug abuse or dependence with palbociclib.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Withdrawal and Rebound</head><p>A formal study has not been conducted by the applicant to investigate withdrawal.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.7">Additional Submissions / Safety Issues</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Hyperglycemia</head><p>Altered glucose metabolism was observed in rats in longer duration studies, and correlated with pancreatic islet cell vacuolation representing degenerative changes consistent with loss of pancreatic beta cells and corresponding to decreases in insulin production. Effects on eyes (cataracts/lens degeneration), incisor teeth (ameloblast degeneration), kidney (vacuolation of tubular epithelial cells), and adipose tissue (atrophy) were considered secondary responses to the increased glycemia. Changes in glucose metabolism, the pancreas, and related secondary toxicities were not observed in dogs.</p><p>The pharmacology-toxicology review team sent an information request in order to evaluate whether there was a possible hyperglycemia signal in humans, measured glucose laboratory values (Study A5481001), reported adverse events (Study A5481001 and A5481003), and reported serious adverse events (across the Pfizer Safety database) were analyzed by the Applicant. These analyses did not indicate any apparent effect of duration of palbociclib exposure or of palbociclib dose on glucose levels (Study A5481001), nor was there an imbalance of the number of adverse event reports between the randomized treatment arms of Study A5481003. Only one serious adverse event of hyperglycemia was reported in a patient with pre-existing diabetes treated with dexamethasone in Study A5481004.</p><p>Even though the likelihood of hyperglycemia occurring in humans as a result of treatment with palbociclib appears to be low based on both the differences in pancreatic beta cell biology and the lack of an apparent signal in the available clinical database, The Applicant will monitor for and evaluate potential signals of hyperglycemia in ongoing and planned clinical studies using a variety of measures, including HbA1c, which best reflects chronic glucose elevations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Postmarket Experience</head><p>Palbociclib is not marketed in the United States or other jurisdiction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9">Appendices</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9.1">Advisory Committee Meeting</head><p>No advisory committee meeting was held for this NDA.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9.2">Labeling Recommendations</head><p>There were extensive internal labeling discussions with all review disciplines and labeling negotiations are ongoing at the time of finalization of this review and have not been finalized. Key clinical labeling recommendations included: ---------------------------------------------------------------------------------------------------------This is a representation of an electronic record that was signed electronically and this page is the manifestation of the electronic signature.   Has the applicant submitted adequate information to assess the arythmogenic potential of the product (e.g., QT interval studies, if needed)? X 23. Has the applicant presented a safety assessment based on all current worldwide knowledge regarding this product? X <ref type="bibr" target="#b33">24</ref>. For chronically administered drugs, have an adequate number of patients (based on ICH guidelines for exposure 1 ) been exposed at the dose (or dose range) believed to be efficacious? X 25. For drugs not chronically administered (intermittent or short course), have the requisite number of patients been exposed as requested by the Division? X <ref type="bibr" target="#b35">26</ref>. Has the applicant submitted the coding dictionary 2 used for mapping investigator verbatim terms to preferred terms? X 1 For chronically administered drugs, the ICH guidelines recommend 1500 patients overall, 300-600 patients for six months, and 100 patients for one year. These exposures MUST occur at the dose or dose range believed to be efficacious. <ref type="bibr">2</ref> The "coding dictionary" consists of a list of all investigator verbatim terms and the preferred terms to which they were mapped. It is most helpful if this comes in as a SAS transport file so that it can be sorted as needed; however, if it is submitted as a PDF document, it should be submitted in both directions (verbatim -&gt; preferred and preferred -&gt; verbatim).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>---------------------------------------------------------------------------------------------------------</head><p>If the Application is not fileable from the clinical perspective, state the reasons and provide comments to be sent to the Applicant.</p><p>Please identify and list any potential review issues to be forwarded to the Applicant for the 74day letter. </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head></head><label></label><figDesc>................ 42 Table 10: Sensitivity Analyses ................................................................................... 43 Table 10: Sensitivity Analyses (Continued) .............................................................. 44 Table 11: Protocol Deviation Table............................................................................ 50 Table 12: PALOMA-1 (Phase 2) Enrollment by country ........................................... 51 Table 13: Baseline Demographics ............................................................................. 52 Table 14: Baseline Disease Characteristics.............................................................. 53 Table 15: Prior Breast Cancer Treatment.................................................................. 54 Table 16: Stratification Factors .................................................................................. 56 Table 17: Concomitant Bisphosphonates on Study................................................. 57 Table 18: Primary endpoint: Investigator-assessed PFS......................................... 60 Table 19: Investigator-assessed PFS by Part ........................................................... 61 Table 20: PFS Sensitivity analyses in ITT population (Reviewer Table)................. 63 Table 21: BICR-assessed PFS.................................................................................... 64 Table 22: BICR-assessed PFS by Part....................................................................... 65 Table 23: Sensitivity analyses based on BICR-assessed PFS ................................ 67 Table 24: Ad-hoc Sensitivity Analyses for Progression-Free Survival (Applicant Table) ............................................................................................................ 68 Table 25: BICR Censoring .......................................................................................... 69 Table 26: Investigator Censoring............................................................................... 70Table 27: Disagreements between BICR and Investigator Assessments .............. 71 Table 28: OverallSurvival........................................................................................... 72 Table 29: Part 1 PFS by Biomarker status................................................................ 78 Table 30: FDA Analysis, ITT Population.................................................................... 85 Table 31: FDA, Worst Case Analysis of PFS, ITTPopulation.................................. 86 Table 32: Sensitivity analyses by sites with financial disclosure ........................... 87 Table 33: Summary of Safety Populations submitted to NDA................................. 90 Table 34: Drug Exposure and Dose Intensity-Phase 2: As Treated Set................ 93 Table 35: Summary of Deaths On Study (On Treatment or Within 28 Days of Last Dose) -Industry-Sponsored Palbociclib Clinical Studies ....................... 95 Table 36: SAE preferred terms in either treatment Arm (All Causalities) -Phase 2 A5481003: As Treated Set (as of 29 November 2014) ............................... 98 Table 37: Treatment-Emergent Adverse Events Associated With Permanent Discontinuation by Preferred Term and (All Causalities) -Phase 2: As Treated Set ................................................................................................. 101 Reference ID: 3691211 Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 6</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 1 :</head><label>1</label><figDesc>Cyclin D-Cyclin Dependent Kinases 4/6-Retinoblastoma Pathway ...... 12 Figure 2: PALOMA-1 (A5481003) Phase 2 Study Design (Applicant Figure).......... 29 Figure 3: PALOMA-2 (A5481008) Schema...</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head></head><label></label><figDesc>..... 47 Figure 4: Patient Enrollment and Randomization in TrialA5481003 ...................... 59 Figure 5: KM Curve Investigator Assessed PFS...</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 7 :</head><label>7</label><figDesc>..... 60 Figure 6: KM Curve Investigator-assessed PFS by Part.......................................... 61 KM Curve BICR-assessed PFS ...</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Figure 11 :Figure 15 :</head><label>1115</label><figDesc>..... 64 Figure 8: KM Curve BICR-assessed PFS by Part ..................................................... 66 Figure 9: Overall Survival ........................................................................................... 73 Figure 10: Biomarker status in the trial..................................................................... 76 Distribution of FISH values across both parts of the study .................. 77 Figure 12: KM Curve of Part 1 broken down by biomarker status .......................... 79 Figure 13: Primary and Subgroup Analyses of Investigator-Assessed Progression-Free Survival with Stratification Factors per CRF: Intent-to-Treat Population (Applicant Figure) ........................................................... 81 Figure 14: KM curve for PFS by CCND1 cut-off ratio of 1.5 (Statistical ReviewerFigure)........................................................................................................... 82 KM curve for PFS by CDKN2A cut-off ratio of 0.8 (Statistical Reviewer Figure)........................................................................................................... 83Figure 16: KM Curve FDA analysis with Investigator and BICR, ITT population (Statistical ReviewerFigure)....................................................................... 85Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>29 Figure 2 :</head><label>292</label><figDesc>Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103 PALOMA-1 (A5481003) Phase 2 Study Design (Applicant Figure) Source: CSR p56</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head></head><label></label><figDesc>Primary Analysis Set (Intent To Treat [ITT]): All randomized patients from the Phase 2 study (both Part 1 and Part 2) as randomized regardless of what treatment, if any, was received. Patients not enrolled or randomized (screened only patients) were not included in any analysis. Similar to the Primary Analysis Set, each Part of the Phase 2 study was independently analyzed as their respective ITT populations: all randomized patients from Part 1 where patients are classified according to the randomized treatment regardless of what treatment, if any, was received and all randomized patients from Part 2 where patients are classified according to the randomized treatment regardless of what treatment, if any, was received. For objective response only randomized patients with measurable disease at baseline were included. For duration of response only responders were to be included.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Figure 3 :</head><label>3</label><figDesc>PALOMA-2 (A5481008) SchemaBC: breast cancer, QD: daily, *3/1 dosing schedule of 21 days on, 7 days off. Source: Tabular listing of all clinical studies of palbociclib</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Figure 4 :</head><label>4</label><figDesc>At the time of the data cut off on November 29 th , 2013, 26 patients were still ongoing in the study with 19 (22.6%) on the palbociclib plus letrozole arm and 8 (9.9%) on the letrozole alone arm. One patient in the palbociclib plus letrozole arm died at end of treatment. At the end of study, 30 (35.7%) patients on the palbociclib plus letrozole arm had died and 31 (38.3%) on the letrozole alone arm had died. Forty nine (58.3%) patients on the palbociclib plus letrozole arm and 42 (51.9%) on the letrozole alone arm were alive and being followed.Reference ID: 3691211Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety)NDA 207,103    59 Patient Enrollment and Randomization in Trial A5481003 I/E: Inclusion/Exclusion criteria (165 for not meeting biomarker criteria in Part 2) Source: CSR</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Reference ID: 3691211</head><label>3691211</label><figDesc>Clinical Review IBRANCE (Palbociclib)Beaver (efficacy) and Amiri (safety) NDA 207,103</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Figure 10 :</head><label>10</label><figDesc>Biomarker status in the trial I/E: inclusion/exclusion criteria; Let: Letrozole Source: CSR</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>Figure 11 :</head><label>11</label><figDesc>Distribution of FISH values across both parts of the studyA. CCND1 FISH valuesCCND1 cut off for amplification &gt; 1.5 shown with the red line. Note that two patients fall in the upper range of the FISH values and thus are not depicted on thisFigure.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head></head><label></label><figDesc>Source: BMP.xls</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>Figure 14 :</head><label>14</label><figDesc>KM curve for PFS by CCND1 cut-off ratio of 1.5 (Statistical Reviewer Figure)Source: BMP.xpt and eedrsp.xpt</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>Figure 15 :</head><label>15</label><figDesc>KM curve for PFS by CDKN2A cut-off ratio of 0.8 (Statistical Reviewer Figure) Source: BMP.xpt and eedrsp.xpt</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head></head><label></label><figDesc>Grade 3 febrile neutropenia (Case 2011042267), Grade 3 fall and Grade 2 back pain (Case 2013272871), urinary tract infection and deep vein thrombosis (Case 2013281179 [no grade provided]), and Grade 3 meningitis, Grade 3 headache, and Grade 1 cerebrospinal fluid leakage (Case 2011125366). Of these events, Grade 3 febrile neutropenia was considered related to treatment. Two of the four patients died of disease progression (Cases 2013272871 and 2011125366).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16"><head></head><label></label><figDesc>in Study A5481003 and one patient in Study A5481004) have reported a palbociclib overdose as of April 15 th , 2014 data (120 day safety update).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17"><head></head><label></label><figDesc>-------------------------------------------------</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18"><head>X 20 .SAFETY 21 .</head><label>2021</label><figDesc>Has the application submitted a rationale for assuming the applicability of foreign data to U.S. population/practice of medicine in the submission? X Has the applicant presented the safety data in a manner consistent with Center guidelines and/or in a manner previously requested by the Division? X 22.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19"><head>Laleh</head><label></label><figDesc>-------------------------------------------------</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table of Tables</head><label>of</label><figDesc></figDesc><table /><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 1 :</head><label>1</label><figDesc></figDesc><table /><note>Available Therapy for the Proposed Patient Population ........................... 13 Table 2: Summary of OSI findings ............................................................................. 18 Table 3: Summary of Financial Disclosures from Study A5481003 ........................ 20 Table 4: Key Clinical Study</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>. 34 Table 7: PALOMA-1 Phase 2 Schedule of Assessments (Applicant Table) ........... 36 Table 8: Summary of Key Efficacy Analyses for Phase 2........................................ 41 Table 9: Rules for Determining PFS Status and Date (Applicant</head><label></label><figDesc></figDesc><table /><note>..... 33 Table 6: Recommended Palbociclib Dose Modifications Based on Treatment- Related Toxicity in the Prior Cycle (Applicant Table) ..............................</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 38 :. 105 Table 41: Summary of Cases With Pulmonary Embolisms reported from Study A5481003 as of 29 November 2013...</head><label>38</label><figDesc></figDesc><table /><note>Association of Neutropenia and Infection-Phase 2 .............................. 102 Table 39: List of Infections seen on Phase 2 Part of Study A5481003 ................. 104 Table 40: Treatment-Emergent Adverse Events In The System Organ Class of Eye Disorders (All Causalities) -Phase 2 A5481003 ....................................</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4"><head>..... 106 Table 42: Analysis Populations for Patients in Phase</head><label></label><figDesc></figDesc><table /><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5"><head>.... 108 Table 43: Summary of TEAEs, SAE and Discontinuations due to AEs by Age ... 109</head><label></label><figDesc></figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6"><head>Table of Figures</head><label>of</label><figDesc></figDesc><table /><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10"><head></head><label></label><figDesc>Exemestane is not approved for first-line treatment however is used in this setting occasionally. Patients with hormone receptor positive advanced disease should be treated in the first-line setting with hormonal therapy if appropriate.23  Patients in whom visceral crisis is impending should not be treated with hormonal therapy and instead be treated with chemotherapy. Patients whose tumors overexpress HER2 have separate prognoses and distinct treatment options.</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell>modulator.</cell></row><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_15"><head></head><label></label><figDesc>Open-Label, Randomized Study of the Safety, Efficacy, and Pharmacokinetics of Letrozole Plus PD 0332991 (Oral CDK 4/6 Inhibitor) and Letrozole Single Agent for the First-Line Treatment of ER Positive, HER2 Negative Advanced Breast Cancer in Postmenopausal Women"</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell>"Phase 1/2,</cell></row><row><cell>(b) (4)</cell></row><row><cell>28</cell></row><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_17"><head></head><label></label><figDesc>10 fmol of H3 -estrogen binding per mg of DNA for IF/EIA technique. In case of use of immunohistochemistry, the report should mention positive receptor status according to the standards of the laboratory.  HER2 negative breast cancer by FISH or IHC.  Paraffin-embedded tumor block(s) available for centralized assessment of Rb and other cell cycle-related proteins. Phase 2 Part 2 only: CCND1 amplification and/or loss of p16 as determined by the central laboratory.  Measurable disease according to RECIST or bone-only disease (Phase 2 only).  Previously irradiated lesions are deemed measurable only if progression is documented at the site after completion of radiation.  Females, 18 years of age or older.  Postmenopausal status defined as: o Prior bilateral surgical oophorectomy; o Amenorrhea and age ≥60 years; o Age &lt;60 years and amenorrhea for 12 or more months in the absence of chemotherapy, tamoxifen, toremifene, or ovarian suppression and FSH and estradiol in the postmenopausal ranges.  Eastern Cooperative Oncology Group (ECOG) Performance status 0 or 1 (see Appendix 1).  Resolution of all acute toxic effects of prior therapy or surgical procedures to CTCAE grade &lt;1 (except alopecia or other toxicities not considered a safety risk for the patient).  Adequate organ function as defined by the following criteria: o Absolute neutrophil count (ANC) ≥1500/L; o Platelets ≥100,000/L; o Serum aspartate transaminase (AST) and serum alanine transaminase (ALT) ≤3 x upper limit of normal (ULN), or AST and ALT ≤5 x ULN if liver function abnormalities are due to underlying malignancy;</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_18"><head></head><label></label><figDesc>Brain metastases (even if treated and stable), spinal cord compression (history or presence of), carcinomatous meningitis, or leptomeningeal disease.  Major surgery within 3 weeks of first study treatment.  Prior treatment with: o Any anti-cancer therapies for advanced disease, with the exception of radiation therapy to &lt;25% of bone marrow at least 2 weeks prior to study treatment initiation (see Appendix 2); o (neo)adjuvant letrozole with disease recurrence ≤12 months (Phase 2 only); o Any CDK inhibitor.  Current treatment with: o Any anti-cancer therapies for advanced disease; o Any experimental treatment on another clinical trial; o Therapeutic doses of anticoagulant. Low dose anticoagulants for deep vein thrombosis prophylaxis are allowed. Low molecular weight heparin is allowed. Aspirin is permitted.  Current use or anticipated need for: o food or drugs that are known strong CYP3A4 inhibitors (ie, grapefruit juice, verapamil, ketoconazole, miconazole, itraconazole, posaconazole, erythromycin, clarithromycin, tilithromycin, indinavir, saquinavir, ritonavir, nelfinavir, lopinavir, atazanavir, amprenavir, fosamprenavir, nefazodone, diltiazem, and delavirdine) -for both Phases 1 and 2; o drugs that are known strong CYP3A4 inducers (ie, carbamazepine, dexamethasone, felbamate, omeprazole, phenobarbital, phenytoin, primidone, rifabutin, rifampin, rifapentin, and St. John's Wort) -for Phase 1 only.  Diagnosis of any secondary malignancy within the last 3 years, except for adequately treated basal cell or squamous cell skin cancer, or carcinoma in situ of the cervix. Any of the following in the previous 6 months: myocardial infarction, severe/unstable angina, ongoing cardiac dysrhythmias of NCI CTCAE grade ≥2, atrial fibrillation of any grade, coronary/peripheral artery bypass graft, symptomatic congestive heart failure, cerebrovascular accident including transient ischemic attack, or symptomatic pulmonary embolism.  Active inflammatory bowel disease or chronic diarrhea. Short bowel syndrome.</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell></cell></row><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_19"><head>Table 5 : Dose Levels (Applicant Table)</head><label>5</label><figDesc></figDesc><table><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_20"><head>Table 6 : Recommended Palbociclib Dose Modifications Based on Treatment- Related Toxicity in the Prior Cycle (Applicant</head><label>6</label><figDesc></figDesc><table /><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_21"><head>Table 7 : PALOMA-1 Phase 2 Schedule of Assessments (Applicant Table)</head><label>7</label><figDesc></figDesc><table><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_22"><head></head><label></label><figDesc>The primary efficacy endpoint of PFS, based on investigator assessment, is defined as the time from randomization to the first documented disease progression or death due to any cause, whichever occurs first. PFS (days) = [date of progression or date of death on study or censoring-date of randomization +1] Documentation of progression was by objective disease assessment as defined by the Response Evaluation Criteria in Solid Tumors (RECIST). Patient Reported Outcome (PRO) of pain using the modified Brief Pain Inventoryshort form (mBPI-sf).  Tumor tissue levels including but not limited to Rb, p16/INK4A, CCND1, CDK4,</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell>Primary Endpoint:</cell></row><row><cell> Secondary Endpoints:</cell></row></table><note> Objective Response (OR)  Clinical Benefit Rate (CBR)  Time to Tumor Progression (TTP)  Duration of response (DR)  Overall Survival (OS): the time for randomization date to date of death due to any cause  Overall Safety Profile </note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_23"><head>Table 9 : Rules for Determining PFS Status and Date (Applicant Table)</head><label>9</label><figDesc></figDesc><table><row><cell>Source SAP p61-62</cell></row></table><note>Reviewer Comment: An independent central review of PFS was not planned in the protocol. This review was performed by Pfizer per FDA recommendation at the End Of Phase 2 Meeting in October 2012.Reference ID: 3691211</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_26"><head>Table 14</head><label>14</label><figDesc></figDesc><table><row><cell>.1.1.1.b</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_27"><head>Table 25 : Ad-hoc Sensitivity Analyses for Progression-Free Survival (Applicant Table)</head><label>25</label><figDesc></figDesc><table><row><cell>P=palbiciclib; L=Letrozole; SA: sensitivity analysis; CI=confidence interval; BICR=Blinded</cell></row><row><cell>Independent Central Review; INV=investigator; PD=disease progression; AE=adverse event</cell></row><row><cell>Source: 14.2.13.3.b</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_28"><head>Table 29 : Overall Survival Phase 2 Part 1 and Part 2</head><label>29</label><figDesc></figDesc><table><row><cell>Part 1</cell><cell>Part 2</cell></row><row><cell>N=66</cell><cell>N=99</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_30"><head>Table 14</head><label>14</label><figDesc></figDesc><table /><note>.1.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_33"><head>Table 32 : FDA, Worst Case Analysis of PFS, ITT Population</head><label>32</label><figDesc></figDesc><table><row><cell></cell><cell>Palbociclib + Letrozole</cell><cell>Letrozole</cell></row><row><cell></cell><cell>N=84</cell><cell>N= 81</cell></row><row><cell>PFS events, n (%)</cell><cell>65 (77%)</cell><cell>59 (73%)</cell></row><row><cell>Median [95% CI], months</cell><cell>13.1 (11, 17.5)</cell><cell>10.2 (5.7, 12.6)</cell></row><row><cell>HR (95% CI)</cell><cell cols="2">0.793 (0.546, 1.152)</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_34"><head></head><label></label><figDesc>A higher rate of Eye Disorders was observed in the palbociclib plus letrozole arm (20.5%) than in the letrozole alone arm (5.2%).Total Eye disorders includes the following PTs: Blindness, Cataract, Conjunctivitis Diplopia, Dry eye, Eye irritation, Eye pruritus, Eye swelling, Lacrimation increased, Photophobia, Vision blurred, Visual acuity reduced Visual impairment, Vitreous floaters</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell> Eye Disorders:</cell></row><row><cell>: In Phase 2 part of PALOMA-1, the common</cell></row><row><cell>TEAEs (i.e., ≥20% of patients) in the palbociclib plus letrozole arm were</cell></row><row><cell>Neutropenia (74.7%), Leukopenia (43.4%), Fatigue (41.0%), Anemia (34.9%),</cell></row><row><cell>Nausea (27.7%), Arthralgia (22.9%), Hot flush (22.9%), Alopecia (21.7%), and</cell></row><row><cell>Diarrhea (20.5%); while the most frequently reported TEAE in the letrozole alone</cell></row><row><cell>arm was Fatigue (23.4%).</cell></row><row><cell> Neutropenia: Neutropenia was the most frequently reported TEAE (Phase 1:</cell></row><row><cell>91.7%; Phase 2: 75.9% (49.4% with Grade 3 and 6% with Grade 4) in patients</cell></row><row><cell>who received palbociclib plus letrozole in Study 1003. No cases of febrile</cell></row><row><cell>neutropenia, neutropenic sepsis, or neutropenic infection were reported in</cell></row><row><cell>PALOMA-1.</cell></row><row><cell> Infections: A higher rate of infections was observed in the palbociclib plus</cell></row><row><cell>letrozole arm (55.4%) than in the letrozole alone arm (33.8%). There were no</cell></row><row><cell>cases of febrile neutropenia or discontinuations from study treatment due to an</cell></row><row><cell>infection-related event in PALOMA-1.</cell></row><row><cell>89</cell></row><row><cell>Reference ID: 3691211</cell></row></table><note> Pulmonary Embolism:</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_35"><head></head><label></label><figDesc>This definition of AE led to the under reporting of many of abnormal laboratory findings and possibly other types of abnormal subjective and objective findings in the patients. patients with breast cancer or other malignant solid tumors) were ongoing or completed as of the November 29 th , 2013 data cutoff date. Approximately 229 patients were enrolled in these IIR studies as of that data cutoff date.On November 21 st , 2014, the Applicant submitted the 120 day safety update report. The Applicant has chosen two cutoff dates for 120 day safety update. The rationale is stated as the earlier data cutoff date (April 15 th , 2014) for the pivotal Study A5481003 was chosen to accommodate the additional time needed to fully analyze and reconcile safety information from the clinical database and the safety database. In order to present more current safety information from the safety database on serious adverse events, including deaths, reported in the remaining studies summarized in the safety update, a later data cutoff date (June 1 st , 2014) was chosen.Safety data summarized in the 120 day safety update comprise those from a total of 1029 patients with malignant solid tumors participating in five industry-sponsored completed and ongoing clinical studies. Of these five studies, four were originally included in the Summary of Clinical Safety (Studies A5481001, A5481003, A5481010,</figDesc><table><row><cell>Clinical Review IBRANCE (Palbociclib)</cell></row><row><cell>Beaver (efficacy) and Amiri (safety)</cell></row><row><cell>NDA 207,103</cell></row><row><cell>Reviewer Comment: All AEs and SAEs were coded according to Medical Dictionary for Regulatory Activities and A5481008). In addition, a new ongoing trial in patients with metastatic breast</cell></row><row><cell>(MedDRA). Individual CSRs used the version of MedDRA that was current at the time cancer, Study A5481023, was included in the safety update. (Study A5481023:</cell></row><row><cell>they were written (Version 11.0 for Study 1001 [except SAEs which used Version 11.1]); Multicenter, Randomized, Double-Blind, Placebo-Controlled, Phase 3 Trial of</cell></row><row><cell>Version 13.0 for Study 1002; Version 16.0 for Study 1004 and Version 16.1 for Study Fulvestrant (Faslodex) With or Without PD-0332991 (Palbociclib) + Goserelin in Women</cell></row><row><cell>1003). Ongoing Studies 1008, 1010, and the IIR studies used Version 16.1. With Hormone Receptor-Positive, HER2-Negative Metastatic Breast Cancer Whose</cell></row><row><cell>Disease Progressed After Prior Endocrine Therapy)</cell></row><row><cell>AEs were summarized by MedDRA primary system organ class (SOC), and by</cell></row><row><cell>Preferred term (PT). The NCI Common Terminology Criteria for Adverse Events Studies A5481002 and A5481004 in patients with malignant disease other than breast</cell></row><row><cell>(CTCAE) Version 3.0 was used for Studies 1001, 1002, 1003, and 1004 and Version cancer were not included in the 120 day safety update. These completed studies were</cell></row><row><cell>4.0 was used for Study 1010. reviewed in the SCS as of November 29 th , 2013, and no patients were ongoing at that</cell></row><row><cell>data cutoff date. Overall, safety database for the industry-sponsored palbociclib clinical</cell></row><row><cell>development program summarized in the safety update was expanded by 712 patients</cell></row><row><cell>with advanced breast cancer (all receiving blinded treatment in the ongoing Studies 7.1.3 Pooling of Data Across Studies/Clinical Trials to Estimate and Compare Incidence A5481008 and A5481023) since the SCS data cutoff date of November 29 th , 2013.</cell></row><row><cell>In total, with the August 13, 2014 NDA submission, the Applicant submitted safety data</cell></row><row><cell>for 755 patients/subjects (industry-sponsored clinical studies). This included 297 healthy</cell></row><row><cell>subjects and 458 patients with malignant disease. Of the 458 patients with malignant</cell></row><row><cell>disease, 255 received at least 1 dose of palbociclib either as a single agent or as a</cell></row><row><cell>component of combination therapy, and 77 received a comparator. In addition, 126</cell></row><row><cell>patients were randomized to ongoing Study A5481008; the data from the 2 treatment</cell></row><row><cell>arms (palbociclib plus letrozole and placebo plus letrozole) are pooled under "blinded</cell></row><row><cell>therapy". As of the 29 November 2013 data cutoff date, 101 female patients with ER-</cell></row><row><cell>positive, HER2-negative advanced breast cancer received 125 mg palbociclib in</cell></row><row><cell>combination with 2.5 mg letrozole (Study A5481003 [N=95] and Part 2 of Study</cell></row><row><cell>A5481010 [N=6]).</cell></row><row><cell>In addition, the Summary of Clinical Safety of palbociclib included in the NDA contained</cell></row><row><cell>10 Investigator-Initiated Research (IIR) studies (palbociclib single-agent and</cell></row><row><cell>combination studies in Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_37"><head>Table 36</head><label>36</label><figDesc>highlights the SAEs by preferred term.There was only one treatment-related SAE reported in the Phase 2 part of the study. In the palbociclib plus letrozole arm, one patient (1.2%) had a treatment-related SAE (Colitis ischemic, Patient 10913002).</figDesc><table><row><cell>Reference ID: 3691211</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_38"><head>Table 44 : Summary of TEAEs, SAE and Discontinuations due to AEs by Age Palbociclib + Letrozole N=83</head><label>44</label><figDesc></figDesc><table><row><cell>Letrozole</cell></row><row><cell>N=77</cell></row></table><note></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_39"><head>Content Parameter Yes No NA Comment 17Study1003, with two cohorts Indication:1 st line ER+ metastatic breast cancer</head><label></label><figDesc>. Do there appear to be the requisite number of adequate and well-controlled studies in the application?Pivotal Study #1:</figDesc><table><row><cell></cell><cell>X</cell></row><row><cell>Pivotal Study #2</cell><cell></cell></row><row><cell>Indication:</cell><cell></cell></row><row><cell>18. Do all pivotal efficacy studies appear to be adequate and well-controlled within current divisional policies (or to the</cell><cell>X</cell></row><row><cell>extent agreed to previously with the applicant by the</cell><cell></cell></row><row><cell>Division) for approvability of this product based on</cell><cell></cell></row><row><cell>proposed draft labeling?</cell><cell></cell></row><row><cell>19. Do the endpoints in the pivotal studies conform to previous</cell><cell></cell></row><row><cell>Agency commitments/agreements? Indicate if there were</cell><cell></cell></row><row><cell>not previous Agency agreements regarding</cell><cell></cell></row><row><cell>primary/secondary endpoints.</cell><cell></cell></row></table><note></note></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot">Reference ID: 3691211Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot">Reference ID: 3691211(b) (4)Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot">Reference ID: 3691211(b) (4) (b) (4) (b) (4) (b) (4) (b) (4) (b) (4) (b) (4)Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA 207,103</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot">Reference ID: 3691211</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot">Reference ID: 3627577</note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0" />			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Analysis of Primary Endpoint(s)</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Analysis of Secondary Endpoints(s)</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">. .</forename><surname>Other Endpoints</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">.................................................................................... 80</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">. . .</forename><surname>Subpopulations</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">................................................................................... 80</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">84 6.1.10 Discussion of Persistence of Efficacy and/or Tolerance Effects</title>
+		<imprint/>
+	</monogr>
+	<note>Analysis of Clinical Information Relevant to Dosing Recommendations</note>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><surname>Review</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">........................................................................................</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">. .</forename><surname>Safety</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">........................................................................................</orgName>
+			</affiliation>
+		</author>
+		<imprint>
+			<biblScope unit="volume">87</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">1.3 Pooling of Data Across Studies/Clinical Trials to Estimate and Compare Incidence</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">.................................... .</forename><surname>Safety Summary</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">................................................................ 87 7.1 Methods............................................................................................................ 89 7. ; ......................................... 89 7.1.2 Categorization of Adverse Events.............................................................. 90 7. ; .................................................................................................... 91</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>1.1 Studies/Clinical Trials Used to Evaluate Safety</note>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">2.1 Overall Exposure at Appropriate Doses/Durations and Demographics of Target Populations</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">............. .</forename><surname>Adequacy Of Safety Assessments</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">................................................... 92 7. ; ..................................................................................... 92 7.2.2 Explorations for Dose Response................................................................ 93</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Special Animal and/or In Vitro Testing</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">. . . .</forename><surname>Routine Clinical Testing</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">..................................................................... 94 7.2.5 Metabolic ; Interaction Workup .......................................... 94</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Evaluation for Potential Adverse Events for Similar Drugs in Drug Class</title>
+		<imprint>
+			<biblScope unit="page">94</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">................................... .</forename><surname>Major Safety Results</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">................................................. 94 7.3.1 Deaths .............................................................................................................. 94 7.3.2 Nonfatal Serious Adverse Events .............................................................. 96 7.3.3 Dropouts and/or Discontinuations ............................................................ 100 7.3.4 Significant Adverse Events ...................................................................... 101 7.3.5 Submission Specific Primary Safety Concerns ........................................ 101</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="middle">........................................................................ .</forename><surname>Supportive Safety Results</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">.. 106 7.4.1 Common Adverse Events ........................................................................ 107 7.4.2 Laboratory Findings ................................................................................. 107 7.4.3 Vital Signs ................................................................................................ 107 7.4.4 Electrocardiograms (ECGs) ..................................................................... 107 7.4.5 Special Safety Studies/Clinical Trials ....................................................... 108 7.4.6 Immunogenicity........................................................................................ 109</orgName>
+			</affiliation>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title/>
+		<idno>ID: 3691211</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title/>
+		<idno>ID: 3691211</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title/>
+		<idno>ID: 3691211</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and Amiri (safety) NDA</title>
+		<imprint>
+			<biblScope unit="volume">207</biblScope>
+			<biblScope unit="page">10</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Cyclin D as a therapeutic target in cancer</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">E</forename><forename type="middle">A</forename><surname>Musgrove</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">C</forename><forename type="middle">E</forename><surname>Caldon</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><surname>Barraclough</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><surname>Stone</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">R</forename><forename type="middle">L</forename><surname>Sutherland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature reviews Cancer</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="558" to="72" />
+			<date type="published" when="2011" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">CCND1 amplification and cyclin D1 expression in breast cancer and their relation with proteomic subgroups and patient outcome</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><surname>Elsheikh</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><forename type="middle">R</forename><surname>Green</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">M</forename><forename type="middle">A</forename><surname>Aleskandarany</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Breast cancer research and treatment</title>
+		<imprint>
+			<biblScope unit="volume">109</biblScope>
+			<biblScope unit="page" from="325" to="360" />
+			<date type="published" when="2008" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Overexpression of cyclin D1 messenger RNA predicts for poor prognosis in estrogen receptor-positive breast cancer. Clinical cancer research : an official journal of the American Association for</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">F</forename><forename type="middle">S</forename><surname>Kenny</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">R</forename><surname>Hui</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">E</forename><forename type="middle">A</forename><surname>Musgrove</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cancer Research</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="2069" to="76" />
+			<date type="published" when="1999" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Role of cyclin D1 in ErbB2-positive breast cancer and tamoxifen resistance</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">M</forename><surname>Ahnstrom</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">B</forename><surname>Nordenskjold</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">L</forename><forename type="middle">E</forename><surname>Rutqvist</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">L</forename><surname>Skoog</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">O</forename><surname>Stal</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Breast cancer research and treatment</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page" from="145" to="51" />
+			<date type="published" when="2005" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Cyclin D1 expression in breast cancer patients receiving adjuvant tamoxifen-based therapy</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">M</forename><surname>Rudas</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">M</forename><surname>Lehnert</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><surname>Huynh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical cancer research : an official journal of the American Association for Cancer Research</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page" from="1767" to="74" />
+			<date type="published" when="2008" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Cyclin D1 overexpression is a negative predictive factor for tamoxifen response in postmenopausal breast cancer patients</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">M</forename><surname>Stendahl</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><surname>Kronblad</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">L</forename><surname>Ryden</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><surname>Emdin</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">N</forename><forename type="middle">O</forename><surname>Bengtsson</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">G</forename><surname>Landberg</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">British journal of cancer</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page" from="1942" to="1950" />
+			<date type="published" when="2004" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Cyclin D1 expression and patient outcome after tamoxifen therapy in estrogen receptor positive metastatic breast cancer</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">K</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">B</forename><forename type="middle">N</forename><surname>Bae</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Oncology reports</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="141" to="145" />
+			<date type="published" when="2003" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Cyclin D-1, interleukin-6, HER-2/neu, transforming growth factor receptor-II and prediction of relapse in women with early stage, hormone receptor-positive breast cancer treated with tamoxifen</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">H</forename><forename type="middle">B</forename><surname>Muss</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><forename type="middle">Y</forename><surname>Bunn</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><surname>Crocker</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The breast journal</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="337" to="382" />
+			<date type="published" when="2007" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">A multimarker model to predict outcome in tamoxifen-treated breast cancer patients</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><forename type="middle">P</forename><surname>Linke</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">T</forename><forename type="middle">M</forename><surname>Bremer</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">C</forename><forename type="middle">D</forename><surname>Herold</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">G</forename><surname>Sauter</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">C</forename><surname>Diamond</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cancer Research</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="1175" to="83" />
+			<date type="published" when="2006" />
+		</imprint>
+	</monogr>
+	<note>Clinical cancer research : an official journal of the American Association for</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Cyclin D1 protein overexpression and CCND1 amplification in breast carcinomas: an immunohistochemical and chromogenic in situ hybridisation analysis. Modern pathology : an official journal of the United States and Canadian Academy of Pathology</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><forename type="middle">S</forename><surname>Reis-Filho</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">K</forename><surname>Savage</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">M</forename><forename type="middle">B</forename><surname>Lambros</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Inc</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="page" from="999" to="1009" />
+			<date type="published" when="2006" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Specific inhibition of cyclin-dependent kinase 4/6 by PD 0332991 and associated antitumor activity in human tumor xenografts</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">D</forename><forename type="middle">W</forename><surname>Fry</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">P</forename><forename type="middle">J</forename><surname>Harvey</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">P</forename><forename type="middle">R</forename><surname>Keller</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Molecular cancer therapeutics</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="1427" to="1465" />
+			<date type="published" when="2004" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title/>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">R</forename><forename type="middle">S</forename><surname>Finn</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><surname>Dering</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">D</forename><surname>Conklin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="332991" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">inhibitor, preferentially inhibits proliferation of luminal estrogen receptor-positive human breast cancer cell lines in vitro</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><forename type="middle">L</forename><surname>Dean</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">C</forename><surname>Thangavel</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><forename type="middle">K</forename><surname>Mcclendon</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">C</forename><forename type="middle">A</forename><surname>Reed</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">E</forename><forename type="middle">S</forename><surname>Knudsen</surname></persName>
+		</author>
+		<idno>R77. 22</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Breast cancer research : BCR</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="4018" to="4050" />
+			<date type="published" when="2009" />
+		</imprint>
+	</monogr>
+	<note>Oncogene. 23. (NCCN) NCCN. NCCN Clinical practice guidelines in oncology</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Intrinsic breast tumor subtypes, race, and long-term survival in the Carolina Breast Cancer Study. Clinical cancer research : an official journal of the American Association for</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">K</forename><forename type="middle">M</forename><surname>O&amp;apos;brien</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><forename type="middle">R</forename><surname>Cole</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">C</forename><forename type="middle">K</forename><surname>Tse</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cancer Research</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page" from="6100" to="6110" />
+			<date type="published" when="2010" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">FACT: an open-label randomized phase III study of fulvestrant and anastrozole in combination compared with anastrozole alone as first-line therapy for patients with receptor-positive postmenopausal breast cancer</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><surname>Bergh</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">P</forename><forename type="middle">E</forename><surname>Jonsson</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">E</forename><forename type="middle">K</forename><surname>Lidbrink</surname></persName>
+		</author>
+		<idno>ID: 3691211</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Clinical Review IBRANCE (Palbociclib) Beaver (efficacy) and</title>
+		<imprint>
+			<date type="published" when="2012" />
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="1919" to="1944" />
+		</imprint>
+	</monogr>
+	<note>Amiri (safety) NDA 207,103 25</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Activity of fulvestrant 500 mg versus anastrozole 1 mg as first-line treatment for advanced breast cancer: results from the FIRST study</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><forename type="middle">F</forename><surname>Robertson</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">A</forename><surname>Llombart-Cussac</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">J</forename><surname>Rolski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of clinical oncology : official journal of the American Society of Clinical Oncology</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="page" from="4530" to="4535" />
+			<date type="published" when="2009" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Combination anastrozole and fulvestrant in metastatic breast cancer</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">R</forename><forename type="middle">S</forename><surname>Mehta</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">W</forename><forename type="middle">E</forename><surname>Barlow</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">K</forename><forename type="middle">S</forename><surname>Albain</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The New England journal of medicine</title>
+		<imprint>
+			<biblScope unit="volume">367</biblScope>
+			<biblScope unit="page" from="435" to="479" />
+			<date type="published" when="2012" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">New guidelines to evaluate the response to treatment in solid tumors. European Organization for Research and Treatment of Cancer, National Cancer Institute of the United States, National Cancer Institute of Canada</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">P</forename><surname>Therasse</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><forename type="middle">G</forename><surname>Arbuck</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">E</forename><forename type="middle">A</forename><surname>Eisenhauer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the National Cancer Institute</title>
+		<imprint>
+			<biblScope unit="volume">92</biblScope>
+			<biblScope unit="page" from="205" to="221" />
+			<date type="published" when="2000" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Pattern of retinoblastoma pathway inactivation dictates response to CDK4/6 inhibition in GBM</title>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">W</forename><forename type="middle">R</forename><surname>Wiedemeyer</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">I</forename><forename type="middle">F</forename><surname>Dunn</surname></persName>
+		</author>
+		<author>
+			<persName xmlns="http://www.tei-c.org/ns/1.0"><forename type="first">S</forename><forename type="middle">N</forename><surname>Quayle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences of the United States of America</title>
+		<imprint>
+			<biblScope unit="volume">107</biblScope>
+			<biblScope unit="page" from="11501" to="11507" />
+			<date type="published" when="2010" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

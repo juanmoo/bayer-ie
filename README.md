@@ -10,9 +10,9 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-The mechanism to process native PDF files is dependent on [xpdf](https://www.xpdfreader.com/)'s implementation of ```pdftohtml```. In order for the modules in this project to work properly, make sure to download ```pdftohtml``` from [here](https://www.xpdfreader.com/download.html) and add it to your PATH.
+The mechanism to process native PDF files is dependent on [xpdf](https://www.xpdfreader.com/)'s implementation of ```pdftohtml``` (version 0.62.0). In order for the modules in this project to work properly, make sure to download ```pdftohtml``` from [here](https://www.xpdfreader.com/download.html) and add it to your PATH.
 
-## Usage
+## EMA&FDA Usage
 The modules in this project are setup up so that they can be used through a Command-line interface (CLI).
 
 Currently, there are three available commands. These can be accessed through the ``main.py`` module located in [src](src/) and are as follows:
