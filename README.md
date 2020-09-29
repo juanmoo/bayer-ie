@@ -15,6 +15,13 @@ The mechanism to process native PDF files is dependent on [xpdf](https://www.xpd
 
 The reviews PDFs for the retrieval task are processed with [Grobid](https://grobid.readthedocs.io/en/latest/).
 
+## Pretrained models
+Due to GitHub/GitLab's file size constraints, the pretrained models have been compressed using gunzip. To utilize them, they must first be decompressed using the following commands: 
+```bash 
+gzip -d <path to compressed EMA model>
+gzip -d <path to compressed FDA model>
+```
+
 ## Usage - EMA & FDA 
 Codes are located in [src/EMA_FDA](src/EMA_FDA).
 
