@@ -5,8 +5,8 @@ This file implements a command line interface to do the following tasks:
     3. Utilize trained linear models to make predictions on segmented EMA/FDA documents.
 '''
 from pdf_parser import process_documents
-from utils import parsed_to_df
-from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda
+from utils import parsed_to_df, format_results
+from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda, svm_cross_validate
 from xml_parser import process_xmls
 import os
 import sys
@@ -16,6 +16,53 @@ import argparse
 import pandas as pd
 from functools import reduce
 from tqdm import tqdm
+
+
+def extract_labels(data, source):
+    if source.lower() == 'ema':
+        labs = reduce(lambda a, b: a + b, [s.lower().split('||')
+                                           for s in pd.unique(data['labels'])])
+        labs = sorted(list(set([s.strip() for s in labs])))
+        lmap = {l: l for l in labs if l}
+        corrections = {
+            'hepatic impairment': 'hepatic',
+            'renal impairment': 'renal',
+            'warning': 'warnings',
+            'population - adult': 'populations - adult',
+            'population - adolescent': 'populations - adolescent',
+            'populations - neonates': 'populations - neonate',
+            'populations - paediatric': 'populations - pediatric'
+        }
+        lmap.update(corrections)
+        labs = sorted(
+            list((set(labs[1:]) - set(corrections.keys()))))
+    else:
+        labs = reduce(lambda a, b: a + b, [s.lower().split('||')
+                                           for s in pd.unique(data['labels'])])
+        labs = sorted(list(set([s.strip() for s in labs])))
+        labs.append('warnings')
+        lmap = {l: l for l in labs if l}
+        corrections = {
+            'hepatic impairment': 'hepatic',
+            'renal impairment': 'renal',
+            'warning': 'warnings'
+        }
+        lmap.update(corrections)
+        labs = sorted(list(set(labs[1:]) - set(corrections.keys())))
+    return labs, lmap
+
+
+def one_hot(data, labs, lmap):
+    # One-hot corrected categories
+    for l in labs:
+        data[l] = 0
+    for j, row in enumerate(data.iloc):
+        for l in labs:
+            corrected = str(row['labels']).lower()
+            if l in corrected:
+                data.iloc[j, data.columns.get_loc(lmap[l])] = 1
+
+    return data
 
 
 ## Segmentation ##
@@ -206,6 +253,42 @@ def predict(data_dir, models_path, output_dir, source, separate_documents=False)
         data.to_excel(os.path.join(output_dir, 'predictions.xlsx'))
 
 
+## Testing ##
+def cross_validate(data_dir, output_dir, source, num_folds, rationales_path):
+    # Load Data
+    files = [s for s in os.listdir(data_dir) if s.lower().endswith('.xlsx')]
+    frames = [pd.read_excel(os.path.join(data_dir, f)).fillna('')
+              for f in files]
+    data = pd.concat(frames)
+    data = data.set_index('Unnamed: 0', drop=True)
+    data.index.rename('', inplace=True)
+    data = data.sort_index()
+
+    # Load Rationales
+    rationales = json.load(open(rationales_path, 'r'))
+
+    # Extract Labels
+    labs, lmap = extract_labels(data, source)
+
+    # One-hot
+    data = one_hot(data, labs, lmap)
+
+    # Add 1-step significance labels
+    significant_labs = ['hepatic', 'renal', 'pregnancy']
+    for sl in significant_labs:
+        data['significant-{}'.format(sl)
+             ] = (data['significant'] == 'X') * data[sl]
+    labs += ['significant-{}'.format(sl) for sl in significant_labs]
+
+    # Cross Validate
+    results = svm_cross_validate(
+        source, data, labs, num_folds, rationales=rationales)
+
+    # Format and save results
+    results = format_results(data, results)
+    results.to_excel(os.path.join(output_dir, 'results.xlsx'))
+
+
 if __name__ == '__main__':
     # Parse Command Line Args #
     parser = argparse.ArgumentParser(prog='<script>')
@@ -264,6 +347,27 @@ if __name__ == '__main__':
         predict(args.data_dir, args.models_path, args.output_dir,
                 args.source, separate_documents=args.separate_documents)
     parser_predict.set_defaults(func=predict_cli)
+
+    # Cross Validate #
+
+    parser_xvalidate = subparsers.add_parser(
+        'xvalidate', help='Cross validation')
+    parser_xvalidate.add_argument(
+        'source', type=str, help='Data source (EMA or FDA)')
+    parser_xvalidate.add_argument('data_dir', type=str,
+                                  help='Path to segmented files')
+    parser_xvalidate.add_argument('rationales_path', type=str,
+                                  help='Path to rationales file')
+    parser_xvalidate.add_argument(
+        'output_dir', type=str, help='Path to desired output directory')
+    parser_xvalidate.add_argument(
+        'num_folds', type=int, help='Number of folds to use in cross validation')
+
+    def xvalidate_cli(args):
+        cross_validate(args.data_dir, args.output_dir,
+                       args.source, args.num_folds, args.rationales_path)
+
+    parser_xvalidate.set_defaults(func=xvalidate_cli)
 
     # Parse and execute
     argv = sys.argv[1:]

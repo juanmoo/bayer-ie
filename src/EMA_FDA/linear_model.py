@@ -228,3 +228,93 @@ def svm_predict_fda(data, model):
 
     pred = np.array(model['model'].predict(X_test)).reshape(-1)
     return pred
+
+# Testing
+
+
+def svm_test(source, data, model):
+    label = model['label']
+    svm_predict = svm_predict_ema if source.lower() == 'ema' else svm_predict_fda
+
+    pred = svm_predict(data, model)
+
+    if len(set(pred)) <= 1:
+        return {
+            'precision': 0,
+            'recall': 0,
+            'f1': 0,
+        }
+
+    cm = confusion_matrix(data[label], pred)
+    true_pos = cm[1, 1].item()
+    class_count = cm.sum(axis=0)[1].item()
+    pred_count = cm.sum(axis=1)[1].item()
+
+    recall = true_pos/class_count if class_count > 0 else 0
+    precision = true_pos/pred_count if pred_count > 0 else 0
+    f1 = 2 * (precision * recall) / max(precision + recall, 1e-9)
+
+    return {
+        'precision': precision,
+        'recall': recall,
+        'f1': f1
+    }
+
+
+def svm_cross_validate(source, data, labels, k, rationales=None, config=default_config, ignore_rationales=False):
+
+    if source.lower() == 'ema':
+        svm_train = svm_train_ema
+    elif source.lower() == 'fda':
+        svm_train = svm_train_fda
+
+    docs = pd.unique(data['file'])
+    n = len(docs)//k
+
+    results = {l: {
+        'precisions': [],
+        'recalls': [],
+        'f1s': []
+    } for l in labels
+    }
+
+    for fold in range(k):
+        print('Starting fold %d!\n' % (fold + 1))
+        test_docs = []
+        train_docs = []
+
+        for i in range(len(docs)):
+            doc_name = docs[i]
+            if i == 1:
+                test_docs = list(docs)
+                train_docs = test_docs
+                break
+            elif (fold * n <= i < (fold + 1) * n) or (i >= n * k and i < len(docs) % k):
+                test_docs.append(doc_name)
+            else:
+                train_docs.append(doc_name)
+
+        train_data = data.loc[data['file'].isin(train_docs)]
+        test_data = data.loc[data['file'].isin(test_docs)]
+
+        for l in tqdm(labels):
+            train_count = train_data[l].sum()
+
+            precisions = results[l]['precisions']
+            recalls = results[l]['recalls']
+            f1s = results[l]['f1s']
+
+            if train_count < 2:
+                precisions.append(None)
+                recalls.append(None)
+                f1s.append(None)
+
+            else:
+                model = svm_train(train_data, l, rationales=rationales.get(l, None) if rationales else None,
+                                  config=config, ignore_rationales=ignore_rationales)
+                output = svm_test(source, test_data, model)
+                precisions.append(output['precision'])
+                recalls.append(output['recall'])
+                f1s.append(output['f1'])
+
+    return results

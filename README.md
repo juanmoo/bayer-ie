@@ -39,18 +39,26 @@ Currently, there are three available commands. These can be accessed through the
 
 * train
     * Positional Arguments:
-        * ```Source```: Data source (EMA or FDA).
+        * ```source```: Data source (EMA or FDA).
         * ```data_dir```: Path to segmented file(s).
         * ```rationales_path```:  Path to rationales file.
         * ```output_dir```: Path to desired output directory.
 
 * predict
     * Positional Arguments:
-        * ```Source```: Data source (EMA or FDA).
+        * ```source```: Data source (EMA or FDA).
         * ```data_dir```: Path to segmented file(s).
         * ```rationales_path```:  Path to rationales file.
         * ```models_path```:  Path to trained models file.
         * ```output_dir```: Path to desired output directory.
+
+* xvalidate
+    * Positional Arguments:
+        * ```source```: Data source (EMA or FDA).
+        * ```data_dir```: Path to segmented file(s).
+        * ```rationales_path```:  Path to rationales file.
+        * ```output_dir```: Path to desired output directory.
+        * ```num_folds```: Number of folds to use in cross validation.
 
 ## Usage - EPA
 Codes are located in [src/EPA](src/EMA_FDA).

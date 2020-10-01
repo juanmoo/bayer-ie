@@ -93,6 +93,20 @@ def parse_rationale(path):
     return rationale_dict
 
 
+def format_results(data, results):
+    df = pd.DataFrame.from_dict(results)
+    for c in df.columns:
+        df[c] = df[c].apply(lambda l: (sum(l)/len(l)) if len(l) > 0 else 0)
+
+    df = df.transpose()
+    df['count'] = 0
+    for l in df.index:
+        df.at[l, 'count'] = data[l].sum()
+    df.columns = ['precision', 'recall', 'F1', 'count']
+
+    return df
+
+
 def parsed_to_df(parsed_data):
     data = []
     for name in parsed_data:
