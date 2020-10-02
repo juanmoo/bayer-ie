@@ -27,7 +27,7 @@ gzip -d <path to compressed FDA model>
 
 ## Usage - EMA & FDA
 
-Codes are located in [src/EMA_FDA](src/EMA_FDA).
+Codes are located in [`src/EMA_FDA`](src/EMA_FDA).
 
 Currently, there are four available commands. These can be accessed through the `main.py` module and are as follows:
 
@@ -70,9 +70,9 @@ Currently, there are four available commands. These can be accessed through the 
 
 ## Usage - EPA
 
-Codes are located in [src/EPA](src/EMA_FDA).
+Codes are located in [`src/EPA`](src/EMA_FDA).
 
-`preprocess.py` converts PDFs to XMLs with `pdftohtml` and further parses them to a json file. Example can be found at [here](example_data/EPA/parsed_EPA.json).
+`preprocess.py` converts PDFs to XMLs with `pdftohtml` and further parses them to a json file. An example can be found at [here](example_data/EPA/parsed_EPA.json).
 
 `process_label.py` aligns the preprocessed data with the Excel annotation. The processed data is dumped to `processed_data.pkl`. Please change the path of the excel file on your machine.
 
@@ -80,8 +80,13 @@ Codes are located in [src/EPA](src/EMA_FDA).
 
 ## Usage - retrieval
 
-Codes are located in [src/retrieval](src/retrieval).
+Codes are located in [`src/retrieval`](src/retrieval).
 
-`pdfToXML.py` converts PDFs to XMLs. Grobid server needs to be launched beforehand.
+`pdfToXML.py` converts the PDFs to XMLs. Grobid server needs to be launched beforehand. Examples can be found at [`example_data/retrieval`](example_data/retrieval).
 
-`main.py` runs and evaluates the algorithm. Use the command `--method [BOW|WMD]` to specify the method.
+`main.py` runs and evaluates the algorithm. Use the command `--method [BOW|WMD]` to specify the method. The predictions and evaluation results are saved to an Excel file.
+
+```
+python src/retrieval/main.py --method [BOW|WMD] --excel_path [path to the xlsx file] \
+        --xml_path [path to the XML folder] --output_path [output xlsx]
+```
