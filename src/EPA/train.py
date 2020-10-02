@@ -12,8 +12,11 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-annotations, all_rationales = parse_spreadsheet(['/data/rsg/nlp/yujieq/data/bayer/VendorEPAforMIT/CS Annotations_2020-01-20.xlsx', 
-                                             '/data/rsg/nlp/yujieq/data/bayer/VendorEPAforMIT/CS Annotations_Additional rows.xlsx'])
+annotations, all_rationales = parse_spreadsheet(
+    ['/data/rsg/nlp/yujieq/data/bayer/VendorEPAforMIT/CS Annotations_2020-01-20.xlsx', 
+     '/data/rsg/nlp/yujieq/data/bayer/VendorEPAforMIT/CS Annotations_Additional rows.xlsx'],
+    merge_labels=True
+)
 
 all_labels = list(all_rationales.keys())
 
