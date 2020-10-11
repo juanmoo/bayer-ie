@@ -19,7 +19,7 @@ from multiprocessing import Pool
 
 def translate_labels(data, label_map):
     def mapping_function(ls): return ' || '.join(set(
-        [label_map.get(e.strip(), e.strip()) for e in ls.split(' || ') if e]))
+        [label_map.get(e.strip().lower(), e.strip().lower()) for e in ls.split('||') if e]))
     data['labels'] = data['labels'].apply(mapping_function)
     return data
 

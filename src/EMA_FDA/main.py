@@ -141,30 +141,18 @@ def map_labels(data_dir, mapping_file, output_dir, separate_documents=False):
 
 
 def train_ema(data, rationales, output_dir):
-    labs = reduce(lambda a, b: a + b, [s.lower().split('||')
-                                       for s in pd.unique(data['labels'])])
-    labs = sorted(list(set([s.strip() for s in labs])))
-    lmap = {l: l for l in labs if l}
-    corrections = {
-        'hepatic impairment': 'hepatic',
-        'renal impairment': 'renal',
-        'warning': 'warnings',
-        'population - adult': 'populations - adult',
-        'population - adolescent': 'populations - adolescent',
-        'populations - neonates': 'populations - neonate',
-        'populations - paediatric': 'populations - pediatric'
-    }
-    lmap.update(corrections)
-    labs = sorted(list(set(labs[1:]) - set(corrections.keys())))
+    labs = reduce(lambda a, b: a + b,
+                  [s.lower().split('||') for s in pd.unique(data['labels'])])
+    labs = sorted(list(set([s.strip() for s in labs if s.strip()])))
 
-    # One-hot corrected categories
+    # One-hot categories
     for l in labs:
         data[l] = 0
-
     for j, row in enumerate(data.iloc):
-        for l in lmap:
-            if l in row['labels'].lower():
-                data.iloc[j, data.columns.get_loc(lmap[l])] = 1
+        for l in labs:
+            corrected = str(row['labels']).lower()
+            if l in corrected:
+                data.iloc[j, data.columns.get_loc(l)] = 1
 
     # Add 1-step significance labels
     significant_labs = ['hepatic', 'renal', 'pregnancy']
@@ -177,12 +165,9 @@ def train_ema(data, rationales, output_dir):
     models = dict()
 
     for l in tqdm(labs):
-        try:
-            model_l = svm_train_ema(
-                data, l, rationales=rationales.get(l, None))
-            models[l] = model_l
-        except:
-            models[l] = None
+        model_l = svm_train_ema(
+            data, l, rationales=rationales.get(l, None))
+        models[l] = model_l
 
     with open(os.path.join(output_dir, 'ema.models'), 'wb') as f:
         pickle.dump(models, f)
@@ -191,25 +176,16 @@ def train_ema(data, rationales, output_dir):
 def train_fda(data, rationales, output_dir):
     labs = reduce(lambda a, b: a + b,
                   [s.lower().split('||') for s in pd.unique(data['labels'])])
-    labs = sorted(list(set([s.strip() for s in labs])))
-    labs.append('warnings')
-    lmap = {l: l for l in labs if l}
-    corrections = {
-        'hepatic impairment': 'hepatic',
-        'renal impairment': 'renal',
-        'warning': 'warnings'
-    }
-    lmap.update(corrections)
-    labs = sorted(list(set(labs[1:]) - set(corrections.keys())))
+    labs = sorted(list(set([s.strip() for s in labs if s.strip()])))
 
-    # One-hot corrected categories
+    # One-hot categories
     for l in labs:
         data[l] = 0
     for j, row in enumerate(data.iloc):
-        for l in lmap:
+        for l in labs:
             corrected = str(row['labels']).lower()
             if l in corrected:
-                data.iloc[j, data.columns.get_loc(lmap[l])] = 1
+                data.iloc[j, data.columns.get_loc(l)] = 1
 
     # Add 1-step significance labels
     significant_labs = ['hepatic', 'renal', 'pregnancy']
@@ -221,12 +197,9 @@ def train_fda(data, rationales, output_dir):
     models = dict()
 
     for l in tqdm(labs):
-        try:
-            model_l = svm_train_fda(
-                data, l, rationales=rationales.get(l, None))
-            models[l] = model_l
-        except:
-            models[l] = None
+        model_l = svm_train_fda(
+            data, l, rationales=rationales.get(l, None))
+        models[l] = model_l
 
     with open(os.path.join(output_dir, 'fda.models'), 'wb') as f:
         pickle.dump(models, f)
