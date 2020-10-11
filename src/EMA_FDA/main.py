@@ -7,7 +7,7 @@ This file implements a command line interface to do the following tasks:
 from pdf_parser import process_documents
 from epa_preprocess import process_documents as epa_process_documents
 from utils import parsed_to_df, format_results, save_separate_documents, translate_labels
-from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda, svm_cross_validate, svm_train_epa
+from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda, svm_cross_validate, svm_train_epa, svm_predict_epa
 from xml_parser import process_xmls
 import os
 import sys
@@ -19,50 +19,22 @@ from functools import reduce
 from tqdm import tqdm
 
 
-def extract_labels(data, source):
-    if source.lower() == 'ema':
-        labs = reduce(lambda a, b: a + b, [s.lower().split('||')
-                                           for s in pd.unique(data['labels'])])
-        labs = sorted(list(set([s.strip() for s in labs])))
-        lmap = {l: l for l in labs if l}
-        corrections = {
-            'hepatic impairment': 'hepatic',
-            'renal impairment': 'renal',
-            'warning': 'warnings',
-            'population - adult': 'populations - adult',
-            'population - adolescent': 'populations - adolescent',
-            'populations - neonates': 'populations - neonate',
-            'populations - paediatric': 'populations - pediatric'
-        }
-        lmap.update(corrections)
-        labs = sorted(
-            list((set(labs[1:]) - set(corrections.keys()))))
-    else:
-        labs = reduce(lambda a, b: a + b, [s.lower().split('||')
-                                           for s in pd.unique(data['labels'])])
-        labs = sorted(list(set([s.strip() for s in labs])))
-        labs.append('warnings')
-        lmap = {l: l for l in labs if l}
-        corrections = {
-            'hepatic impairment': 'hepatic',
-            'renal impairment': 'renal',
-            'warning': 'warnings'
-        }
-        lmap.update(corrections)
-        labs = sorted(list(set(labs[1:]) - set(corrections.keys())))
-    return labs, lmap
+def extract_labels(data):
+    labs = reduce(lambda a, b: a + b,
+                  [s.lower().split('||') for s in pd.unique(data['labels'])])
+    labs = sorted(list(set([s.strip() for s in labs if s.strip()])))
+    return labs
 
 
-def one_hot(data, labs, lmap):
-    # One-hot corrected categories
+def one_hot(data, labs):
+    # One-hot categories
     for l in labs:
         data[l] = 0
     for j, row in enumerate(data.iloc):
         for l in labs:
             corrected = str(row['labels']).lower()
             if l in corrected:
-                data.iloc[j, data.columns.get_loc(lmap[l])] = 1
-
+                data.iloc[j, data.columns.get_loc(l)] = 1
     return data
 
 
@@ -281,6 +253,10 @@ def predict(data_dir, models_path, output_dir, source, separate_documents=False)
         for l in tqdm(models):
             pred = svm_predict_fda(data, models[l])
             data['pred-' + l] = pred
+    elif source.lower() == 'epa':
+        for l in tqdm(models):
+            pred = svm_predict_epa(data, models[l])
+            data['pred-' + l] = pred
     else:
         raise Exception('Unknown data source {}'.format(source))
 
@@ -302,16 +278,19 @@ def cross_validate(data_dir, output_dir, source, num_folds, rationales_path):
     data = data.sort_index()
 
     # Load Rationales
-    rationales = json.load(open(rationales_path, 'r'))
+    if rationales_path:
+        rationales = json.load(open(rationales_path, 'r'))
+    else:
+        rationales = None
 
     # Extract Labels
-    labs, lmap = extract_labels(data, source)
+    labs = extract_labels(data)
 
     # One-hot
-    data = one_hot(data, labs, lmap)
+    data = one_hot(data, labs)
 
     # Add 1-step significance labels
-    significant_labs = ['hepatic', 'renal', 'pregnancy']
+    significant_labs = [e for e in ['hepatic', 'renal', 'pregnancy'] if e in labs]
     for sl in significant_labs:
         data['significant-{}'.format(sl)
              ] = (data['significant'] == 'X') * data[sl]
@@ -411,12 +390,12 @@ if __name__ == '__main__':
         'source', type=str, help='Data source (EMA or FDA)')
     parser_xvalidate.add_argument('data_dir', type=str,
                                   help='Path to segmented files')
-    parser_xvalidate.add_argument('rationales_path', type=str,
-                                  help='Path to rationales file')
     parser_xvalidate.add_argument(
         'output_dir', type=str, help='Path to desired output directory')
     parser_xvalidate.add_argument(
         'num_folds', type=int, help='Number of folds to use in cross validation')
+    parser_xvalidate.add_argument(
+        '--rationales_path', type=str, default=None, help='Path to rationales file')
 
     def xvalidate_cli(args):
         cross_validate(args.data_dir, args.output_dir,

@@ -15,7 +15,7 @@ import sys
 
 ## Constants ##
 default_config = {
-    'ngram_config': (1, 4),
+    'ngram_range': (1, 4),
     'stop_config': 'english',
     'tfidf_config': False,
     'min_df': 0.0001
@@ -70,23 +70,23 @@ class DummyFeaturizer:
 def svm_train_ema(train_data, label, rationales=None, config=default_config, ignore_rationales=False):
 
     # Instantiate Vectorizers #
-    section_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    section_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                          stop_words=config['stop_config'],
                                          min_df=config['min_df'])
 
-    subsection_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    subsection_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                             stop_words=config['stop_config'],
                                             min_df=config['min_df'])
 
-    header_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    header_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                         stop_words=config['stop_config'],
                                         min_df=config['min_df'])
 
-    subheader_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    subheader_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                            stop_words=config['stop_config'],
                                            min_df=config['min_df'])
 
-    text_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    text_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                       stop_words=config['stop_config'],
                                       min_df=config['min_df'])
 
@@ -151,11 +151,11 @@ def svm_train_ema(train_data, label, rationales=None, config=default_config, ign
 def svm_train_fda(train_data, label, rationales=None, config=default_config, ignore_rationales=False):
 
     # Instantiate Vectorizers #
-    parent_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    parent_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                         stop_words=config['stop_config'],
                                         min_df=config['min_df'])
 
-    text_vectorizer = CountVectorizer(ngram_range=config['ngram_config'],
+    text_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                       stop_words=config['stop_config'],
                                       min_df=config['min_df'])
 
@@ -192,7 +192,7 @@ def svm_train_fda(train_data, label, rationales=None, config=default_config, ign
     }
 
 
-def svm_train_epa(train_data, label, config=epa_default_config):
+def svm_train_epa(train_data, label, config=epa_default_config, **kwargs):
     # Instantiate Vectorizers #
     b_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
                                    stop_words=config['stop_config'],
@@ -267,12 +267,32 @@ def svm_predict_fda(data, model):
     pred = np.array(model['model'].predict(X_test)).reshape(-1)
     return pred
 
+
+def svm_predict_epa(data, model):
+
+    label = model['label']
+    X_b1 = model['b_vec'].transform(data['b1']).toarray()
+    X_b2 = model['b_vec'].transform(data['b2']).toarray()
+    X_text = model['text_vec'].fit_transform(data['text']).toarray()
+    X_test = np.hstack([X_b1, X_b2, X_text])
+
+    pred = np.array(model['model'].predict(X_test)).reshape(-1)
+    return pred
+
+
 # Testing
 
 
 def svm_test(source, data, model):
     label = model['label']
-    svm_predict = svm_predict_ema if source.lower() == 'ema' else svm_predict_fda
+
+    source = source.lower()
+    if source == 'ema':
+        svm_predict = svm_predict_ema
+    elif source == 'fda':
+        svm_predict = svm_predict_fda
+    else:
+        svm_predict = svm_predict_epa
 
     pred = svm_predict(data, model)
 
@@ -285,8 +305,8 @@ def svm_test(source, data, model):
 
     cm = confusion_matrix(data[label], pred)
     true_pos = cm[1, 1].item()
-    class_count = cm.sum(axis=0)[1].item()
-    pred_count = cm.sum(axis=1)[1].item()
+    class_count = cm.sum(axis=1)[1].item()
+    pred_count = cm.sum(axis=0)[1].item()
 
     recall = true_pos/class_count if class_count > 0 else 0
     precision = true_pos/pred_count if pred_count > 0 else 0
@@ -299,12 +319,14 @@ def svm_test(source, data, model):
     }
 
 
-def svm_cross_validate(source, data, labels, k, rationales=None, config=default_config, ignore_rationales=False):
+def svm_cross_validate(source, data, labels, k, rationales=None, ignore_rationales=False):
 
     if source.lower() == 'ema':
         svm_train = svm_train_ema
     elif source.lower() == 'fda':
         svm_train = svm_train_fda
+    else:
+        svm_train = svm_train_epa
 
     docs = pd.unique(data['file'])
     n = len(docs)//k
@@ -348,8 +370,8 @@ def svm_cross_validate(source, data, labels, k, rationales=None, config=default_
                 f1s.append(None)
 
             else:
-                model = svm_train(train_data, l, rationales=rationales.get(l, None) if rationales else None,
-                                  config=config, ignore_rationales=ignore_rationales)
+                model = svm_train(train_data, l, rationales=rationales.get(
+                    l, None) if rationales else None, ignore_rationales=ignore_rationales)
                 output = svm_test(source, test_data, model)
                 precisions.append(output['precision'])
                 recalls.append(output['recall'])
