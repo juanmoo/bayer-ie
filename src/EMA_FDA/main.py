@@ -5,7 +5,8 @@ This file implements a command line interface to do the following tasks:
     3. Utilize trained linear models to make predictions on segmented EMA/FDA documents.
 '''
 from pdf_parser import process_documents
-from utils import parsed_to_df, format_results
+from epa_preprocess import process_documents as epa_process_documents
+from utils import parsed_to_df, format_results, save_separate_documents, translate_labels
 from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda, svm_cross_validate
 from xml_parser import process_xmls
 import os
@@ -68,12 +69,6 @@ def one_hot(data, labs, lmap):
 ## Segmentation ##
 
 
-def save_separate_documents(df, output_dir):
-    for fname in pd.unique(df['file']):
-        doc_df = df.loc[df['file'] == fname].to_excel(
-            os.path.join(output_dir, fname + '.xlsx'))
-
-
 def segment_ema(pdfs_dir, output_dir, pool_workers=1, separate_documents=False):
     dict_data = process_documents(pdfs_dir, pool_workers=pool_workers)
     df = parsed_to_df(dict_data)
@@ -93,6 +88,14 @@ def segment_fda(xmls_dir, output_dir, separate_documents=False):
         df.to_excel(os.path.join(output_dir, 'data.xlsx'))
 
 
+def segment_epa(pdfs_dir, output_dir, pool_workers=1, separate_documents=False):
+    df = epa_process_documents(pdfs_dir, pool_workers=pool_workers)
+    if separate_documents:
+        save_separate_documents(df, output_dir)
+    else:
+        df.to_excel(os.path.join(output_dir, 'data.xlsx'))
+
+
 def segment(data_dir, output_dir, source, pool_workers=1, separate_documents=False):
     if source.lower() == 'ema':
         segment_ema(data_dir, output_dir, pool_workers=pool_workers,
@@ -100,8 +103,39 @@ def segment(data_dir, output_dir, source, pool_workers=1, separate_documents=Fal
     elif source.lower() == 'fda':
         segment_fda(data_dir, output_dir,
                     separate_documents=separate_documents)
+    elif source.lower() == 'epa':
+        segment_epa(data_dir, output_dir,
+                    separate_documents=separate_documents, pool_workers=pool_workers)
     else:
         raise Exception('Unknown data source {}'.format(source))
+
+## Pre-processing ##
+
+
+def map_labels(data_dir, mapping_file, output_dir, separate_documents=False):
+    # Load Data
+    files = [s for s in os.listdir(data_dir) if s.lower().endswith('.xlsx')]
+    frames = [pd.read_excel(os.path.join(data_dir, f)).fillna('')
+              for f in files]
+    data = pd.concat(frames)
+    data = data.set_index('Unnamed: 0', drop=True)
+    data.index.rename('', inplace=True)
+    data = data.sort_index()
+
+    # Load mapping file
+    with open(mapping_file, 'r') as f:
+        label_map = json.load(f)
+
+    # Label Mapping
+    data = translate_labels(data, label_map)
+
+    # Save Results
+    if separate_documents:
+        save_separate_documents(data, output_dir)
+    else:
+        data.to_excel(os.path.join(output_dir, 'relabeled.xlsx'))
+
+    return data
 
 ## Training ##
 
@@ -298,10 +332,10 @@ if __name__ == '__main__':
     parser_segment = subparsers.add_parser(
         'segment', help='Create segmented versions of documents.')
     parser_segment.add_argument(
-        'source', type=str, help='Data source (EMA or FDA)')
-    parser_segment.add_argument('dir', type=str, help='Path to pdfs')
+        'source', type=str, help='Data source (EMA, FDA, or EPA)')
+    parser_segment.add_argument('dir', type=str, help='Path to input files.')
     parser_segment.add_argument(
-        'output-dir', type=str, help='Path to desired output file.')
+        'output_dir', type=str, help='Path to desired output file.')
     parser_segment.add_argument(
         '--pool-workers', type=int, default=1, help='Number of pool workers to be used.')
     parser_segment.add_argument('--separate-documents', action='store_true', default=False,
@@ -311,6 +345,24 @@ if __name__ == '__main__':
         segment(args.dir, args.output_dir, args.source,
                 pool_workers=args.pool_workers, separate_documents=args.separate_documents)
     parser_segment.set_defaults(func=segment_cli)
+
+    # Label Map Parser #
+    parser_map = subparsers.add_parser(
+        'mapLabels', help='Map annotated labels')
+    parser_map.add_argument('data_dir', type=str,
+                            help='Path to annotated segmented files.')
+    parser_map.add_argument('output_dir', type=str,
+                            help='Path to output directory.')
+    parser_map.add_argument('mapping_file', type=str,
+                            help='Path to file with label mappings')
+    parser_map.add_argument('--separate-documents', action='store_true', default=False,
+                            help='Separate segmentation in a per-document basis.')
+
+    def map_cli(args):
+        map_labels(args.data_dir, args.mapping_file, args.output_dir,
+                   separate_documents=args.separate_documents)
+
+    parser_map.set_defaults(func=map_cli)
 
     # Train document parser #
     parser_train = subparsers.add_parser(

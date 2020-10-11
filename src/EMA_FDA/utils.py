@@ -17,80 +17,17 @@ import collections
 from multiprocessing import Pool
 
 
-def parse_spreadsheet(path):
-    '''
-    Parses spreadsheet located at given path and outputs a dictionary. This parser assumes the
-    following spreadsheet format:
-
-    Row 1: Title Row. The ith entry in this row will correspond to the title of the data located
-    in the ith column.
-
-    Row 2-L: Data Row
-
-    Returns: Dictionary keyed by filenames containing two lists of equal length with names
-    "paragraphs" and "labels". The list "paragraphs" contains text entries and the "labels"
-    entries contain a list of lists of labels.
-    '''
-
-    file_path = os.path.normpath(path)
-
-    if not os.path.isfile(file_path):
-        raise Exception('Unable to find file at %s.' % file_path)
-
-    data = pd.read_excel(file_path, sheet_name=1)
-
-    name_list = data['Link to label (or filename if using files sent by file transfer)']
-    text_list = data['Broad Concept Paragraph']
-    labels_list = data['Broad concept']
-
-    output = dict()
-
-    for name, text, label in zip(name_list, text_list, labels_list):
-        if type(name) == str and '.pdf' in name:
-            n = os.path.basename(name).split('.pdf')[0]
-            if n not in output:
-                output[n] = {
-                    'texts': [],
-                    'labels': []
-                }
-            label = clean_label(label)
-            found = False
-            for i, lb in enumerate(output[n]['labels']):
-                if lb == label:
-                    output[n]['texts'][i] += '\n' + text
-                    found = True
-                    break
-            if not found:
-                output[n]['texts'].append(text)
-                output[n]['labels'].append(label)
-
-    return output
+def translate_labels(data, label_map):
+    def mapping_function(ls): return ' || '.join(set(
+        [label_map.get(e.strip(), e.strip()) for e in ls.split(' || ') if e]))
+    data['labels'] = data['labels'].apply(mapping_function)
+    return data
 
 
-def parse_rationale(path):
-    file_path = os.path.normpath(path)
-
-    if not os.path.isfile(file_path):
-        raise Exception('Unable to find file at %s.' % file_path)
-
-    data = pd.read_excel(file_path, sheet_name=1)
-
-    labels_list = data['Broad concept']
-    rationales_list = data['Rationale for broad concept']
-
-    rationale_dict = collections.defaultdict(list)
-
-    for label, rationale in zip(labels_list, rationales_list):
-        if type(label) == str and label.startswith('Populations') and type(rationale) == str:
-            label = label.lower()
-            for r in rationale.split('||'):
-                rationale_dict[label].append(r.strip().lower())
-
-    for label in rationale_dict:
-        rationale_dict[label] = [tokenize_string(
-            r) for r in list(set(rationale_dict[label]))]
-
-    return rationale_dict
+def save_separate_documents(df, output_dir):
+    for fname in pd.unique(df['file']):
+        doc_df = df.loc[df['file'] == fname].to_excel(
+            os.path.join(output_dir, fname + '.xlsx'))
 
 
 def format_results(data, results):
@@ -160,74 +97,6 @@ def match_labels(data, annotations, exact_match=False, minimum_paragraph_length=
                     data.iloc[i, data.columns.get_loc(l)] = 1
 
     return sorted(list(all_labels))
-
-
-def matching_worker(args):
-    (data, name, afile) = args
-    fdata = data.loc[data['doc_name'] == name].copy()
-    afile = afile.loc[afile['corrected'] != '']
-
-    try:
-        print('Matching: {} that has {} entries.'.format(name, len(afile)))
-        for entry in afile.iloc:
-            labels = [l.strip()
-                      for l in entry['corrected'].lower().split('||')]
-            label_corrections = {
-                'hepatic impairment': 'hepatic',
-                'renal impairment': 'renal',
-                'warning': 'warnings'
-            }
-            labels = [label_corrections[l]
-                      if l in label_corrections else l for l in labels]
-            paragraphs = re.sub(r'\s+', '', entry['text'])
-
-            for j, data_entry in enumerate(fdata.iloc):
-                for par in [p.strip() for p in data_entry['text'].split('\n')]:
-                    if len(par.split(' ')) <= 5:  # Skip paragraphs 5 or less words
-                        continue
-                    par = re.sub(r'\s+', '', par)
-                    if fuzz.partial_ratio(paragraphs, par) >= 95:
-                        # TODO multi-label
-                        fdata.iloc[j, fdata.columns.get_loc(
-                            'matched')] = '||'.join(labels)
-                        # Add Labels to data point
-                        for l in labels:
-                            l = l.strip()
-                            if l not in data.columns:
-                                data[l] = 0
-                                fdata[l] = 0
-                            fdata.iloc[j, fdata.columns.get_loc(l)] = 1
-
-    except:
-        print('Falied matching {}'.format(name))
-
-    return fdata
-
-
-def match_labels2(data, annotations_dir, pool_workers=1, **kwargs):
-    annotations_dir = os.path.normpath(os.path.realpath(annotations_dir))
-    if not os.path.isdir(annotations_dir):
-        raise Exception(
-            'Unable to find directory at {}.\n'.format(annotations_dir))
-    # Iterate through annotation files
-    files = [f for f in os.listdir(
-        annotations_dir) if f.lower().endswith('.xlsx') and not f.startswith('._')]
-
-    arg_list = []
-    for fname in files:
-        name = fname.replace('.xlsx', '')
-        afile = pd.read_excel(os.path.join(annotations_dir, fname)).fillna('')
-        arg_list.append((data, name, afile))
-
-    with Pool(pool_workers) as pool:
-        dfs = pool.map(matching_worker, arg_list)
-
-    for df in dfs:
-        new_cols = [c for c in df.columns if c not in data.columns]
-        for nc in new_cols:
-            data[nc] = ''
-        data.update(df)
-    return data
 
 
 def tokenize_matches(data):
