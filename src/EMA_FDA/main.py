@@ -7,7 +7,7 @@ This file implements a command line interface to do the following tasks:
 from pdf_parser import process_documents
 from epa_preprocess import process_documents as epa_process_documents
 from utils import parsed_to_df, format_results, save_separate_documents, translate_labels
-from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda, svm_cross_validate
+from linear_model import svm_train_ema, svm_train_fda, svm_predict_ema, svm_predict_fda, svm_cross_validate, svm_train_epa
 from xml_parser import process_xmls
 import os
 import sys
@@ -189,8 +189,8 @@ def train_ema(data, rationales, output_dir):
 
 
 def train_fda(data, rationales, output_dir):
-    labs = reduce(lambda a, b: a + b, [s.lower().split('||')
-                                       for s in pd.unique(data['labels'])])
+    labs = reduce(lambda a, b: a + b,
+                  [s.lower().split('||') for s in pd.unique(data['labels'])])
     labs = sorted(list(set([s.strip() for s in labs])))
     labs.append('warnings')
     lmap = {l: l for l in labs if l}
@@ -232,6 +232,31 @@ def train_fda(data, rationales, output_dir):
         pickle.dump(models, f)
 
 
+def train_epa(data, output_dir):
+    labs = reduce(lambda a, b: a + b,
+                  [s.lower().split('||') for s in pd.unique(data['labels'])])
+    labs = sorted(list(set([s.strip() for s in labs if s.strip()])))
+
+    # One-hot categories
+    for l in labs:
+        data[l] = 0
+    for j, row in enumerate(data.iloc):
+        for l in labs:
+            corrected = str(row['labels']).lower()
+            if l in corrected:
+                data.iloc[j, data.columns.get_loc(l)] = 1
+
+    # Train
+    models = dict()
+
+    for l in tqdm(labs):
+        model_l = svm_train_epa(data, l)
+        models[l] = model_l
+
+    with open(os.path.join(output_dir, 'epa.models'), 'wb') as f:
+        pickle.dump(models, f)
+
+
 def train(data_dir, output_dir, rationales_path, source):
     # Load Data
     files = [s for s in os.listdir(data_dir) if s.lower().endswith('.xlsx')]
@@ -243,12 +268,17 @@ def train(data_dir, output_dir, rationales_path, source):
     data = data.sort_index()
 
     # Load Rationales
-    rationales = json.load(open(rationales_path, 'r'))
+    if rationales_path:
+        rationales = json.load(open(rationales_path, 'r'))
+    else:
+        rationales = None
 
     if source.lower() == 'ema':
         train_ema(data, rationales, output_dir)
     elif source.lower() == 'fda':
         train_fda(data, rationales, output_dir)
+    elif source.lower() == 'epa':
+        train_epa(data, output_dir)
     else:
         raise Exception('Unknown data source {}'.format(source))
 
@@ -371,10 +401,10 @@ if __name__ == '__main__':
         'source', type=str, help='Data source (EMA or FDA)')
     parser_train.add_argument('data_dir', type=str,
                               help='Path to segmented files')
-    parser_train.add_argument('rationales_path', type=str,
-                              help='Path to rationales file')
     parser_train.add_argument(
         'output_dir', type=str, help='Path to desired output directory')
+    parser_train.add_argument(
+        '--rationales_path', type=str, default=None, help='Path to rationales file')
 
     def train_cli(args):
         train(args.data_dir, args.output_dir,

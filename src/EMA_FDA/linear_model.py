@@ -21,6 +21,12 @@ default_config = {
     'min_df': 0.0001
 }
 
+epa_default_config = {
+    'ngram_range': (1, 3),
+    'stop_config': 'english',
+    'tfidf_config': False,
+    'min_df': 5
+}
 ## Custom Featurizers ##
 
 
@@ -181,6 +187,38 @@ def svm_train_fda(train_data, label, rationales=None, config=default_config, ign
     return {
         'model': model,
         'par_vec': parent_vectorizer,
+        'text_vec': text_vectorizer,
+        'label': label
+    }
+
+
+def svm_train_epa(train_data, label, config=epa_default_config):
+    # Instantiate Vectorizers #
+    b_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
+                                   stop_words=config['stop_config'],
+                                   min_df=config['min_df'])
+
+    text_vectorizer = CountVectorizer(ngram_range=config['ngram_range'],
+                                      stop_words=config['stop_config'],
+                                      min_df=config['min_df'])
+
+    b_vectorizer.fit(train_data['b1'].to_list() + train_data['b2'].to_list())
+
+    X_b1 = b_vectorizer.transform(train_data['b1']).toarray()
+    X_b2 = b_vectorizer.transform(train_data['b2']).toarray()
+    X_text = text_vectorizer.fit_transform(train_data['text']).toarray()
+
+    X_train = np.hstack([X_b1, X_b2, X_text])
+    Y_train = train_data[label]
+
+    # Train Model
+    model = Pipeline([('tfidf', TfidfTransformer(use_idf=config['tfidf_config'])),
+                      ('clf', LinearSVC(class_weight="balanced"))])
+    model.fit(X_train, Y_train)
+
+    return {
+        'model': model,
+        'b_vec': b_vectorizer,
         'text_vec': text_vectorizer,
         'label': label
     }
