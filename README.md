@@ -23,11 +23,12 @@ Due to GitHub/GitLab's file size constraints, the pretrained models have been co
 ```bash
 gzip -d <path to compressed EMA model>
 gzip -d <path to compressed FDA model>
+gzip -d <path to compressed EPA model>
 ```
 
-## Usage - EMA & FDA
+## Usage - Extraction
 
-Codes are located in [`src/EMA_FDA`](src/EMA_FDA).
+Codes are located in [`src/extraction`](src/extraction).
 
 Currently, there are four available commands. These can be accessed through the `main.py` module and are as follows:
 
@@ -37,48 +38,50 @@ Currently, there are four available commands. These can be accessed through the 
 
     - `source`: Data source (EMA or FDA)
     - `dir`: Path to directory containing input documents (PDFs or XMLs)
-    - `output-dir`: Path to desired output file(s)
+    - `output_dir`: Path to desired output file(s)
 
   - Optional Arguments:
     - `--pool-workers`: Number of pool workers to be used.
     - `--separate-documents`: Separate segmentation in a per-document basis.
+
+- mapLabels:
+  - Positional Arguments:
+    - `data_dir`: Path to segmented files.
+    - `output_dir`: Path to ouput directory.
+    - `mapping_file`: Path to json file with label mappings.
+  - Optional Arguments:
+    - `--separate-documents`: Separate segmentations in a per-document basis.
 
 - train
 
   - Positional Arguments:
     - `source`: Data source (EMA or FDA).
     - `data_dir`: Path to segmented file(s).
-    - `rationales_path`: Path to rationales file.
     - `output_dir`: Path to desired output directory.
+  - Optional Arguments:
+    - `--rationales_path`: Path to rationales file.
+
 
 - predict
 
   - Positional Arguments:
     - `source`: Data source (EMA or FDA).
     - `data_dir`: Path to segmented file(s).
-    - `rationales_path`: Path to rationales file.
     - `models_path`: Path to trained models file.
     - `output_dir`: Path to desired output directory.
+  - Optional Arguments:
+    - `--separate_documents`: Separate segmentations in a per-document basis.
 
 - xvalidate
   - Positional Arguments:
     - `source`: Data source (EMA or FDA).
     - `data_dir`: Path to segmented file(s).
-    - `rationales_path`: Path to rationales file.
     - `output_dir`: Path to desired output directory.
     - `num_folds`: Number of folds to use in cross validation.
+  - Optional Arguments:
+    - `--rationales_path`: Path to rationales file.
 
-## Usage - EPA
-
-Codes are located in [`src/EPA`](src/EMA_FDA).
-
-`preprocess.py` converts PDFs to XMLs with `pdftohtml` and further parses them to a json file. An example can be found at [here](example_data/EPA/parsed_EPA.json).
-
-`process_label.py` aligns the preprocessed data with the Excel annotation. The processed data is dumped to `processed_data.pkl`. Please change the path of the excel file on your machine.
-
-`train.py` trains and evaluates the model. The predictions are saved to `predictions_EPA.xlsx`.
-
-## Usage - retrieval
+## Usage - Retrieval
 
 Codes are located in [`src/retrieval`](src/retrieval).
 
