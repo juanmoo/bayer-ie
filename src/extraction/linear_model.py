@@ -273,7 +273,7 @@ def svm_predict_epa(data, model):
     label = model['label']
     X_b1 = model['b_vec'].transform(data['b1']).toarray()
     X_b2 = model['b_vec'].transform(data['b2']).toarray()
-    X_text = model['text_vec'].fit_transform(data['text']).toarray()
+    X_text = model['text_vec'].transform(data['text']).toarray()
     X_test = np.hstack([X_b1, X_b2, X_text])
 
     pred = np.array(model['model'].predict(X_test)).reshape(-1)
